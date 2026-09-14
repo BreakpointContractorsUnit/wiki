@@ -1,0 +1,233 @@
+/* BCU Wiki — stile minimale e provvisorio: verrà rifatto.
+   Colori e misure principali sono variabili in :root.
+   Le classi gear-*, badge, table-wrap, radio-table, faq-item, render-error
+   sono generate da assets/js/render.js: non rinominarle senza aggiornare lo script. */
+
+:root {
+  --bg: #ffffff;
+  --surface: #f6f8fa;
+  --fg: #1f2328;
+  --muted: #59636e;
+  --accent: #1a7f37;
+  --border: #d1d9e0;
+  --todo: #bf8700;
+  --error: #cf222e;
+  --max-width: 48rem;
+  --radius: 6px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 1rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow-wrap: break-word;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--accent);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+}
+
+/* Accessibilità: link "Vai al contenuto", visibile solo al focus da tastiera. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 1;
+  padding: 0.5rem 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+/* Layout: una colonna centrata. */
+.site-header,
+main,
+.site-footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--fg);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.brand img {
+  display: block;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  text-decoration: underline;
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--fg);
+  font-weight: 700;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* Testo. */
+.lead {
+  color: var(--muted);
+  font-size: 1.125rem;
+}
+
+.todo {
+  padding-left: 0.75rem;
+  border-left: 4px solid var(--todo);
+  color: var(--muted);
+}
+
+.note {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.link-list li {
+  margin-bottom: 0.25rem;
+}
+
+/* Onboarding: schede equipaggiamento (render.js). */
+.gear-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.gear-card {
+  overflow-wrap: anywhere;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.gear-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.gear-card h3 {
+  margin: 0;
+}
+
+.gear-card p {
+  margin: 0.5rem 0;
+}
+
+.gear-category,
+.gear-note {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.gear-links {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.badge {
+  padding: 0.125rem 0.5rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+/* Radio: tabella frequenze (render.js). */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: var(--surface);
+}
+
+/* FAQ (render.js). */
+.faq-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.faq-item p {
+  margin: 0.5rem 0 0;
+}
+
+.render-error {
+  color: var(--error);
+}

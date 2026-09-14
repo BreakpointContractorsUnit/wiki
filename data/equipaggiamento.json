@@ -1,0 +1,147 @@
+[
+  {
+    "id": "maglia",
+    "nome": "Maglia (combat shirt)",
+    "categoria": "Uniforme",
+    "perche": "Parte dell'uniforme di squadra.",
+    "prezzo": "circa 38 €",
+    "priorita": "subito",
+    "link": [
+      { "negozio": "Invader Gear", "url": "https://www.invadergear.com/en/p/combat-shirt-10214822050/" }
+    ],
+    "note": "Colore: OD (Olive Drab)."
+  },
+  {
+    "id": "pantaloni",
+    "nome": "Pantaloni",
+    "categoria": "Uniforme",
+    "perche": "Parte dell'uniforme di squadra.",
+    "prezzo": "circa 40–95 € secondo il modello",
+    "priorita": "subito",
+    "link": [
+      { "negozio": "Invader Gear", "url": "https://www.invadergear.com/en/c/combat-pants/" }
+    ],
+    "note": "Colore: OD (Olive Drab). Modello a piacere, basta che siano OD."
+  },
+  {
+    "id": "tattico",
+    "nome": "Tattico (plate carrier)",
+    "categoria": "Tattico",
+    "perche": "Sostiene le tasche per caricatori, radio e il resto dell'equipaggiamento.",
+    "prezzo": "TODO",
+    "priorita": "subito",
+    "link": [
+      { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/plate-carrier/buckle-up-assault-plate-carrier-cummerbund-olive-8fields" }
+    ],
+    "note": "Colore: OD (Olive Drab). Se il link non apre il prodotto, è temporaneamente esaurito: riprova più avanti."
+  },
+  {
+    "id": "zaino-tattico",
+    "nome": "Zaino idrico per tattico",
+    "categoria": "Tattico",
+    "perche": "Si aggancia al tattico e porta fino a 3 litri d'acqua.",
+    "prezzo": "circa 14 $",
+    "priorita": "subito",
+    "link": [
+      { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/hydration-pack/3l-water-hydration-carrier-molle-w-straps-olive-8fields" }
+    ],
+    "note": "Colore: Olive. La sacca per l'acqua non è inclusa."
+  },
+  {
+    "id": "tasca-caricatori",
+    "nome": "Tasca porta caricatori",
+    "categoria": "Tattico",
+    "perche": "Tiene i caricatori a portata di mano sul tattico.",
+    "prezzo": "circa 23 $",
+    "priorita": "subito",
+    "link": [
+      { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/rifle-magazine-pouch/buckle-up-speed-triple-rifle-pistol-mag-pouch-olive" }
+    ],
+    "note": "Colore: Olive. Tripla, per caricatori da fucile o da pistola."
+  },
+  {
+    "id": "tasca-radio",
+    "nome": "Tasca porta radio",
+    "categoria": "Tattico",
+    "perche": "Per portare la radio sul tattico.",
+    "prezzo": "circa 6 $",
+    "priorita": "subito",
+    "link": [
+      { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/radio-pouch/radio-pouch-olive-8fields" }
+    ],
+    "note": "Colore: Olive."
+  },
+  {
+    "id": "fazzoletto-rosso",
+    "nome": "Fazzoletto rosso",
+    "categoria": "Segnalazione",
+    "perche": "Serve a segnalare che si è stati colpiti.",
+    "prezzo": "circa 5 $",
+    "priorita": "subito",
+    "link": [
+      { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/pouches-leg-rigs/8fields-airsoft-dead-red-rag-pouch-olive" }
+    ],
+    "note": "Con tasca porta fazzoletto, colore: Olive."
+  },
+  {
+    "id": "cinghia",
+    "nome": "Cinghia",
+    "categoria": "Replica",
+    "perche": "Per portare la replica addosso e avere le mani libere.",
+    "prezzo": "circa 5 $",
+    "priorita": "subito",
+    "link": [
+      { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/tactical-slings/single-point-bungee-sling-olive-em" }
+    ],
+    "note": "Monopunto elastica, colore: Olive."
+  },
+  {
+    "id": "cuffie-ptt",
+    "nome": "Cuffie + PTT",
+    "categoria": "Comunicazioni",
+    "perche": "Per comunicare via radio con le mani libere.",
+    "prezzo": "circa 158 € (cuffie) + 40 € (PTT)",
+    "priorita": "consigliato",
+    "link": [
+      { "negozio": "Cootac (cuffie)", "url": "https://www.cootac.com/collections/communication/products/fma-x-falco-fcs-ops-core-type-amp-pro-headset-set-2026-version" },
+      { "negozio": "Amazon (PTT)", "url": "https://www.amazon.it/dp/B07F6M6DYK" }
+    ],
+    "note": "Per poterle usare servono entrambi. Colore cuffie: FG (Foliage Green). PTT con attacco Kenwood."
+  },
+  {
+    "id": "cappello",
+    "nome": "Cappello (jungle)",
+    "categoria": "Uniforme",
+    "perche": "Ripara dal sole.",
+    "prezzo": "TODO",
+    "priorita": "consigliato",
+    "link": [
+      { "negozio": "Amazon", "url": "https://www.amazon.it/Mil-Tec-Cappello_12325001-Oliva-L-Uomo/dp/B0071LVL8Q" }
+    ],
+    "note": "Colore: oliva."
+  },
+  {
+    "id": "elmetto",
+    "nome": "Elmetto",
+    "categoria": "Protezione",
+    "perche": "Protegge la testa.",
+    "prezzo": "circa 130 €",
+    "priorita": "consigliato",
+    "link": [
+      { "negozio": "Cygnus Armory", "url": "https://www.cygnus-armory.com/products/premium-xp-helmet-bundle?variant=55586792407364" }
+    ],
+    "note": ""
+  },
+  {
+    "id": "tasche-aggiuntive",
+    "nome": "Tasche aggiuntive",
+    "categoria": "Tattico",
+    "perche": "Altre tasche da mettere sul tattico, oltre a quelle obbligatorie.",
+    "prezzo": "variabile",
+    "priorita": "consigliato",
+    "link": [
+      { "negozio": "Taiwangun (tasche 8Fields Olive)", "url": "https://www.taiwangun.com/pouches-leg-rigs/0,8fields/0,8fields-premium/12566,olive" }
+    ],
+    "note": "Scegli tra le tasche 8Fields in colore Olive."
+  }
+]
