@@ -28,12 +28,12 @@
     "nome": "Tattico (plate carrier)",
     "categoria": "Tattico",
     "perche": "Sostiene le tasche per caricatori, radio e il resto dell'equipaggiamento.",
-    "prezzo": "TODO",
+    "prezzo": "circa 51 $",
     "priorita": "subito",
     "link": [
-      { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/plate-carrier/buckle-up-assault-plate-carrier-cummerbund-olive-8fields" }
+      { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/plate-carrier/qrf-plate-carrier-laser-cut-buckle-up-with-ar15-ak-magazine-pouch-olive-8fields" }
     ],
-    "note": "Colore: OD (Olive Drab). Se il link non apre il prodotto, è temporaneamente esaurito: riprova più avanti."
+    "note": "Colore: OD (Olive Drab). Ha già una tasca integrata per tre caricatori AR/AK."
   },
   {
     "id": "zaino-tattico",
