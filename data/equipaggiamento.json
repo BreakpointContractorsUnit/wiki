@@ -28,7 +28,7 @@
     "nome": "Tattico (plate carrier)",
     "categoria": "Tattico",
     "perche": "Sostiene le tasche per caricatori, radio e il resto dell'equipaggiamento.",
-    "prezzo": "circa 51 $",
+    "prezzo": "circa 54 €",
     "priorita": "subito",
     "link": [
       { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/plate-carrier/qrf-plate-carrier-laser-cut-buckle-up-with-ar15-ak-magazine-pouch-olive-8fields" }
@@ -40,7 +40,7 @@
     "nome": "Zaino idrico per tattico",
     "categoria": "Tattico",
     "perche": "Si aggancia al tattico e porta fino a 3 litri d'acqua.",
-    "prezzo": "circa 14 $",
+    "prezzo": "circa 15 €",
     "priorita": "subito",
     "link": [
       { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/hydration-pack/3l-water-hydration-carrier-molle-w-straps-olive-8fields" }
@@ -52,7 +52,7 @@
     "nome": "Tasca porta caricatori",
     "categoria": "Tattico",
     "perche": "Tiene i caricatori a portata di mano sul tattico.",
-    "prezzo": "circa 23 $",
+    "prezzo": "circa 24 €",
     "priorita": "subito",
     "link": [
       { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/rifle-magazine-pouch/buckle-up-speed-triple-rifle-pistol-mag-pouch-olive" }
@@ -64,7 +64,7 @@
     "nome": "Tasca porta radio",
     "categoria": "Tattico",
     "perche": "Per portare la radio sul tattico.",
-    "prezzo": "circa 6 $",
+    "prezzo": "circa 7 €",
     "priorita": "subito",
     "link": [
       { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/radio-pouch/radio-pouch-olive-8fields" }
@@ -76,7 +76,7 @@
     "nome": "Fazzoletto rosso",
     "categoria": "Segnalazione",
     "perche": "Serve a segnalare che si è stati colpiti.",
-    "prezzo": "circa 5 $",
+    "prezzo": "circa 5 €",
     "priorita": "subito",
     "link": [
       { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/pouches-leg-rigs/8fields-airsoft-dead-red-rag-pouch-olive" }
@@ -88,7 +88,7 @@
     "nome": "Cinghia",
     "categoria": "Replica",
     "perche": "Per portare la replica addosso e avere le mani libere.",
-    "prezzo": "circa 5 $",
+    "prezzo": "circa 5 €",
     "priorita": "subito",
     "link": [
       { "negozio": "Taiwangun", "url": "https://www.taiwangun.com/tactical-slings/single-point-bungee-sling-olive-em" }
@@ -113,7 +113,7 @@
     "nome": "Cappello (jungle)",
     "categoria": "Uniforme",
     "perche": "Ripara dal sole.",
-    "prezzo": "TODO",
+    "prezzo": "circa 12 €",
     "priorita": "consigliato",
     "link": [
       { "negozio": "Amazon", "url": "https://www.amazon.it/Mil-Tec-Cappello_12325001-Oliva-L-Uomo/dp/B0071LVL8Q" }
