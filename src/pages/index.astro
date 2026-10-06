@@ -1,0 +1,457 @@
+---
+import { Image } from 'astro:assets';
+import { ArrowRightIcon } from '@phosphor-icons/react/ssr';
+
+import logo from '@/assets/logo.png';
+import Bozza from '@/components/Bozza.astro';
+import Callout from '@/components/Callout.astro';
+import Section from '@/components/Section.astro';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import Base from '@/layouts/Base.astro';
+import { PAGINE, SITE, href } from '@/lib/site';
+import { VENETO_CONTORNO, VENETO_VIEWBOX } from '@/lib/veneto';
+
+const toc = [
+  { id: 'chi-siamo', label: 'Chi siamo' },
+  { id: 'principi', label: 'Le regole in breve' },
+  { id: 'da-dove-iniziare', label: 'Da dove iniziare' },
+];
+
+const pagine = PAGINE.filter((p) => p.slug !== 'index');
+---
+
+<Base
+  slug="index"
+  description="Wiki della squadra di softair Breakpoint Contractors Unit: onboarding, equipaggiamento, regole, radio e come unirsi."
+  toc={toc}
+  testata={false}
+>
+  <div slot="testata" class="border-b">
+    {/* Griglia e riga di scansione stanno solo in questa parte: si fermano sopra la fascia dei dati chiave. */}
+    <div class="relative overflow-hidden">
+    <div class="map-grid absolute inset-0 [mask-image:linear-gradient(to_bottom,black_40%,transparent)]" aria-hidden="true"></div>
+    <div class="scansione" aria-hidden="true"></div>
+    <div
+      class="relative mx-auto grid max-w-7xl items-center gap-8 px-4 py-10 sm:px-6 sm:py-14 md:grid-cols-[minmax(0,1fr)_auto] md:gap-12 lg:py-20"
+    >
+      <div class="@container min-w-0">
+        <p class="entra kicker flex flex-wrap items-center gap-x-2">
+          <span class="text-primary">Doc 00</span>
+          <span aria-hidden="true">//</span>
+          <span>ASD di softair · Veneto</span>
+        </p>
+        <h1 class="display mt-4 text-[clamp(2.25rem,12.5cqi,5.5rem)]">
+          <span class="parola" style="--ritardo: 0.1s">Breakpoint</span><br />
+          <span class="parola" style="--ritardo: 0.3s">Contractors</span><br />
+          <span class="parola text-primary" style="--ritardo: 0.5s">Unit</span>
+        </h1>
+        <p class="kicker mt-5 text-sm tracking-[0.28em] text-foreground">
+          <span class="motto" style={`--n: ${SITE.motto.length}`}>{SITE.motto}</span>
+        </p>
+        <p class="entra mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground" style="--ritardo: 1.5s">
+          La wiki della squadra: guide e indicazioni per i membri e per chi vuole unirsi a noi.
+        </p>
+        <div class="entra mt-7 flex flex-col gap-3 sm:flex-row" style="--ritardo: 1.7s">
+          <a href={href('onboarding')} class={cn(buttonVariants({ size: 'xl' }), 'notch')}>
+            Inizia dall'onboarding
+            <ArrowRightIcon weight="bold" aria-hidden="true" />
+          </a>
+          <a href={href('join')} class={cn(buttonVariants({ variant: 'outline', size: 'xl' }))}>Unisciti a noi</a>
+        </div>
+      </div>
+
+      <div class="patch order-first justify-self-start md:order-none md:justify-self-end">
+        <span class="anello" aria-hidden="true"></span>
+        <span class="aggancio" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="logo">
+          <Image
+            src={logo}
+            alt="Patch della Breakpoint Contractors Unit: la sigla BCU al centro di un mirino, tra due rami d'alloro, con il motto Audentes fortuna iuvat"
+            width={640}
+            height={640}
+            sizes="(min-width: 1024px) 20rem, (min-width: 768px) 16rem, 8rem"
+            class="size-32 md:size-64 lg:size-80"
+            loading="eager"
+          />
+          <span class="radar" aria-hidden="true"></span>
+          <svg class="veneto" viewBox={VENETO_VIEWBOX} fill="none" aria-hidden="true">
+            <path d={VENETO_CONTORNO} pathLength="1"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+    </div>
+
+    <dl class="mx-auto grid max-w-7xl border-t px-4 sm:grid-cols-3 sm:px-6">
+      {
+        [
+          ['Potenza massima', '< 1,00 J'],
+          ['Pallini', 'Solo BIO, no bianco'],
+          ['Uniforme', 'Olive Drab'],
+        ].map(([etichetta, valore], i) => (
+          <div class="flex flex-col-reverse gap-1 border-border py-4 not-first:border-t sm:pr-4 sm:not-first:border-t-0 sm:not-first:border-l sm:not-first:pl-4">
+            <dt class="entra kicker" style={`--ritardo: ${1.9 + i * 0.1}s`}>{etichetta}</dt>
+            <dd class="entra heading text-xl text-primary sm:text-2xl" style={`--ritardo: ${1.9 + i * 0.1}s`}>{valore}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+
+  <Section id="chi-siamo" title="Chi siamo">
+    <p>
+      La Breakpoint Contractors Unit è un'associazione sportiva dilettantistica (ASD) di softair. Nasce dalla passione
+      per il mondo tattico e dalla volontà di creare una realtà fondata su valori per noi fondamentali:
+      <strong>rispetto, fiducia, trasparenza, collaborazione e spirito di appartenenza</strong>.
+    </p>
+    <p>
+      Le esperienze maturate negli anni in diverse realtà del softair ci hanno fatto capire che cosa rende una squadra
+      davvero unita: la capacità di supportarsi, crescere insieme e condividere la stessa passione. Per noi il softair
+      non è soltanto ciò che accade sul campo: è il percorso condiviso, fatto di esperienze, legami e momenti vissuti
+      insieme.
+    </p>
+    <dl class="valori celle not-doc">
+      <div>
+        <dt class="heading text-lg text-primary">Spirito di squadra</dt>
+        <dd>Ogni membro contribuisce alla crescita del gruppo.</dd>
+      </div>
+      <div>
+        <dt class="heading text-lg text-primary">Passione</dt>
+        <dd>Viviamo il softair con entusiasmo, impegno e divertimento.</dd>
+      </div>
+      <div>
+        <dt class="heading text-lg text-primary">Crescita</dt>
+        <dd>Condividiamo esperienze e conoscenze per migliorare insieme.</dd>
+      </div>
+      <div>
+        <dt class="heading text-lg text-primary">Rispetto</dt>
+        <dd>Verso i compagni, gli avversari, l'ambiente e lo sport che pratichiamo.</dd>
+      </div>
+    </dl>
+
+    <h3 id="dove-giochiamo">Dove giochiamo</h3>
+    <p>
+      Siamo in Veneto e operiamo tra le province di <strong>Padova e Venezia</strong>. Organizziamo spesso amichevoli
+      con squadre di tutta la regione, che ci portano a giocare in posti sempre diversi.
+    </p>
+    <p>
+      La nostra area di gioco è il campo di addestramento del Reggimento Lagunari «Serenissima» a
+      <strong>Malcontenta (VE)</strong>, nel comprensorio della caserma «Andrea Bafile»: un misto di bosco, bunker su
+      più livelli ed ex edifici militari.
+    </p>
+    <p class="note">
+      Presentazione, valori e area di gioco vengono dal <a href={SITE.sitoUfficiale}>sito ufficiale della squadra</a>,
+      dove trovi anche la pagina del team e i contatti.
+    </p>
+
+    <h3 id="patch">Il nome e la patch</h3>
+    <Callout tipo="mancante" titolo="Dato mancante · storia e nome">
+      <p>
+        Quando è nata la squadra? Da dove viene il nome «Breakpoint Contractors Unit»? Operate anche in provincia di
+        Treviso, come indica la pagina Team del sito ufficiale?
+      </p>
+    </Callout>
+    <Bozza nota="Lettura della patch ricavata dal logo: confermate o correggete il significato che le date voi.">
+      <p>
+        Al centro della patch c'è la sigla <strong>BCU</strong> dentro un mirino, sopra la sagoma verde del Veneto, la
+        nostra regione. I due rami d'alloro ai lati sono il simbolo classico della vittoria e del merito.
+      </p>
+      <p>
+        Il motto, <strong>«Audentes fortuna iuvat»</strong>, è latino e significa «la fortuna aiuta chi osa». Viene
+        dall'<em>Eneide</em> di Virgilio (libro X, verso 284), dove compare nella forma «audentis Fortuna iuvat».
+      </p>
+    </Bozza>
+  </Section>
+
+  <Section id="principi" title="Le regole in breve">
+    <p>Tre regole per farti un'idea. Quelle complete sono nel <a href="team-rules.html">Regolamento</a>.</p>
+    <ol class="passi">
+      <li>
+        <strong>Onestà</strong>
+        Se vieni colpito, ti dichiari. Se non sei sicuro, ti dichiari lo stesso.
+      </li>
+      <li>
+        <strong>Sicurezza</strong>
+        Gli occhiali restano addosso in tutta l'area del campo e si tolgono solo nel parcheggio; le repliche stanno
+        sotto 1,00 J. La sicurezza viene prima del gioco: vedi <a href="game-rules.html">Sicurezza e normativa</a>.
+      </li>
+      <li>
+        <strong>Rispetto</strong>
+        Per gli avversari, per i compagni e per il campo: niente scenate, niente rifiuti, solo pallini BIO.
+      </li>
+    </ol>
+  </Section>
+
+  <Section id="da-dove-iniziare" title="Da dove iniziare">
+    <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+      {
+        pagine.map((p) => (
+          <a href={href(p.slug)} class="hud rivela group flex flex-col gap-2 border bg-card p-5 transition-colors hover:bg-muted">
+            <span class="flex items-center justify-between">
+              <p.icon className="size-7 text-primary" aria-hidden="true" />
+              <span class="kicker">Doc {p.codice}</span>
+            </span>
+            <span class="heading mt-1 text-xl">{p.titolo ?? p.label}</span>
+            <span class="text-sm leading-relaxed text-muted-foreground">{p.descr}</span>
+            <span class="kicker mt-auto flex items-center gap-1.5 pt-2 text-primary">
+              Apri
+              <ArrowRightIcon className="size-3.5 transition-transform group-hover:translate-x-1" weight="bold" aria-hidden="true" />
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </Section>
+</Base>
+
+<style>
+  /* Animazione d'apertura della testata, circa quattro secondi:
+     il titolo compare parola per parola e il motto si scrive come su una telescrivente; intanto la sagoma
+     del Veneto si disegna tratto per tratto, poi sopra compare la patch, che viene "agganciata" dagli angoli
+     del mirino e spazzata da un giro di radar.
+     Con "riduci animazioni" attivo nel dispositivo si vede subito il risultato finale. */
+  .entra {
+    animation: home-entra 0.5s var(--ritardo, 0s) ease-out both;
+  }
+
+  .parola {
+    display: inline-block;
+    animation: home-timbra 0.55s var(--ritardo, 0s) cubic-bezier(0.7, 0, 0.2, 1) both;
+  }
+
+  /* Il motto è in carattere monospazio: ogni lettera occupa 1ch più la spaziatura, quindi la larghezza
+     si può far crescere di una lettera alla volta. --n è il numero di lettere. */
+  .motto {
+    box-sizing: content-box;
+    display: inline-block;
+    overflow: hidden;
+    width: calc(var(--n) * (1ch + 0.28em));
+    max-width: 100%;
+    border-right: 0.55em solid transparent;
+    vertical-align: bottom;
+    white-space: nowrap;
+    animation:
+      home-scrivi 1.1s steps(var(--n)) 0.9s both,
+      home-cursore 0.44s steps(1) 0.9s 4;
+  }
+
+  .patch {
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding: 0.75rem;
+  }
+
+  /* La patch compare quando la sagoma è stata disegnata. */
+  .logo {
+    position: relative;
+    display: block;
+  }
+
+  .logo > :global(img) {
+    animation: home-logo 0.7s 1.7s ease-out both;
+  }
+
+  /* La sagoma del Veneto: 0,2-1,8 s il tratto si disegna, poi si riempie appena; quando la patch
+     è comparsa (la sagoma verde del logo è nello stesso punto) il tratto sfuma. */
+  .veneto {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    animation: home-veneto-esce 0.7s 2.6s ease-out both;
+  }
+
+  .veneto path {
+    fill: var(--primary);
+    fill-opacity: 0;
+    stroke: var(--primary);
+    stroke-width: 9;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation:
+      home-veneto-traccia 1.6s 0.2s cubic-bezier(0.6, 0, 0.3, 1) both,
+      home-veneto-riempie 0.5s 1.5s ease-out both;
+  }
+
+  /* Un giro di radar sulla patch. */
+  .radar {
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(from 0deg, transparent 0deg 285deg, color-mix(in oklch, var(--primary) 75%, white) 360deg);
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    opacity: 0;
+    /* "forwards" e non "both": prima del suo turno il radar deve restare invisibile. */
+    animation: home-radar 1.5s 2.7s linear forwards;
+  }
+
+  /* I quattro angoli del mirino si stringono sulla patch. */
+  .aggancio {
+    position: absolute;
+    inset: 0;
+    animation: home-aggancia 0.7s 2.2s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+  }
+
+  .aggancio > i {
+    position: absolute;
+    width: 13%;
+    height: 13%;
+    border: 2px solid var(--primary);
+  }
+
+  .aggancio > i:nth-child(1) {
+    top: 0;
+    left: 0;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .aggancio > i:nth-child(2) {
+    top: 0;
+    right: 0;
+    border-bottom: 0;
+    border-left: 0;
+  }
+
+  .aggancio > i:nth-child(3) {
+    right: 0;
+    bottom: 0;
+    border-top: 0;
+    border-left: 0;
+  }
+
+  .aggancio > i:nth-child(4) {
+    bottom: 0;
+    left: 0;
+    border-top: 0;
+    border-right: 0;
+  }
+
+  /* Un anello tratteggiato che continua a ruotare, molto lentamente. */
+  .anello {
+    position: absolute;
+    inset: 0.25rem;
+    border: 1px dashed color-mix(in oklch, var(--primary) 60%, transparent);
+    border-radius: 50%;
+    animation:
+      home-entra 0.8s 3.2s ease-out both,
+      home-gira 80s 3.2s linear infinite;
+  }
+
+  @keyframes home-entra {
+    from {
+      opacity: 0;
+      transform: translateY(0.6rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes home-timbra {
+    from {
+      clip-path: inset(0 100% 0 0);
+      transform: translateX(-0.08em);
+    }
+    to {
+      clip-path: inset(-20% -10% -20% -10%);
+      transform: none;
+    }
+  }
+
+  @keyframes home-scrivi {
+    from {
+      width: 0;
+    }
+  }
+
+  @keyframes home-cursore {
+    0% {
+      border-right-color: currentColor;
+    }
+    50% {
+      border-right-color: transparent;
+    }
+  }
+
+  @keyframes home-veneto-traccia {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes home-veneto-riempie {
+    to {
+      fill-opacity: 0.35;
+    }
+  }
+
+  @keyframes home-veneto-esce {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes home-logo {
+    from {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes home-radar {
+    0% {
+      opacity: 0.85;
+      rotate: 0deg;
+    }
+    80% {
+      opacity: 0.85;
+    }
+    100% {
+      opacity: 0;
+      rotate: 360deg;
+    }
+  }
+
+  @keyframes home-aggancia {
+    from {
+      opacity: 0;
+      inset: -26%;
+    }
+    to {
+      opacity: 1;
+      inset: 0;
+    }
+  }
+
+  @keyframes home-gira {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  .valori {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  }
+
+  .valori > div {
+    padding: 1rem;
+  }
+
+  .valori dd {
+    margin-top: 0.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--muted-foreground);
+  }
+</style>

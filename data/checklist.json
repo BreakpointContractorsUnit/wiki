@@ -1,0 +1,57 @@
+[
+  {
+    "id": "sera-prima",
+    "titolo": "La sera prima",
+    "voci": [
+      "Batterie in carica, nel sacchetto ignifugo e mai lasciate sole",
+      "Replica provata: spara e la batteria si collega",
+      "Caricatori pieni di pallini BIO (marroni, verdi o neri)",
+      "Uniforme OD (o abiti sobri, se sei ancora in prova) e tattico con le tasche",
+      "Fazzoletto rosso nella sua tasca",
+      "Occhiali puliti e antiappannante",
+      "Guanti, scarponi e un paio di calze di ricambio",
+      "Radio carica e provata",
+      "Replica nella borsa: scarica, senza caricatore, batteria scollegata",
+      "Acqua, pranzo, sacchetto per i rifiuti, cambio per il ritorno",
+      "Meteo controllato; ritrovo e orario confermati"
+    ]
+  },
+  {
+    "id": "arrivo",
+    "titolo": "All'arrivo al campo",
+    "voci": [
+      "Mi vesto nel parcheggio",
+      "Occhiali addosso prima di uscire dal parcheggio",
+      "Replica pronta per il controllo al cronografo: sotto 1,00 J",
+      "Ho ascoltato il briefing: confini, zone vietate, segnali",
+      "Prova radio con la squadra fatta",
+      "Sacca idrica piena, caricatori nelle tasche"
+    ]
+  },
+  {
+    "id": "in-gioco",
+    "titolo": "Durante il gioco",
+    "voci": [
+      "Occhiali sempre addosso, anche se si appannano",
+      "Colpito, o in dubbio: mi dichiaro e mostro il fazzoletto rosso",
+      "Da vicino abbasso la mira",
+      "Guardo sempre dove sparo",
+      "Bevo spesso",
+      "I rifiuti tornano a casa con me"
+    ]
+  },
+  {
+    "id": "fine-giornata",
+    "titolo": "A fine giornata e a casa",
+    "voci": [
+      "Caricatore tolto e canna svuotata, in direzione sicura",
+      "Batteria scollegata",
+      "Occhiali tolti solo una volta nel parcheggio",
+      "Replica nella borsa per il viaggio",
+      "A casa: canna pulita, caricatori svuotati",
+      "Batterie in carica di conservazione, se non gioco a breve",
+      "Sacca idrica svuotata e messa ad asciugare",
+      "Problemi o rotture segnalati al referente"
+    ]
+  }
+]

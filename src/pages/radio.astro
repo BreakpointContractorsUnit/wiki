@@ -1,0 +1,359 @@
+---
+import datiRadio from '../../data/radio.json';
+import Bozza from '@/components/Bozza.astro';
+import Callout from '@/components/Callout.astro';
+import NatoSpeller from '@/components/NatoSpeller';
+import Section from '@/components/Section.astro';
+import Vuoti from '@/components/Vuoti.astro';
+import Base from '@/layouts/Base.astro';
+import { validaRadio } from '@/lib/dati';
+import { ALFABETO, CANALI_PMR446 } from '@/lib/radio';
+
+const toc = [
+  { id: 'frequenze', label: 'Frequenze' },
+  { id: 'quale-radio', label: 'Quale radio' },
+  { id: 'procedure', label: 'Procedure' },
+  { id: 'contatto', label: 'Segnalare un avversario' },
+  { id: 'alfabeto', label: 'Alfabeto fonetico' },
+  { id: 'emergenze', label: 'Emergenze' },
+];
+
+const COLONNE = [
+  ['canale', 'Canale'],
+  ['frequenza', 'Frequenza'],
+  ['tono', 'Tono'],
+  ['uso', 'Uso'],
+  ['note', 'Note'],
+] as const;
+
+const canali = validaRadio(datiRadio);
+const daDefinire = canali.some((c) => Object.values(c).some((v) => v.includes('[')));
+---
+
+<Base
+  slug="radio"
+  description="Canali, frequenze e procedure radio della squadra Breakpoint Contractors Unit: come si trasmette, alfabeto fonetico ed emergenze."
+  lead="Canali, frequenze e procedure radio della squadra: come si parla, cosa si dice e cosa fare in un'emergenza vera."
+  toc={toc}
+>
+  <Section id="frequenze" title="Frequenze">
+    <div class="table-wrap" data-stato={daDefinire ? 'mancante' : undefined}>
+      <table class="impila">
+        <thead>
+          <tr>{COLONNE.map(([, titolo]) => <th scope="col">{titolo}</th>)}</tr>
+        </thead>
+        <tbody>
+          {
+            canali.map((canale) => (
+              <tr>
+                {COLONNE.map(([chiave, titolo]) => (
+                  <td data-label={titolo} class:list={[(chiave === 'canale' || chiave === 'frequenza' || chiave === 'tono') && 'dato']}>
+                    {canale[chiave] && <Vuoti testo={canale[chiave]} />}
+                  </td>
+                ))}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    {
+      daDefinire && (
+        <Callout tipo="mancante" titolo="Dato mancante · canali della squadra">
+          <p>
+            Su quale canale e con quale tono (CTCSS o DCS) comunica la squadra? Per le emergenze si usa lo stesso
+            canale o uno dedicato? I valori si inseriscono in <code>data/radio.json</code>.
+          </p>
+        </Callout>
+      )
+    }
+    <p class="note">
+      Il sito è pubblico: chiunque può leggere questi canali. In radio non dire nulla che non vuoi far sentire.
+    </p>
+
+    <h3 id="canali-pmr446">I 16 canali PMR446</h3>
+    <p>
+      Sono gli stessi su tutte le radio PMR446. Il «tono» (CTCSS o DCS) è un filtro: la tua radio apre l'audio solo a
+      chi usa lo stesso tono. Non rende la conversazione privata.
+    </p>
+    <ul class="canali celle not-doc">
+      {
+        CANALI_PMR446.map((c) => (
+          <li>
+            <span class="kicker">CH {String(c.canale).padStart(2, '0')}</span>
+            <span class="font-mono text-sm">{c.mhz}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="note">Frequenze in MHz. Tra un canale e il successivo ci sono 12,5 kHz.</p>
+  </Section>
+
+  <Section id="quale-radio" title="Quale radio">
+    <p>
+      In Italia la banda <strong>PMR446</strong> si può usare liberamente, senza patente: dal 2020 non servono più né
+      dichiarazione né contributo annuo. La radio però deve essere un vero apparato PMR446.
+    </p>
+    <dl class="fatti">
+      <div><dt>Banda</dt><dd>446,0–446,2 MHz</dd></div>
+      <div><dt>Canali analogici</dt><dd>16</dd></div>
+      <div><dt>Potenza massima</dt><dd>0,5 W</dd></div>
+      <div><dt>Antenna</dt><dd>Fissa</dd></div>
+    </dl>
+    <h3>Cosa controllare prima di comprare</h3>
+    <ul class="regole">
+      <li class="si">Sulla confezione c'è scritto PMR446, con marcatura CE.</li>
+      <li class="si">Potenza di 0,5 W (500 mW) e antenna integrata, che non si svita.</li>
+      <li class="si">Presa per la cuffia compatibile con il PTT che vuoi usare.</li>
+      <li class="no">Niente antenne esterne, amplificatori o ripetitori.</li>
+    </ul>
+    <Callout tipo="attenzione" titolo="Attenzione · radio «tipo Baofeng»">
+      <p>
+        Le ricetrasmittenti economiche con antenna svitabile, diversi watt di potenza e frequenze impostabili da
+        tastiera coprono anche i 446 MHz, ma <strong>non sono apparati PMR446</strong>: superano il limite di potenza
+        e non hanno l'antenna fissa. Impostarle su «potenza bassa» non le mette in regola, e usarle per trasmettere
+        può esporre a sanzioni.
+      </p>
+    </Callout>
+    <Callout tipo="mancante" titolo="Dato mancante · la radio della squadra">
+      <p>
+        Che radio usate oggi? Nell'<a href="onboarding.html#cuffie-ptt">Onboarding</a> il PTT consigliato ha
+        l'attacco Kenwood, diffuso anche sulle radio «tipo Baofeng»: serve un modello PMR446 conforme con la stessa
+        presa, da indicare nella voce <a href="onboarding.html#radio">Radio</a> dell'equipaggiamento.
+      </p>
+    </Callout>
+    <p class="note">
+      Riferimenti: Codice delle comunicazioni elettroniche (D.Lgs. 259/2003), artt. 105 e 145; D.L. 76/2020, art. 38;
+      Piano nazionale di ripartizione delle frequenze, nota 101C. Testo informativo, non un parere legale.
+    </p>
+  </Section>
+
+  <Section id="procedure" title="Procedure">
+    <h3 id="nominativi">Nominativi</h3>
+    <p>Il nominativo è il nome con cui ti presenti in radio: fa capire a tutti chi chiama e chi risponde.</p>
+    <Callout tipo="mancante" titolo="Dato mancante · i nostri nominativi">
+      <p>Che nominativi usa la squadra? Sono legati alla persona o al ruolo? Chi li assegna?</p>
+    </Callout>
+    <Bozza nota="Convenzione proposta, da adottare o sostituire con la vostra.">
+      <ul>
+        <li>Una parola dell'alfabeto fonetico per il gruppo, un numero per la persona: «Alfa 1», «Alfa 2», «Bravo 1».</li>
+        <li>Il capogruppo è il numero 1. Chi coordina da fermo è «Base».</li>
+        <li>Solo numeri da 1 a 9: «Alfa 11» in radio si capisce male.</li>
+        <li>Niente nomi veri, e niente parole che servono alle procedure («Contatto», «Emergenza», «Stop»).</li>
+      </ul>
+    </Bozza>
+
+    <h3 id="come-si-trasmette">Come si trasmette</h3>
+    <Bozza nota="Procedura proposta, da adattare alle vostre abitudini. Gli esempi usano i nominativi di esempio qui sopra.">
+    <p>Lo schema è sempre lo stesso:</p>
+    <p class="formula">
+      <span>Chi chiami</span> da <span>chi sei</span>, <span>messaggio</span>, passo.
+    </p>
+    <p>Esempio: «Alfa 2 da Alfa 1, muovo al muro nord, passo.» Per chiamare tutti: «A tutti da Alfa 1…».</p>
+    <ol class="passi">
+      <li><strong>Pensa</strong> Decidi che cosa dire prima di premere il tasto, e ascolta che il canale sia libero.</li>
+      <li><strong>Premi</strong> Tieni premuto il PTT e aspetta un secondo, altrimenti si perde la prima parola.</li>
+      <li><strong>Parla</strong> Voce normale, senza gridare. Un'informazione per volta, poi «passo» e rilascia.</li>
+    </ol>
+    <ul class="regole">
+      <li class="si">Messaggi brevi. Se serve dire di più, spezza in due chiamate.</li>
+      <li class="si">Ripeti i dati importanti quando confermi: «Ricevuto, due a ore tre».</li>
+      <li class="si">Prova radio prima di partire: volume, canale, batteria.</li>
+      <li class="no">Niente chiacchiere, battute o commenti: il canale serve a tutti.</li>
+      <li class="no">Niente discussioni su un colpo via radio: se c'è un problema, si riferisce al referente.</li>
+    </ul>
+
+    <h3 id="parole">Le parole da usare</h3>
+    <div class="table-wrap">
+      <table class="impila">
+        <thead>
+          <tr><th scope="col">Parola</th><th scope="col">Significato</th></tr>
+        </thead>
+        <tbody>
+          <tr><td data-label="Parola"><strong>Passo</strong></td><td data-label="Significato">Ho finito, tocca a te. Chiude ogni messaggio che aspetta una risposta.</td></tr>
+          <tr><td data-label="Parola"><strong>Chiudo</strong></td><td data-label="Significato">Comunicazione finita, non aspetto risposta.</td></tr>
+          <tr><td data-label="Parola"><strong>Ricevuto</strong></td><td data-label="Significato">Ho sentito e capito. Non vuol dire «sono d'accordo».</td></tr>
+          <tr><td data-label="Parola"><strong>Avanti</strong></td><td data-label="Significato">Ti ascolto, parla. Si dice rispondendo a una chiamata.</td></tr>
+          <tr><td data-label="Parola"><strong>Ripeti</strong></td><td data-label="Significato">Non ho capito: ripeti il messaggio.</td></tr>
+          <tr><td data-label="Parola"><strong>Attendi</strong></td><td data-label="Significato">Resta in ascolto, ti richiamo io.</td></tr>
+          <tr><td data-label="Parola"><strong>Affermativo</strong></td><td data-label="Significato">Sì. («Sì» e «no» in radio sono troppo corti e si confondono.)</td></tr>
+          <tr><td data-label="Parola"><strong>Negativo</strong></td><td data-label="Significato">No.</td></tr>
+          <tr><td data-label="Parola"><strong>Interrogativo</strong></td><td data-label="Significato">Sto per farti una domanda.</td></tr>
+          <tr><td data-label="Parola"><strong>Prova radio</strong></td><td data-label="Significato">Mi senti? Si risponde «forte e chiaro», oppure dicendo come si sente.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="esempi">Esempi</h3>
+    <div class="scambi">
+      <figure>
+        <figcaption class="kicker">Prova radio</figcaption>
+        <p>«Alfa 2 da Alfa 1, prova radio, passo.»</p>
+        <p>«Alfa 1 da Alfa 2, forte e chiaro, passo.»</p>
+        <p>«Alfa 2, ricevuto, chiudo.»</p>
+      </figure>
+      <figure>
+        <figcaption class="kicker">Movimento</figcaption>
+        <p>«Alfa 1 da Alfa 3, muoviamo verso il muro nord, passo.»</p>
+        <p>«Alfa 3 da Alfa 1, ricevuto, muro nord, vi copro, passo.»</p>
+        <p>«Alfa 1 da Alfa 3, chiudo.»</p>
+      </figure>
+      <figure>
+        <figcaption class="kicker">Domanda</figcaption>
+        <p>«Alfa 1 da Alfa 2, interrogativo: la porta est è libera? Passo.»</p>
+        <p>«Alfa 2 da Alfa 1, negativo, uno dietro la porta. Attendi, passo.»</p>
+        <p>«Alfa 1 da Alfa 2, ricevuto, attendo, chiudo.»</p>
+      </figure>
+    </div>
+    </Bozza>
+  </Section>
+
+  <Section id="contatto" title="Segnalare un avversario">
+    <Bozza nota="Schema proposto: decidete in squadra se usare le ore dell'orologio o i punti cardinali.">
+      <p>Sempre nello stesso ordine, così chi ascolta guarda subito dalla parte giusta:</p>
+      <p class="formula">
+        Contatto, <span>direzione</span>, <span>distanza</span>, <span>quanti</span>, <span>cosa fanno</span>, passo.
+      </p>
+      <ul>
+        <li>
+          <strong>Direzione.</strong> A ore, come su un orologio: le 12 davanti a te, le 3 a destra, le 6 dietro, le 9
+          a sinistra. Oppure con i punti cardinali, se tutti sanno dov'è il nord.
+        </li>
+        <li><strong>Distanza.</strong> In metri, a numeri tondi; meglio ancora con un riferimento: «dietro il muro».</li>
+        <li><strong>Quanti.</strong> Uno, due, tre… o «numero non chiaro».</li>
+        <li><strong>Cosa fanno.</strong> Avanzano, fermi, ripiegano, ci aggirano.</li>
+      </ul>
+      <p>Esempio: «Contatto, ore due, trenta metri, due, avanzano lungo il muro, passo.»</p>
+    </Bozza>
+  </Section>
+
+  <Section id="alfabeto" title="Alfabeto fonetico">
+    <p>
+      Serve a compitare un nome o una sigla quando l'audio è disturbato: «BCU» diventa «Bravo, Charlie, Uniform». I
+      numeri si dicono in italiano, una cifra alla volta.
+    </p>
+    <NatoSpeller client:visible />
+    <ul class="alfabeto celle not-doc">
+      {
+        ALFABETO.map(([lettera, parola, pronuncia]) => (
+          <li>
+            <span class="heading text-2xl text-primary">{lettera}</span>
+            <span>
+              <span class="block leading-tight font-semibold">{parola}</span>
+              <span class="block font-mono text-xs text-muted-foreground">{pronuncia}</span>
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="note">La pronuncia indicata è un adattamento all'italiana; in maiuscolo la sillaba accentata.</p>
+  </Section>
+
+  <Section id="emergenze" title="Emergenze">
+    <p>
+      Un'emergenza vera (un infortunio, un malore, una persona che non si trova) ha la precedenza su tutto, anche sul
+      gioco. Essere colpiti da un pallino non è un'emergenza.
+    </p>
+    <Bozza nota="Procedura proposta: confermate la formula, il canale e chi coordina.">
+      <ol class="passi">
+        <li>
+          <strong>Chi vede l'emergenza</strong>
+          Dice tre volte «<strong>Emergenza reale</strong>», poi chi è, dove si trova, che cosa è successo e che cosa
+          serve. Se la radio non va, lo grida.
+        </li>
+        <li>
+          <strong>Tutti gli altri</strong>
+          Fermano il gioco, mettono la replica in sicura e non trasmettono: il canale resta libero. Chi è vicino passa
+          la voce a chi non ha la radio. Gli occhiali restano addosso.
+        </li>
+        <li>
+          <strong>Chi coordina</strong>
+          Risponde, chiama i soccorsi (<strong>118</strong> per un'emergenza sanitaria, <strong>112</strong> per le
+          altre) o incarica una persona precisa di farlo, e manda qualcuno all'ingresso del campo per guidarli.
+        </li>
+        <li>
+          <strong>Fine dell'emergenza</strong>
+          Il gioco riprende solo quando chi coordina lo dice via radio.
+        </li>
+      </ol>
+    </Bozza>
+    <p>
+      Che cosa fare sul posto in attesa dei soccorsi è spiegato in
+      <a href="game-rules.html#primo-soccorso">Sicurezza e normativa</a>.
+    </p>
+  </Section>
+</Base>
+
+<style>
+  .canali {
+    grid-template-columns: repeat(auto-fill, minmax(7.25rem, 1fr));
+  }
+
+  .alfabeto {
+    grid-template-columns: repeat(auto-fill, minmax(9.25rem, 1fr));
+    margin-top: 1.25rem;
+  }
+
+  .canali > li,
+  .alfabeto > li {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.625rem 0.875rem;
+  }
+
+  .canali > li {
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .alfabeto > li {
+    align-items: center;
+  }
+
+  .alfabeto > li > :first-child {
+    width: 1.5rem;
+    text-align: center;
+  }
+
+  /* Schema di una chiamata: le parti variabili sono riquadrate. */
+  .formula {
+    max-width: none;
+    padding: 0.875rem 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+    font-family: var(--ff-data);
+    font-size: 0.9375rem;
+    line-height: 2.1;
+  }
+
+  .formula > span {
+    padding: 0.2em 0.5em;
+    background: var(--muted);
+    border: 1px dashed var(--input);
+    white-space: nowrap;
+  }
+
+  .scambi {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  }
+
+  .scambi figure {
+    padding: 0.875rem 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+  }
+
+  .scambi figure p {
+    margin-top: 0.375rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .scambi figure p:nth-of-type(even) {
+    padding-left: 1rem;
+    color: var(--muted-foreground);
+  }
+</style>

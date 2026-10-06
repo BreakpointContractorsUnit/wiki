@@ -1,0 +1,25 @@
+/* Font self-hosted (pacchetti Fontsource): nessuna richiesta a server esterni.
+     titoli grandi      Big Shoulders Stencil (variabile)
+     titoli             Barlow Condensed
+     testo, dati        Consolas, oppure Inconsolata dove Consolas non c'è
+
+   Consolas è un font di Microsoft: è installato su Windows ma non su Mac, iPhone e Android, e la sua
+   licenza non permette di distribuirlo con il sito. Per questo subito dopo c'è Inconsolata, un carattere
+   open source disegnato sulla stessa falsariga, che il sito serve a chi non ha Consolas. */
+
+@import "@fontsource-variable/big-shoulders-stencil/wght.css";
+@import "@fontsource/barlow-condensed/latin-500.css";
+@import "@fontsource/barlow-condensed/latin-600.css";
+@import "@fontsource/barlow-condensed/latin-700.css";
+@import "@fontsource-variable/inconsolata/wght.css";
+
+:root {
+  --ff-display: "Big Shoulders Stencil Variable", "Barlow Condensed", Impact, sans-serif;
+  --ff-heading: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --ff-body: Consolas, "Inconsolata Variable", ui-monospace, "SF Mono", Menlo, monospace;
+  --ff-data: Consolas, "Inconsolata Variable", ui-monospace, "SF Mono", Menlo, monospace;
+  --display-weight: 800;
+  --display-tracking: 0.03em;
+  --heading-weight: 700;
+  --heading-tracking: 0.05em;
+}

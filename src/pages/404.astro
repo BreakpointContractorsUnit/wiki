@@ -1,0 +1,435 @@
+---
+// Pagina mostrata quando l'indirizzo richiesto non esiste (GitHub Pages serve 404.html).
+// I link qui dentro passano sempre da href(): l'indirizzo sbagliato può avere qualunque profondità,
+// quindi i link relativi (onboarding.html) non funzionerebbero.
+import { ArrowRightIcon, HouseIcon } from '@phosphor-icons/react/ssr';
+
+import Crosshair from '@/components/Crosshair.astro';
+import { buttonVariants } from '@/components/ui/button';
+import Base from '@/layouts/Base.astro';
+import { PAGINE, href } from '@/lib/site';
+import { cn } from '@/lib/utils';
+
+const pagine = PAGINE.filter((p) => p.slug !== 'index');
+---
+
+<Base
+  slug="404"
+  description="Pagina non trovata."
+  testata={false}
+  fuoriMenu={{ titolo: 'Pagina non trovata', codice: '404' }}
+>
+  <div slot="testata" class="relative overflow-hidden border-b">
+    <div class="map-grid absolute inset-0 [mask-image:linear-gradient(to_bottom,black_40%,transparent)]" aria-hidden="true"></div>
+    <div class="scansione" aria-hidden="true"></div>
+    <div
+      class="relative mx-auto grid max-w-7xl items-center gap-8 px-4 py-10 sm:px-6 sm:py-14 md:grid-cols-[minmax(0,1fr)_auto] md:gap-12 lg:py-20"
+    >
+      <div>
+        <p class="kicker flex flex-wrap items-center gap-x-2">
+          <span class="text-primary">Doc 404</span>
+          <span aria-hidden="true">//</span>
+          <span>Rapporto di contatto</span>
+        </p>
+        <h1 class="display mt-4 text-[clamp(2.5rem,1.4rem+5.5vw,5rem)]">
+          Pagina <span class="text-destructive">colpita</span>
+        </h1>
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          Si è dichiarata, ha tirato fuori il fazzoletto rosso ed è uscita dal gioco. Tradotto: la pagina che cercavi non
+          esiste, oppure è stata spostata.
+        </p>
+        <p class="kicker mt-5 break-all">
+          Coordinate richieste:
+          <span class="tracking-normal text-foreground normal-case" data-percorso>sconosciute</span>
+        </p>
+        <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+          <a href={href('index')} class={cn(buttonVariants({ size: 'xl' }), 'notch')}>
+            <HouseIcon weight="bold" aria-hidden="true" />
+            Rientra alla base
+          </a>
+          <a href={href('glossario')} class={cn(buttonVariants({ variant: 'outline', size: 'xl' }))}>
+            Cerca nel glossario
+          </a>
+        </div>
+      </div>
+
+      <div class="order-first justify-self-start md:order-none md:justify-self-end">
+        <div class="bersaglio" aria-hidden="true" data-scena>
+          <span class="cifre">
+            <span class="display cifra">4</span>
+            <span class="zero">
+              <span class="mirino"><Crosshair class="size-full" /></span>
+              <span class="impatto" style="--dx: -14%; --dy: -10%; --ritardo: 2.55s"></span>
+              <span class="impatto" style="--dx: 12%; --dy: 4%; --ritardo: 2.75s"></span>
+              <span class="impatto" style="--dx: -3%; --dy: 13%; --ritardo: 2.95s"></span>
+            </span>
+            <span class="display cifra">4</span>
+          </span>
+          <span class="pallino" style="--dx: -14%; --dy: -10%; --ritardo: 2.3s"></span>
+          <span class="pallino" style="--dx: 12%; --dy: 4%; --ritardo: 2.5s"></span>
+          <span class="pallino" style="--dx: -3%; --dy: 13%; --ritardo: 2.7s"></span>
+          <span class="stamp esito text-destructive">Fuori gioco</span>
+          <svg class="fazzoletto text-destructive" viewBox="0 0 40 60" fill="currentColor">
+            <path d="M3 0h34l-2 15 4 11-5 12 3 14-9-5-8 13-5-13-9 5 4-14-6-12 5-11z"></path>
+          </svg>
+        </div>
+        <button type="button" class="rivedi kicker no-print" data-rivedi>↻ Rivedi l'azione</button>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="heading text-2xl">Via radio è andata così</h2>
+  <div class="scambio" data-scena>
+    <p><span class="kicker">Alfa 1</span>«Base da Alfa 1, interrogativo: la pagina è in posizione? Passo.»</p>
+    <p><span class="kicker">Base</span>«Alfa 1 da Base, negativo. A quelle coordinate non c'è niente. Passo.»</p>
+    <p><span class="kicker">Alfa 1</span>«Ricevuto. Contatto, ore dodici, zero pagine, non fanno niente. Passo.»</p>
+    <p><span class="kicker">Base</span>«Ricevuto. Rientra alla base e riprova dal menu. Chiudo.»</p>
+  </div>
+  <p class="note">Nessuna pagina è stata maltrattata: si è dichiarata da sola, come da Regolamento.</p>
+
+  <h2 class="heading !mt-12 text-2xl">Forse cercavi una di queste</h2>
+  <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+    {
+      pagine.map((p) => (
+        <a href={href(p.slug)} class="hud group flex items-center gap-3 border bg-card p-4 transition-colors hover:bg-muted">
+          <p.icon className="size-6 shrink-0 text-primary" aria-hidden="true" />
+          <span class="min-w-0 flex-1">
+            <span class="kicker block">Doc {p.codice}</span>
+            <span class="heading block text-lg">{p.titolo ?? p.label}</span>
+          </span>
+          <ArrowRightIcon className="size-4 shrink-0 text-primary transition-transform group-hover:translate-x-1" weight="bold" aria-hidden="true" />
+        </a>
+      ))
+    }
+  </div>
+
+  {/* Mostra l'indirizzo richiesto (con textContent: quello che arriva dall'indirizzo resta semplice testo)
+      e fa ripartire le animazioni quando si preme "Rivedi l'azione". */}
+  <script is:inline>
+    (function () {
+      var etichetta = document.querySelector('[data-percorso]');
+      if (etichetta) {
+        var percorso = location.pathname;
+        try {
+          percorso = decodeURIComponent(percorso);
+        } catch (errore) {}
+        etichetta.textContent = percorso.length > 80 ? percorso.slice(0, 80) + '…' : percorso;
+      }
+      var rivedi = document.querySelector('[data-rivedi]');
+      if (rivedi) {
+        rivedi.addEventListener('click', function () {
+          // Sostituire un elemento con una sua copia fa ripartire da capo le sue animazioni CSS.
+          document.querySelectorAll('[data-scena]').forEach(function (scena) {
+            scena.replaceWith(scena.cloneNode(true));
+          });
+        });
+      }
+    })();
+  </script>
+</Base>
+
+<style>
+  /* La scena dura circa quattro secondi: il mirino cerca la pagina, la aggancia, arrivano tre pallini,
+     cala il timbro e spunta il fazzoletto rosso. I tempi sono i ritardi (animation-delay) qui sotto.
+     Con "riduci animazioni" attivo nel dispositivo si vede direttamente il risultato finale. */
+  .bersaglio {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+  }
+
+  .cifre {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    animation:
+      e404-scossa 0.18s 2.58s,
+      e404-scossa 0.18s 2.78s,
+      e404-scossa 0.18s 2.98s;
+  }
+
+  .cifra {
+    font-size: clamp(5rem, 3rem + 11vw, 11rem);
+    color: var(--foreground);
+  }
+
+  .zero {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: clamp(4.5rem, 2.5rem + 10vw, 10rem);
+    aspect-ratio: 1;
+  }
+
+  /* 0-2,2 s: il mirino cerca. 2,2 s: aggancio (diventa rosso). Poi resta lì, con una lieve deriva. */
+  .mirino {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: var(--primary);
+    animation:
+      e404-cerca 2.2s cubic-bezier(0.5, 0, 0.3, 1) both,
+      e404-aggancia 0.25s 2.2s both,
+      e404-deriva 7s 4s ease-in-out infinite;
+  }
+
+  .zero::after {
+    content: "";
+    position: absolute;
+    inset: 12%;
+    border: 2px solid var(--destructive);
+    border-radius: 50%;
+    opacity: 0;
+    animation: e404-anello 0.5s 2.2s ease-out;
+  }
+
+  /* 2,3-2,7 s: tre pallini arrivano da sinistra… */
+  .pallino {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: -0.25rem 0 0 -0.25rem;
+    background: var(--foreground);
+    border-radius: 50%;
+    box-shadow: -0.9rem 0 0.5rem -0.1rem color-mix(in oklch, var(--foreground) 45%, transparent);
+    opacity: 0;
+    animation: e404-volo 0.26s var(--ritardo) linear both;
+  }
+
+  /* …e lasciano il segno. */
+  .impatto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 34%;
+    aspect-ratio: 1;
+    border: 2px solid var(--destructive);
+    border-radius: 50%;
+    opacity: 0;
+    translate: calc(-50% + var(--dx) * 2.9) calc(-50% + var(--dy) * 2.9);
+    animation: e404-impatto 0.55s var(--ritardo) ease-out both;
+  }
+
+  /* 3,2 s: il timbro. */
+  .esito {
+    position: absolute;
+    right: -0.5rem;
+    bottom: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    background: var(--background);
+    font-size: 0.8125rem;
+    transform: rotate(-9deg);
+    animation: e404-timbro 0.38s 3.2s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+  }
+
+  /* 3,5 s: il fazzoletto rosso, che poi sventola. */
+  .fazzoletto {
+    position: absolute;
+    top: 2%;
+    right: -1.5rem;
+    width: clamp(1.25rem, 0.8rem + 2vw, 2.25rem);
+    transform-origin: 10% 0;
+    animation:
+      e404-cala 0.5s 3.5s ease-out both,
+      e404-sventola 2.6s 4s ease-in-out infinite alternate;
+  }
+
+  .rivedi {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 2.75rem;
+    margin-top: 0.75rem;
+    cursor: pointer;
+  }
+
+  .rivedi:hover {
+    color: var(--foreground);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rivedi {
+      display: none;
+    }
+  }
+
+  /* I messaggi radio arrivano uno alla volta. */
+  .scambio {
+    display: grid;
+    gap: 0.5rem;
+    max-width: 44rem;
+    padding: 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+  }
+
+  .scambio p {
+    display: grid;
+    grid-template-columns: 4.25rem minmax(0, 1fr);
+    gap: 0.75rem;
+    max-width: none;
+    margin: 0;
+    line-height: 1.5;
+    animation: e404-messaggio 0.45s ease-out both;
+  }
+
+  .scambio p:nth-child(1) {
+    animation-delay: 0.6s;
+  }
+
+  .scambio p:nth-child(2) {
+    animation-delay: 1.6s;
+  }
+
+  .scambio p:nth-child(3) {
+    animation-delay: 2.6s;
+  }
+
+  .scambio p:nth-child(4) {
+    animation-delay: 3.6s;
+  }
+
+  .scambio p .kicker {
+    padding-top: 0.3em;
+    color: var(--primary);
+  }
+
+  .scambio p:nth-child(even) .kicker {
+    color: var(--muted-foreground);
+  }
+
+  @keyframes e404-cerca {
+    0% {
+      transform: translate(-60%, -34%) scale(1.25);
+    }
+    22% {
+      transform: translate(46%, 26%) scale(1.15);
+    }
+    45% {
+      transform: translate(30%, -40%) scale(1.2);
+    }
+    68% {
+      transform: translate(-36%, 22%) scale(1.1);
+    }
+    86% {
+      transform: translate(7%, -5%) scale(1.04);
+    }
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+  }
+
+  @keyframes e404-aggancia {
+    to {
+      color: var(--destructive);
+    }
+  }
+
+  @keyframes e404-deriva {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    30% {
+      transform: translate(3%, -2%);
+    }
+    65% {
+      transform: translate(-2%, 3%);
+    }
+  }
+
+  @keyframes e404-anello {
+    0% {
+      opacity: 0.9;
+      transform: scale(1.7);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+  }
+
+  @keyframes e404-volo {
+    0% {
+      opacity: 1;
+      transform: translate(-85vw, calc(var(--dy) * 3));
+    }
+    96% {
+      opacity: 1;
+      transform: translate(calc(var(--dx) * 3), calc(var(--dy) * 3));
+    }
+    100% {
+      opacity: 0;
+      transform: translate(calc(var(--dx) * 3), calc(var(--dy) * 3));
+    }
+  }
+
+  @keyframes e404-impatto {
+    0% {
+      opacity: 1;
+      scale: 0.15;
+    }
+    100% {
+      opacity: 0;
+      scale: 1.5;
+    }
+  }
+
+  @keyframes e404-scossa {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    30% {
+      transform: translate(0.3rem, -0.1rem);
+    }
+    65% {
+      transform: translate(-0.15rem, 0.08rem);
+    }
+  }
+
+  @keyframes e404-timbro {
+    0% {
+      opacity: 0;
+      transform: rotate(-24deg) scale(2.8);
+    }
+    100% {
+      opacity: 1;
+      transform: rotate(-9deg) scale(1);
+    }
+  }
+
+  @keyframes e404-cala {
+    0% {
+      opacity: 0;
+      translate: 0 -1.5rem;
+    }
+    100% {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes e404-sventola {
+    0% {
+      transform: rotate(-5deg) skewX(3deg);
+    }
+    100% {
+      transform: rotate(7deg) skewX(-4deg);
+    }
+  }
+
+  @keyframes e404-messaggio {
+    0% {
+      opacity: 0;
+      transform: translateX(-0.75rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>

@@ -1,0 +1,115 @@
+---
+import datiChecklist from '../../data/checklist.json';
+import Bozza from '@/components/Bozza.astro';
+import Callout from '@/components/Callout.astro';
+import Checklist from '@/components/Checklist';
+import Section from '@/components/Section.astro';
+import Base from '@/layouts/Base.astro';
+import { validaChecklist } from '@/lib/dati';
+
+const gruppi = validaChecklist(datiChecklist);
+
+const toc = [
+  { id: 'come-si-svolge', label: 'Come si svolge' },
+  { id: 'checklist', label: 'Checklist' },
+  { id: 'manutenzione', label: 'Dopo la partita' },
+];
+---
+
+<Base
+  slug="giornata"
+  description="Come si svolge una giornata di softair con la Breakpoint Contractors Unit, con la checklist per non dimenticare nulla e la manutenzione dopo la partita."
+  lead="Che cosa succede in una giornata di gioco, dalla sera prima al rientro a casa, con la lista di controllo da spuntare."
+  toc={toc}
+>
+  <Section id="come-si-svolge" title="Come si svolge">
+    <p>Orari e dettagli cambiano da campo a campo: questa è una giornata tipo.</p>
+    <Bozza nota="Giornata tipo proposta: confermate l'ordine e i dettagli delle vostre uscite.">
+    <ol class="passi">
+      <li>
+        <strong>Ritrovo e vestizione</strong>
+        Ci si trova al ritrovo, di solito il parcheggio, ci si veste e si prepara l'attrezzatura. Il parcheggio è
+        l'unico posto dove si sta senza occhiali.
+      </li>
+      <li>
+        <strong>Controllo delle repliche</strong>
+        Le repliche possono essere controllate al cronografo, anche a campione: chi non è sotto 1,00 J non gioca
+        finché non rientra nel limite.
+      </li>
+      <li>
+        <strong>Briefing</strong>
+        Si spiegano i confini del campo, le zone vietate, i segnali di inizio e fine e lo scenario della partita. Se
+        qualcosa non è chiaro, si chiede adesso.
+      </li>
+      <li>
+        <strong>Si gioca</strong>
+        Più partite, di solito a obiettivi. Chi è colpito si dichiara, mostra il fazzoletto rosso e segue le regole
+        dello scenario.
+      </li>
+      <li>
+        <strong>Pausa</strong>
+        Si beve, si mangia, si ricaricano caricatori e sacca idrica.
+      </li>
+      <li>
+        <strong>Chiusura</strong>
+        Due parole su com'è andata, si mettono in sicurezza le repliche, si raccolgono i rifiuti e ci si cambia nel
+        parcheggio.
+      </li>
+    </ol>
+    </Bozza>
+    <Callout tipo="mancante" titolo="Dato mancante · le nostre giornate">
+      <p>
+        Dove e a che ora è il ritrovo? Quanto dura una giornata tipo? Dove vanno i colpiti e come si rientra in
+        gioco? Il pranzo si porta da casa?
+      </p>
+    </Callout>
+  </Section>
+
+  <Section id="checklist" title="Checklist">
+    <p>
+      Spunta le voci man mano: restano salvate su questo dispositivo, anche senza rete. Prima dell'uscita successiva
+      premi «Azzera».
+    </p>
+    <Checklist client:load gruppi={gruppi} />
+    <Bozza nota="Lista proposta: aggiungete o togliete voci in data/checklist.json secondo le vostre abitudini." />
+  </Section>
+
+  <Section id="manutenzione" title="Dopo la partita">
+    <p>
+      Dieci minuti di cura dopo ogni uscita evitano la maggior parte dei guasti. Queste indicazioni valgono per un
+      fucile elettrico (AEG); per le altre repliche segui il manuale.
+    </p>
+    <h3>Subito, al campo</h3>
+    <Bozza nota="Procedura di buona pratica: confermate come e dove si svuotano le repliche nei vostri campi.">
+      <ol>
+        <li>Togli il caricatore.</li>
+        <li>
+          Con la replica puntata in una direzione sicura, spara un paio di colpi singoli per far uscire i pallini
+          rimasti in canna.
+        </li>
+        <li>Scollega la batteria.</li>
+      </ol>
+    </Bozza>
+    <h3>A casa</h3>
+    <ul>
+      <li>
+        <strong>Canna.</strong> Passa l'asta di pulizia (non metallica) con un panno in microfibra finché esce pulito.
+        Entra dalla volata e non spingere oltre il gruppo hop-up.
+      </li>
+      <li><strong>Caricatori.</strong> Svuotali dai pallini, così le molle non restano compresse.</li>
+      <li>
+        <strong>Batterie.</strong> Controllale: se sono gonfie o danneggiate non si ricaricano più. Se non giochi a
+        breve, mettile in carica di conservazione. Vedi <a href="game-rules.html#batterie">Batterie</a>.
+      </li>
+      <li><strong>Sacca idrica.</strong> Svuotala, sciacquala e lasciala asciugare aperta.</li>
+      <li><strong>Occhiali.</strong> Lenti lavate con acqua e panno morbido, mai strofinate a secco.</li>
+    </ul>
+    <h3>Cosa non fare</h3>
+    <ul class="regole">
+      <li class="no">Usare lubrificanti generici: per la replica serve olio al silicone per softair.</li>
+      <li class="no">Infilare aste di metallo o carta nella canna.</li>
+      <li class="no">Aprire il gearbox o cambiare la molla senza esperienza: rischi di non stare più sotto 1,00 J.</li>
+      <li class="no">Lasciare la batteria collegata alla replica, o in carica senza nessuno presente.</li>
+    </ul>
+  </Section>
+</Base>

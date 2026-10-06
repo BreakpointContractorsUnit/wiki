@@ -430,3 +430,9 @@ FodyWeavers.xsd
 
 # Custom
 docs/**
+
+# Astro
+# Risultato della compilazione (npm run build): lo genera la pubblicazione, non va nel repository
+dist/
+# Tipi e cache che Astro ricrea da solo
+.astro/

@@ -1,0 +1,214 @@
+[
+  {
+    "termine": "AEG",
+    "definizione": "Automatic Electric Gun: replica elettrica, con motore, ingranaggi e molla. È la più diffusa e la più adatta per iniziare."
+  },
+  {
+    "termine": "AEP",
+    "definizione": "Automatic Electric Pistol: pistola elettrica, la versione compatta dell'AEG."
+  },
+  {
+    "termine": "Alla talebana",
+    "definizione": "Sparare alla cieca, sporgendo solo la replica senza guardare dove si tira. Da noi è vietato."
+  },
+  {
+    "termine": "ASG",
+    "definizione": "Air Soft Gun: la replica da softair in generale."
+  },
+  {
+    "termine": "Bang rule",
+    "definizione": "Regola di alcuni campi: a distanza ravvicinata si dice «bang» invece di sparare. Da noi non si usa: si abbassa la mira e si colpisce in una zona che non fa male."
+  },
+  {
+    "termine": "BB",
+    "definizione": "Il pallino: sfera di plastica da 6 mm, la munizione del softair."
+  },
+  {
+    "termine": "BIO",
+    "definizione": "Pallino biodegradabile. Da noi si usano solo BIO a basso impatto visivo: marroni, verdi o neri."
+  },
+  {
+    "termine": "Bolt action",
+    "definizione": "Replica a otturatore manuale: un colpo alla volta. Tipica dei tiratori scelti."
+  },
+  {
+    "termine": "Bucking",
+    "definizione": "Il gommino dell'hop-up che tocca il pallino e gli dà rotazione. Si consuma e ogni tanto va cambiato."
+  },
+  {
+    "termine": "Chest rig",
+    "definizione": "Pettorina leggera con le tasche per i caricatori sul davanti, senza piastre."
+  },
+  {
+    "termine": "Colpito",
+    "definizione": "Chi è stato raggiunto da un pallino: si dichiara e lo segnala con il fazzoletto rosso."
+  },
+  {
+    "termine": "Combat shirt",
+    "definizione": "Maglia con busto leggero e traspirante, da portare sotto il tattico, e maniche robuste. Fa parte dell'uniforme."
+  },
+  {
+    "termine": "CQB",
+    "definizione": "Close Quarters Battle: gioco in spazi stretti (edifici, interni), a distanze brevi."
+  },
+  {
+    "termine": "Cronografo",
+    "definizione": "Strumento che misura la velocità del pallino, da cui si ricava l'energia in joule. Serve a controllare la potenza delle repliche."
+  },
+  {
+    "termine": "Deans",
+    "definizione": "Connettore a T per batterie. Deve essere lo stesso della replica, altrimenti serve un adattatore."
+  },
+  {
+    "termine": "Dichiararsi",
+    "definizione": "Dire ad alta voce di essere stati colpiti e uscire dal gioco. Nel dubbio ci si dichiara sempre."
+  },
+  {
+    "termine": "Dichiarati",
+    "definizione": "L'intimazione a un avversario vicino di darsi per colpito senza sparare. Da noi non esiste."
+  },
+  {
+    "termine": "DMR",
+    "definizione": "Designated Marksman Rifle: fucile da tiratore scelto, per la media distanza. Anche per questo vale il limite di potenza."
+  },
+  {
+    "termine": "FPS",
+    "definizione": "Feet per second: la velocità del pallino in piedi al secondo. Con un pallino da 0,20 g, 1 joule corrisponde a circa 328 fps."
+  },
+  {
+    "termine": "Friendly fire",
+    "definizione": "Fuoco amico: colpire per errore un compagno."
+  },
+  {
+    "termine": "GBB",
+    "definizione": "Gas Blow Back: replica a gas con il carrello o l'otturatore che arretra a ogni colpo."
+  },
+  {
+    "termine": "Gearbox",
+    "definizione": "Il blocco con ingranaggi, pistone e molla dentro un AEG. Meglio non aprirlo senza esperienza."
+  },
+  {
+    "termine": "Ghillie",
+    "definizione": "Mimetica fatta di strisce e fili di tessuto, tipica dei tiratori scelti."
+  },
+  {
+    "termine": "Hi-cap",
+    "definizione": "Caricatore da 300–400 pallini, da riempire e poi caricare con la rotella. Costa poco ma fa rumore."
+  },
+  {
+    "termine": "Highlander",
+    "definizione": "Chi non si dichiara quando viene colpito e continua a giocare."
+  },
+  {
+    "termine": "Hop-up",
+    "definizione": "Meccanismo che fa ruotare il pallino all'indietro per farlo andare più lontano e più dritto. Si regola."
+  },
+  {
+    "termine": "HPA",
+    "definizione": "High Pressure Air: replica alimentata ad aria compressa da una bombola."
+  },
+  {
+    "termine": "Joule (J)",
+    "definizione": "Unità di misura dell'energia del pallino. Da noi le repliche devono stare sotto 1,00 J."
+  },
+  {
+    "termine": "LiPo",
+    "definizione": "Batteria ai polimeri di litio: leggera e potente, ma delicata. Si ricarica solo con un caricabatterie con bilanciamento."
+  },
+  {
+    "termine": "Low-cap",
+    "definizione": "Caricatore a molla da poche decine di pallini. Silenzioso, ma va ricaricato spesso."
+  },
+  {
+    "termine": "Medico",
+    "definizione": "In alcuni scenari, il giocatore che può rimettere in gioco un compagno colpito."
+  },
+  {
+    "termine": "Mid-cap",
+    "definizione": "Caricatore a molla da circa 120–150 pallini. Silenzioso; si riempie con lo speed loader."
+  },
+  {
+    "termine": "Milsim",
+    "definizione": "Military simulation: partite lunghe con ordini, ruoli e logistica, il più possibile realistiche."
+  },
+  {
+    "termine": "Mini Tamiya",
+    "definizione": "Connettore per batterie molto diffuso sugli AEG di serie."
+  },
+  {
+    "termine": "MOLLE",
+    "definizione": "Il sistema di fettucce su tattici e zaini a cui si agganciano tasche e accessori."
+  },
+  {
+    "termine": "MOSFET",
+    "definizione": "Circuito elettronico che protegge i contatti del grilletto dell'AEG e permette di usare batterie più potenti."
+  },
+  {
+    "termine": "NiMH",
+    "definizione": "Batteria al nichel-metallo idruro: più pesante della LiPo, ma più robusta e tollerante."
+  },
+  {
+    "termine": "OD",
+    "definizione": "Olive Drab: il verde oliva della nostra uniforme."
+  },
+  {
+    "termine": "Overkill",
+    "definizione": "Continuare a sparare a un avversario già colpito, o scaricargli addosso una raffica da vicino. È scorretto e fa male."
+  },
+  {
+    "termine": "Plate carrier",
+    "definizione": "Il tattico: giubbotto porta piastre a cui si agganciano le tasche."
+  },
+  {
+    "termine": "PMR446",
+    "definizione": "La banda radio a 446 MHz utilizzabile senza patente, con 16 canali. Vedi la pagina Radio."
+  },
+  {
+    "termine": "PTT",
+    "definizione": "Push To Talk: il pulsante per parlare in radio senza prendere in mano l'apparato."
+  },
+  {
+    "termine": "Real-cap",
+    "definizione": "Caricatore con la stessa capacità dell'arma vera (per esempio 30 colpi)."
+  },
+  {
+    "termine": "Referente",
+    "definizione": "La persona di riferimento della squadra: a lei si segnalano i problemi."
+  },
+  {
+    "termine": "Replica",
+    "definizione": "Lo strumento da softair: riproduce un'arma vera ma spara pallini di plastica a bassa energia."
+  },
+  {
+    "termine": "Respawn",
+    "definizione": "Il rientro in gioco dopo essere stati colpiti, passando da un punto stabilito. Dipende dallo scenario."
+  },
+  {
+    "termine": "ROF",
+    "definizione": "Rate of Fire: la cadenza di tiro, in colpi al secondo."
+  },
+  {
+    "termine": "Safe zone",
+    "definizione": "Zona sicura: l'area fuori dal gioco, dove le repliche non devono poter sparare. Le regole sono in Sicurezza e normativa."
+  },
+  {
+    "termine": "Skirmish",
+    "definizione": "Partita breve e libera, con obiettivi semplici."
+  },
+  {
+    "termine": "Sniper",
+    "definizione": "Tiratore a lunga distanza, di solito con una replica bolt action."
+  },
+  {
+    "termine": "Speed loader",
+    "definizione": "Attrezzo per riempire in fretta i caricatori."
+  },
+  {
+    "termine": "Support",
+    "definizione": "Ruolo di supporto: fuoco di copertura per tenere bloccato l'avversario."
+  },
+  {
+    "termine": "Tattico",
+    "definizione": "Nel gergo italiano, il giubbotto tattico (plate carrier o chest rig) su cui si portano le tasche."
+  }
+]
