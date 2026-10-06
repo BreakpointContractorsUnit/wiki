@@ -1,7 +1,5 @@
 ---
 import datiChecklist from '../../data/checklist.json';
-import Bozza from '@/components/Bozza.astro';
-import Callout from '@/components/Callout.astro';
 import Checklist from '@/components/Checklist';
 import Section from '@/components/Section.astro';
 import Base from '@/layouts/Base.astro';
@@ -24,12 +22,11 @@ const toc = [
 >
   <Section id="come-si-svolge" title="Come si svolge">
     <p>Orari e dettagli cambiano da campo a campo: questa è una giornata tipo.</p>
-    <Bozza nota="Giornata tipo proposta: confermate l'ordine e i dettagli delle vostre uscite.">
     <ol class="passi">
       <li>
         <strong>Ritrovo e vestizione</strong>
-        Ci si trova al ritrovo, di solito il parcheggio, ci si veste e si prepara l'attrezzatura. Il parcheggio è
-        l'unico posto dove si sta senza occhiali.
+        Ci si trova al ritrovo, di solito il parcheggio. Appena arrivi metti gli occhiali, poi ti vesti e prepari
+        l'attrezzatura.
       </li>
       <li>
         <strong>Controllo delle repliche</strong>
@@ -52,17 +49,10 @@ const toc = [
       </li>
       <li>
         <strong>Chiusura</strong>
-        Due parole su com'è andata, si mettono in sicurezza le repliche, si raccolgono i rifiuti e ci si cambia nel
-        parcheggio.
+        Per prima cosa si mettono in sicurezza le repliche. Poi due parole su com'è andata, si raccolgono i rifiuti
+        e ci si cambia nel parcheggio. Gli occhiali si tolgono come ultima cosa, prima di andare via.
       </li>
     </ol>
-    </Bozza>
-    <Callout tipo="mancante" titolo="Dato mancante · le nostre giornate">
-      <p>
-        Dove e a che ora è il ritrovo? Quanto dura una giornata tipo? Dove vanno i colpiti e come si rientra in
-        gioco? Il pranzo si porta da casa?
-      </p>
-    </Callout>
   </Section>
 
   <Section id="checklist" title="Checklist">
@@ -71,7 +61,6 @@ const toc = [
       premi «Azzera».
     </p>
     <Checklist client:load gruppi={gruppi} />
-    <Bozza nota="Lista proposta: aggiungete o togliete voci in data/checklist.json secondo le vostre abitudini." />
   </Section>
 
   <Section id="manutenzione" title="Dopo la partita">
@@ -80,16 +69,14 @@ const toc = [
       fucile elettrico (AEG); per le altre repliche segui il manuale.
     </p>
     <h3>Subito, al campo</h3>
-    <Bozza nota="Procedura di buona pratica: confermate come e dove si svuotano le repliche nei vostri campi.">
-      <ol>
-        <li>Togli il caricatore.</li>
-        <li>
-          Con la replica puntata in una direzione sicura, spara un paio di colpi singoli per far uscire i pallini
-          rimasti in canna.
-        </li>
-        <li>Scollega la batteria.</li>
-      </ol>
-    </Bozza>
+    <ol>
+      <li>Togli il caricatore.</li>
+      <li>
+        Con la replica puntata in una direzione sicura, spara un paio di colpi singoli per far uscire i pallini
+        rimasti in canna.
+      </li>
+      <li>Scollega la batteria.</li>
+    </ol>
     <h3>A casa</h3>
     <ul>
       <li>

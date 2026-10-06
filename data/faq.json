@@ -11,33 +11,33 @@
   },
   {
     "domanda": "Quanto costa iniziare?",
-    "risposta": "Dipende da cosa scegli di comprare: l'elenco dell'equipaggiamento, con prezzi indicativi e priorità, è nella pagina Onboarding. In più ci sono [quota di iscrizione o tessera: importo] e [quota per uscita: importo]. La giornata di prova costa [importo oppure gratuita].",
-    "bozza": true
+    "risposta": "Dipende da cosa scegli di comprare: l'elenco dell'equipaggiamento, con prezzi indicativi e priorità, è nella pagina Onboarding. Le tre giornate di prova sono gratuite. La quota annuale te la comunichiamo in privato; una quota per uscita c'è solo se la chiede la squadra che ci ospita.",
+    "bozza": false
   },
   {
     "domanda": "Qual è l'età minima?",
-    "risposta": "In squadra l'età minima è [N anni]. Per riferimento: la legge parla di repliche vendibili ai maggiori di 16 anni, mentre l'età per giocare la fissano la squadra e il campo. Se la squadra accetta minorenni, servono [condizioni: per esempio consenso scritto di un genitore e protezione del viso]. Questa risposta è informativa.",
-    "bozza": true
+    "risposta": "18 anni. Non accettiamo minorenni.",
+    "bozza": false
   },
   {
     "domanda": "Cosa devo portare alla prima uscita?",
-    "risposta": "Porta occhiali protettivi a tenuta con marcatura, scarponi o scarpe da trekking, maglia e pantaloni a maniche lunghe di colore sobrio, acqua e qualcosa da mangiare. La replica e il resto li presta la squadra [da confermare: cosa presta, e se servono documento d'identità o certificato medico]. Se porti la tua replica deve stare sotto 1,00 J, con la punta della canna rossa e pallini BIO. Non portare granate, fumogeni o altri articoli a fiamma libera.",
-    "bozza": true
+    "risposta": "Abiti robusti e sobri (maglia a maniche lunghe e pantaloni lunghi), scarponi o scarpe da trekking, acqua e qualcosa da mangiare. Gli occhiali protettivi sono obbligatori: se non li hai, te li diamo noi. Anche il resto del materiale te lo prestiamo noi, gratis. Se porti la tua replica deve stare sotto 1,00 J e usare pallini BIO. Non portare granate, fumogeni o altri articoli a fiamma libera.",
+    "bozza": false
   },
   {
     "domanda": "Posso usare la mia replica e la mia mimetica?",
-    "risposta": "Sì, con qualche condizione. La replica deve stare sotto 1,00 J, può essere controllata a campione prima di giocare e si usano solo pallini BIO. La mimetica va bene nelle prime uscite se è sobria e senza fregi, gradi o stemmi di reparti reali, militari o delle forze dell'ordine; poi l'uniforme di squadra è OD e hai [N uscite o N mesi] per completarla. [Eventuali limiti su tipo di replica, caricatori o armi di precisione: da confermare.]",
-    "bozza": true
+    "risposta": "Sì. La tua replica va bene finché è a norma di legge. Anche la tua mimetica, finché sei in prova: una volta entrato in squadra, l'uniforme OD va procurata il prima possibile.",
+    "bozza": false
   },
   {
     "domanda": "Quanto spesso si gioca?",
-    "risposta": "La nostra area di gioco è a Malcontenta (VE), e organizziamo spesso amichevoli con altre squadre in giro per il Veneto. Giochiamo in media [N volte al mese], di solito [giorno della settimana]. Il calendario è pubblicato su [canale] e la presenza va confermata entro [scadenza].",
-    "bozza": true
+    "risposta": "La nostra area di gioco è a Malcontenta (VE), e organizziamo spesso amichevoli con altre squadre in giro per il Veneto. Giochiamo in media 3 volte al mese, di solito la domenica. Le uscite vengono comunicate sul gruppo WhatsApp almeno 7 giorni prima e la presenza va confermata entro il martedì.",
+    "bozza": false
   },
   {
     "domanda": "Servono assicurazione e certificato medico?",
-    "risposta": "La Breakpoint Contractors Unit è un'associazione sportiva dilettantistica (ASD). Per i soci: [ente di affiliazione, che cosa copre la polizza, quanto costa la tessera, se serve il certificato medico]. Per chi viene a provare: [che cosa serve e chi è coperto]. Chiedi alla segreteria prima della prima uscita.",
-    "bozza": true
+    "risposta": "La Breakpoint Contractors Unit è un'associazione sportiva dilettantistica (ASD) affiliata al CSEN. Per i soci serve il certificato medico per attività sportiva non agonistica; se hai quello agonistico, deve riportare il softair tra gli sport e non deve essere intestato a una ASD specifica. I soci sono assicurati con la tessera CSEN. Chi viene a provare firma uno scarico di responsabilità.",
+    "bozza": false
   },
   {
     "domanda": "Serve una licenza o un porto d'armi?",
@@ -46,7 +46,7 @@
   },
   {
     "domanda": "Il softair fa male?",
-    "risposta": "Un colpo si sente e può lasciare un segno, soprattutto da vicino: per questo a distanza ravvicinata si abbassa la mira e si evitano le zone dolorose. Il rischio serio sono gli occhi, perché un pallino può causare lesioni oculari gravi: gli occhiali protettivi sono obbligatori in tutta l'area del campo e si tolgono solo nel parcheggio. Le repliche devono stare sotto 1,00 J, con controlli a campione: con un pallino da 0,20 g significa circa 100 metri al secondo.",
+    "risposta": "Un colpo si sente e può lasciare un segno, soprattutto da vicino: per questo a distanza ravvicinata si abbassa la mira e si evitano le zone dolorose. Il rischio serio sono gli occhi, perché un pallino può causare lesioni oculari gravi: gli occhiali protettivi sono obbligatori, si mettono appena arrivi nel parcheggio e si tolgono come ultima cosa prima di andare via. Le repliche devono stare sotto 1,00 J, con controlli a campione: con un pallino da 0,20 g significa circa 100 metri al secondo.",
     "bozza": false
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "domanda": "Ragazze e principianti sono benvenuti?",
-    "risposta": "Sì. Non serve essere atleti né avere esperienza, e in squadra non c'è posto per discriminazioni di nessun tipo: il rispetto è una regola come le altre, uguale per tutti. Principianti, ragazze e ragazzi fanno lo stesso percorso: chiacchierata, giornata di prova con un tutor, periodo di prova.",
-    "bozza": true
+    "risposta": "Sì. Non serve essere atleti né avere esperienza, e in squadra non c'è posto per discriminazioni di nessun tipo: il rispetto è una regola come le altre, uguale per tutti. Principianti, ragazze e ragazzi fanno lo stesso percorso: primo contatto e tre giornate di prova.",
+    "bozza": false
   }
 ]

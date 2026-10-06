@@ -1,7 +1,5 @@
 ---
 import equipaggiamento from '../../data/equipaggiamento.json';
-import Bozza from '@/components/Bozza.astro';
-import Callout from '@/components/Callout.astro';
 import GearBoard from '@/components/GearBoard';
 import Section from '@/components/Section.astro';
 import Base from '@/layouts/Base.astro';
@@ -26,17 +24,9 @@ const toc = [
 >
   <p>
     Non serve comprare tutto subito, e <strong>prima di acquistare conviene chiedere in squadra</strong>: eviti doppioni
-    e colori sbagliati. Le voci sono in tre gruppi, dal più urgente al meno urgente.
+    e colori sbagliati. Le voci sono divise per priorità, dalla più urgente alla meno urgente.
   </p>
-  <p class="note">I prezzi sono indicativi (rilevati dall'Italia a settembre 2026) e possono cambiare.</p>
-  <Callout tipo="info" titolo="Voci in bozza">
-    <p>
-      Le schede con il bordo tratteggiato e il timbro «Bozza» sono voci <strong>proposte</strong> per completare
-      l'elenco (replica, occhiali, batterie, pallini…). Sono proposti il modello, la fascia di prezzo (stime di
-      ottobre 2026) e anche il gruppo in cui sono messe; mancano il modello scelto dalla squadra e il link. Le regole
-      che richiamano (pallini BIO, occhiali, limite di potenza) sono invece quelle del Regolamento.
-    </p>
-  </Callout>
+  <p class="note">I prezzi sono indicativi (rilevati dall'Italia tra settembre e ottobre 2026) e possono cambiare.</p>
 
   <GearBoard client:load voci={voci} />
   <noscript>
@@ -56,8 +46,7 @@ const toc = [
       </li>
       <li class="no">
         <strong>Protezioni senza marcatura.</strong> Occhiali da sole, da lavoro generici o maschere senza
-        certificazione non reggono un pallino. Sugli occhi non si risparmia: vedi
-        <a href="game-rules.html#protezioni">Protezioni</a>.
+        certificazione non reggono un pallino. Sugli occhi non si risparmia.
       </li>
       <li class="no">
         <strong>Acquisti inutili all'inizio.</strong> Prima le voci obbligatorie, poi il resto. Ottiche, torce e
@@ -67,35 +56,27 @@ const toc = [
         <strong>Pallini sbagliati.</strong> Pallini non BIO o chiari da noi non sono ammessi. Quelli di marca
         sconosciuta si incastrano e rovinano la canna.
       </li>
+      <li class="no">
+        <strong>Colore sbagliato.</strong> «Verde» non basta: l'uniforme è OD e le tonalità cambiano da una marca
+        all'altra. Confronta con un capo di un compagno prima di ordinare.
+      </li>
+      <li class="no">
+        <strong>Batterie e caricabatterie scadenti.</strong> Una LiPo di marca sconosciuta o un caricabatterie senza
+        bilanciamento sono il modo più rapido per rovinare la batteria, o peggio. Vedi
+        <a href="game-rules.html#batterie">Batterie</a>.
+      </li>
+      <li class="no">
+        <strong>Modifiche premature.</strong> Cambiare molla, motore o canna prima di aver giocato spreca soldi e
+        può portare la replica fuori dal limite di potenza. Gioca qualche uscita, poi decidi.
+      </li>
+      <li class="no">
+        <strong>Taglie a occhio.</strong> Le marche non usano le stesse misure: controlla la tabella taglie del
+        negozio. Gli scarponi vanno rodati prima della partita.
+      </li>
+      <li class="no">
+        <strong>Una seconda replica o una pistola subito.</strong> Prima impara a usare bene la prima.
+      </li>
     </ul>
-    <Bozza nota="Altri consigli proposti: confermate quali date davvero ai nuovi.">
-      <ul class="regole">
-        <li class="no">
-          <strong>Colore sbagliato.</strong> «Verde» non basta: l'uniforme è OD e le tonalità cambiano da una marca
-          all'altra. Confronta con un capo di un compagno prima di ordinare.
-        </li>
-        <li class="no">
-          <strong>Batterie e caricabatterie scadenti.</strong> Una LiPo di marca sconosciuta o un caricabatterie senza
-          bilanciamento sono il modo più rapido per rovinare la batteria, o peggio. Vedi
-          <a href="game-rules.html#batterie">Batterie</a>.
-        </li>
-        <li class="no">
-          <strong>Solo caricatori hi-cap.</strong> Costano poco, ma i pallini dentro fanno rumore a ogni passo: nel
-          bosco ti sentono arrivare.
-        </li>
-        <li class="no">
-          <strong>Modifiche premature.</strong> Cambiare molla, motore o canna prima di aver giocato spreca soldi e
-          può portare la replica fuori dal limite di potenza. Gioca qualche uscita, poi decidi.
-        </li>
-        <li class="no">
-          <strong>Taglie a occhio.</strong> Le marche non usano le stesse misure: controlla la tabella taglie del
-          negozio. Gli scarponi vanno rodati prima della partita.
-        </li>
-        <li class="no">
-          <strong>Una seconda replica o una pistola subito.</strong> Prima impara a usare bene la prima.
-        </li>
-      </ul>
-    </Bozza>
   </Section>
 
   <Section id="domande" title="Dubbi?">

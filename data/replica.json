@@ -78,7 +78,7 @@
     "nome": "Selettore di tiro",
     "gruppo": "comandi",
     "testo": "È la levetta sul lato sinistro. Ha tre posizioni: sicura, colpo singolo, raffica.",
-    "occhio": "In zona sicura e fuori dal gioco il selettore sta sempre su sicura."
+    "occhio": "A fine partita e fuori dal gioco il selettore sta sempre su sicura."
   },
   {
     "id": "grilletto",
@@ -104,7 +104,7 @@
     "nome": "Caricatore (magazine)",
     "gruppo": "alimentazione",
     "testo": "Contiene i pallini. Il mid-cap ne tiene 120-150, non ha rotella e i pallini salgono spinti da una molla. L'hi-cap ne tiene 300-400: i pallini si versano dall'alto e la rotella sul fondo si gira per caricare la molla che li porta alla bocca del caricatore.",
-    "occhio": "In zona sicura il caricatore si toglie. Dentro ci vanno solo pallini BIO."
+    "occhio": "A fine partita il caricatore si toglie. Dentro ci vanno solo pallini BIO."
   },
   {
     "id": "sgancio-caricatore",

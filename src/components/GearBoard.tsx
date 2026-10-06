@@ -187,7 +187,7 @@ function Scheda({ voce, posseduta, onCambia }: { voce: Voce; posseduta: boolean;
             ))}
           </ul>
         ) : (
-          <span className="text-sm text-muted-foreground">Modello da scegliere</span>
+          voce.bozza && <span className="text-sm text-muted-foreground">Modello da scegliere</span>
         )}
       </div>
     </article>
