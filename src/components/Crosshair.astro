@@ -1,0 +1,16 @@
+---
+// Il mirino del logo, usato come motivo decorativo.
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<svg class={className} viewBox="0 0 200 200" fill="none" stroke="currentColor" aria-hidden="true">
+  <circle cx="100" cy="100" r="62" stroke-width="1" />
+  <circle cx="100" cy="100" r="34" stroke-width="1" stroke-dasharray="2 5" />
+  <circle cx="100" cy="100" r="3" fill="currentColor" stroke="none" />
+  <path d="M100 0v78M100 122v78M0 100h78M122 100h78" stroke-width="1" />
+  <path d="M100 30h-6M100 46h-4M100 154h6M100 170h4M30 100v-6M46 100v-4M154 100v6M170 100v4" stroke-width="1" />
+</svg>

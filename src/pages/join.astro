@@ -1,0 +1,226 @@
+---
+import datiFaq from '../../data/faq.json';
+import Bozza from '@/components/Bozza.astro';
+import Callout from '@/components/Callout.astro';
+import Section from '@/components/Section.astro';
+import Vuoti from '@/components/Vuoti.astro';
+import Base from '@/layouts/Base.astro';
+import { validaFaq } from '@/lib/dati';
+import { SITE } from '@/lib/site';
+
+const toc = [
+  { id: 'come-unirsi', label: 'Come unirsi' },
+  { id: 'cosa-portare', label: 'Alla prima uscita' },
+  { id: 'contatti', label: 'Contatti' },
+  { id: 'faq', label: 'Domande frequenti' },
+];
+
+const faq = validaFaq(datiFaq);
+const daConfermare = faq.filter((voce) => voce.bozza).length;
+---
+
+<Base
+  slug="join"
+  description="Come unirsi alla squadra di softair Breakpoint Contractors Unit: percorso di ingresso, cosa portare alla prima uscita, contatti e domande frequenti."
+  lead="Vuoi giocare con la Breakpoint Contractors Unit? Ecco come funziona, cosa portare alla prima uscita e le risposte alle domande più comuni."
+  toc={toc}
+>
+  <Section id="come-unirsi" title="Come unirsi">
+    <p>
+      Stiamo cercando persone da inserire nel gruppo: se ti piacerebbe provare, <a href="#contatti">scrivici</a>. Non
+      serve esperienza, e nelle prime giocate <strong>possiamo fornirti noi l'attrezzatura essenziale</strong>.
+    </p>
+    <p>Prima di acquistare l'equipaggiamento leggi la pagina <a href="onboarding.html">Onboarding</a>.</p>
+
+    <Bozza nota="Percorso proposto in cinque passi: le parti evidenziate sono numeri e scelte che deve fissare la squadra.">
+      <ol class="passi">
+        <li>
+          <strong>Primo contatto</strong>
+          Scrivici usando i <a href="#contatti">contatti</a> qui sotto e presentati: nome, età, città, se hai già
+          giocato e se hai già dell'equipaggiamento. Se sei minorenne, dillo subito.
+          Ti risponde <mark class="vuoto">chi</mark> entro <mark class="vuoto">N giorni</mark>.
+        </li>
+        <li>
+          <strong>Chiacchierata</strong>
+          Una chiamata o un incontro di <mark class="vuoto">N minuti</mark> con <mark class="vuoto">referente o tutor</mark>.
+          Ti spieghiamo come giochiamo, le regole di sicurezza, cosa serve e quanto costa; tu ci dici cosa cerchi. Non è un esame.
+        </li>
+        <li>
+          <strong>Giornata di prova</strong>
+          Giochi con materiale in prestito (<mark class="vuoto">elenco: replica, occhiali, tattico, caricatori</mark>) e
+          un tutor ti segue dall'inizio alla fine. Il briefing di sicurezza è obbligatorio per tutti.
+          Costo: <mark class="vuoto">importo oppure gratis</mark>; copertura assicurativa: <mark class="vuoto">da definire</mark>.
+          Dopo non c'è nessun obbligo, né per te né per noi.
+        </li>
+        <li>
+          <strong>Periodo di prova</strong>
+          Se vuoi continuare, fai <mark class="vuoto">N uscite</mark> in <mark class="vuoto">N mesi</mark>. Compri
+          l'equipaggiamento un po' alla volta (le priorità sono nella pagina <a href="onboarding.html">Onboarding</a>),
+          completi l'uniforme e segui le stesse regole dei membri. A metà e a fine prova il tutor e il referente fanno il
+          punto con te.
+        </li>
+        <li>
+          <strong>Ingresso ufficiale</strong>
+          Alla fine della prova <mark class="vuoto">chi decide</mark> decide se entri. Se sì: <mark class="vuoto">quota o tesseramento e documenti</mark>, accetti il regolamento,
+          ricevi la patch (vedi <a href="team-rules.html#uniforme">Uniforme e patch</a>) e vieni aggiunto ai canali
+          ufficiali. Se no, ti spieghiamo perché.
+        </li>
+      </ol>
+    </Bozza>
+
+    <Callout tipo="mancante" titolo="Dato mancante · percorso di ingresso">
+      <p>Per completare questi passi servono quattro risposte dalla squadra:</p>
+      <ul>
+        <li>
+          Quante giornate di prova organizzate, quanto costano e cosa comprendono (assicurazione, noleggio)? La
+          copertura assicurativa di chi prova è garantita?
+        </li>
+        <li>Quale materiale date in prestito e di quanti set disponete?</li>
+        <li>Quante uscite e quanti mesi dura il periodo di prova, e chi decide l'ingresso?</li>
+        <li>Accettate minorenni? Da che età, con quale consenso scritto e con quale protezione del viso?</li>
+      </ul>
+    </Callout>
+  </Section>
+
+  <Section id="cosa-portare" title="Alla prima uscita">
+    <p>
+      Alla prima uscita non serve avere l'equipaggiamento completo: contano la sicurezza e la voglia di imparare. Il
+      resto lo scegli dopo aver provato, con l'aiuto della squadra.
+    </p>
+
+    <h3>Cosa portare</h3>
+    <ul class="regole">
+      <li class="si">
+        <strong>Protezione per gli occhi.</strong> Occhiali a tenuta con marcatura (la norma di riferimento è la
+        EN 166): sono obbligatori in tutta l'area del campo e si tolgono solo nel parcheggio.
+        Vedi <a href="game-rules.html#protezioni">Protezioni</a>.
+      </li>
+      <li class="si">
+        <strong>Abiti robusti e sobri.</strong> Maglia a maniche lunghe e pantaloni lunghi, colori scuri, scarponi o
+        scarpe da trekking.
+      </li>
+      <li class="si"><strong>Acqua e qualcosa da mangiare.</strong></li>
+      <li class="si">
+        <strong>La tua replica, solo se ce l'hai già.</strong> Deve stare sotto 1,00 J, con la punta della canna rossa e
+        pallini BIO, e può essere controllata a campione. Fuori dal campo trasportala scarica, senza caricatori, in una
+        borsa chiusa.
+      </li>
+    </ul>
+
+    <h3>Cosa non portare</h3>
+    <ul class="regole">
+      <li class="no">
+        <strong>Granate, fumogeni e altri articoli a fiamma libera.</strong> In campo non sono ammessi, salvo
+        autorizzazione del referente nelle aree predisposte: alla prima uscita lasciali a casa.
+      </li>
+      <li class="no">
+        <strong>Pallini non BIO.</strong> Si usano solo pallini BIO, marroni, verdi o neri.
+      </li>
+    </ul>
+
+    <Bozza nota="Dipende da cosa presta la squadra e da come è organizzata la giornata di prova: confermate cosa va portato e cosa no.">
+      <h3>Materiale in prestito</h3>
+      <ul>
+        <li>
+          In prestito: <mark class="vuoto">elenco del materiale: replica, tattico, caricatori…</mark>.
+        </li>
+        <li>
+          Occhiali protettivi: <mark class="vuoto">li presta la squadra / li porti tu</mark>. Se non li hai, chiedi in
+          anticipo.
+        </li>
+        <li>Pallini BIO: <mark class="vuoto">li forniamo noi / li porti tu</mark>.</li>
+        <li>
+          Documenti: <mark class="vuoto">documento d'identità, certificato medico o altro: da definire</mark>.
+        </li>
+      </ul>
+      <h3>Cosa non serve comprare</h3>
+      <ul class="regole">
+        <li class="no">
+          <strong>L'uniforme OD e il tattico.</strong> Nella giornata di prova e nelle prime uscite bastano gli abiti
+          sobri qui sopra: hai <mark class="vuoto">N uscite o N mesi</mark> per completare l'uniforme.
+        </li>
+        <li class="no">
+          <strong>La replica, prima di aver provato.</strong> Parlane con <mark class="vuoto">tutor o referente</mark>: eviti i modelli troppo economici o troppo
+          potenti. Gli errori più comuni sono nella pagina <a href="onboarding.html#errori-da-evitare">Onboarding</a>.
+        </li>
+      </ul>
+    </Bozza>
+  </Section>
+
+  <Section id="contatti" title="Contatti">
+    <p>Scrivici per qualsiasi domanda, o per venire a provare: rispondiamo volentieri anche a chi parte da zero.</p>
+    <ul class="contatti celle not-doc">
+      <li>
+        <span class="kicker">E-mail della segreteria</span>
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </li>
+      <li>
+        <span class="kicker">Telefono</span>
+        <a href={SITE.paginaContatti} rel="noopener noreferrer">Sulla pagina Contatti del sito ufficiale</a>
+      </li>
+      <li>
+        <span class="kicker">Social</span>
+        <span class="flex flex-wrap gap-x-4 gap-y-1">
+          {SITE.social.map((s) => <a href={s.url} rel="noopener noreferrer">{s.nome}</a>)}
+        </span>
+      </li>
+      <li>
+        <span class="kicker">Sito ufficiale</span>
+        <a href={SITE.sitoUfficiale} rel="noopener noreferrer">breakpointcontractorsunit.it</a>
+      </li>
+    </ul>
+    <p class="note">
+      I recapiti sono quelli pubblicati sul sito ufficiale dell'associazione. Il numero di telefono non è riportato
+      qui di proposito: resta in un posto solo, così è più facile tenerlo aggiornato.
+    </p>
+  </Section>
+
+  <Section id="faq" title="Domande frequenti">
+    <p class="note">
+      Le risposte con il timbro «Bozza» ({daConfermare} su {faq.length}) contengono scelte o dati che deve ancora
+      confermare la squadra. Le risposte su legge e sicurezza sono informative e non sostituiscono il testo di legge.
+    </p>
+    <div>
+      {
+        faq.map((voce) => (
+          <details class="voce" data-stato={voce.bozza ? 'bozza' : undefined}>
+            <summary>
+              <span>{voce.domanda}</span>
+              {voce.bozza && <span class="stamp text-signal mt-0.5 ml-auto shrink-0">Bozza</span>}
+            </summary>
+            <p>
+              <Vuoti testo={voce.risposta} />
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </Section>
+</Base>
+
+<style>
+  .contatti {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  }
+
+  .contatti > li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    padding: 1rem;
+  }
+
+  .contatti a {
+    min-height: 1.75rem;
+    font-weight: 500;
+    color: var(--primary);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    overflow-wrap: anywhere;
+  }
+
+  .contatti a:hover {
+    text-decoration-thickness: 2px;
+  }
+</style>

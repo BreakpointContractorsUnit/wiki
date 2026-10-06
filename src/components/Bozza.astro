@@ -1,0 +1,40 @@
+---
+// Testo proposto ma non ancora approvato dalla squadra: resta visibilmente marcato finché
+// qualcuno non lo conferma. Per confermarlo basta togliere <Bozza> … </Bozza> attorno al testo.
+// "nota" spiega che cosa va deciso o verificato.
+interface Props {
+  nota?: string;
+}
+
+const { nota } = Astro.props;
+---
+
+<div class="bozza" data-stato="bozza">
+  <p class="bozza-testata">
+    <span class="stamp text-signal">Bozza</span>
+    <span>{nota ?? 'Proposta da confermare con la squadra.'}</span>
+  </p>
+  <slot />
+</div>
+
+<style>
+  .bozza {
+    padding: 0.25rem 0 0.25rem 1rem;
+    border-left: 3px dashed var(--warning);
+  }
+
+  .bozza > :global(* + *) {
+    margin-top: 0.875rem;
+  }
+
+  .bozza-testata {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    max-width: none;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--muted-foreground);
+  }
+</style>

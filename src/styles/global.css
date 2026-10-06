@@ -1,0 +1,832 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "./fonts.css";
+@import "./palettes.css";
+
+/* Tema notturno: classe .dark su <html>. */
+@custom-variant dark (&:is(.dark *));
+
+/* Collega i token (palettes.css, fonts.css) alle utility di Tailwind e ai componenti shadcn/ui. */
+@theme inline {
+  --font-sans: var(--ff-body);
+  --font-heading: var(--ff-heading);
+  --font-display: var(--ff-display);
+  --font-mono: var(--ff-data);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-success: var(--success);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  color-scheme: light;
+  --radius: 0.125rem;
+  /* Altezza della testata fissa: usata per gli offset di ancore ed elementi sticky. */
+  --header-h: 3.5rem;
+  --notch: 10px;
+}
+
+/* Barre di scorrimento e controlli nativi seguono il tema. */
+.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-family: var(--ff-body);
+    /* Niente scroll animato: aprendo un link con ancora (pagina.html#sezione) si arriva subito al punto. */
+    scroll-padding-top: calc(var(--header-h) + 1.25rem);
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Con "riduci animazioni" attivo nel dispositivo ogni animazione salta subito al suo stato finale. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-delay: 0s !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    min-height: 100dvh;
+    overflow-wrap: break-word;
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 35%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* ── Elementi ricorrenti ──────────────────────────────────────────────── */
+
+  /* Riga di servizio in maiuscoletto monospazio: "DOC 02 // EQUIPAGGIAMENTO". */
+  .kicker {
+    font-family: var(--ff-data);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  .display {
+    font-family: var(--ff-display);
+    font-synthesis: none;
+    font-weight: var(--display-weight);
+    letter-spacing: var(--display-tracking);
+    line-height: 0.95;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .heading {
+    font-family: var(--ff-heading);
+    font-weight: var(--heading-weight);
+    letter-spacing: var(--heading-tracking);
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  /* Angoli a squadra, come il reticolo di un mirino: si applica a qualunque riquadro. */
+  .hud {
+    position: relative;
+  }
+
+  .hud::before,
+  .hud::after {
+    content: "";
+    position: absolute;
+    width: 0.875rem;
+    height: 0.875rem;
+    border: 2px solid var(--primary);
+    pointer-events: none;
+    transition:
+      width 0.2s,
+      height 0.2s;
+  }
+
+  .hud::before {
+    top: -1px;
+    left: -1px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .hud::after {
+    right: -1px;
+    bottom: -1px;
+    border-top: 0;
+    border-left: 0;
+  }
+
+  a.hud:hover::before,
+  a.hud:hover::after,
+  a.hud:focus-visible::before,
+  a.hud:focus-visible::after {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  /* Angoli smussati (in alto a destra e in basso a sinistra). Solo per elementi a tinta piena. */
+  .notch {
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--notch)) 0,
+      100% var(--notch),
+      100% 100%,
+      var(--notch) 100%,
+      0 calc(100% - var(--notch))
+    );
+  }
+
+  /* Griglia da carta topografica, che sfuma verso il basso. */
+  .map-grid {
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 2.5rem 2.5rem;
+    background-position: center top;
+  }
+
+  /* Riga di scansione che attraversa lentamente una testata.
+     Va dentro un contenitore con position: relative e overflow: hidden. */
+  .scansione {
+    position: absolute;
+    inset-inline: 0;
+    top: -8rem;
+    height: 8rem;
+    background: linear-gradient(to bottom, transparent, color-mix(in oklch, var(--primary) 16%, transparent), transparent);
+    pointer-events: none;
+    animation: scansione 7s 0.5s linear infinite;
+  }
+
+  @keyframes scansione {
+    from {
+      top: -8rem;
+    }
+    to {
+      top: 100%;
+    }
+  }
+
+  /* Comparsa allo scorrimento: l'elemento sale e si schiarisce mentre entra nello schermo.
+     Funziona solo nei browser che supportano le animazioni legate allo scorrimento; negli altri resta fermo. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .rivela {
+        animation: rivela linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 28%;
+      }
+    }
+  }
+
+  @keyframes rivela {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scansione {
+      display: none;
+    }
+  }
+
+  /* Nastro segnaletico. */
+  .hazard {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--warning) 0 0.5rem,
+      color-mix(in oklch, var(--warning) 0%, transparent) 0.5rem 1rem
+    );
+  }
+
+  /* Timbro: "BOZZA", "OBBLIGATORIO". */
+  .stamp {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border: 1.5px solid currentColor;
+    font-family: var(--ff-data);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    line-height: 1.5;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ── Contenuto delle pagine ───────────────────────────────────────────────
+     Tutto ciò che sta dentro .doc è HTML semplice (p, ul, ol, table, h3…):
+     lo stile arriva da qui, così chi modifica i testi non deve conoscere le classi.
+     I componenti interattivi (isole React) portano la classe .not-doc e ne restano fuori. */
+  .doc {
+    counter-reset: sezione;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .doc > * + * {
+    margin-top: 1.25rem;
+  }
+
+  .doc :where(p, li, dd):not(:where(.not-doc, .not-doc *)) {
+    max-width: 70ch;
+  }
+
+  .doc :where(p + p, p + ul, p + ol, ul + p, ol + p):not(:where(.not-doc, .not-doc *)) {
+    margin-top: 0.875rem;
+  }
+
+  .doc a:not([class]):not(:where(.not-doc, .not-doc *)) {
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  .doc a:not([class]):not(:where(.not-doc, .not-doc *)):hover {
+    text-decoration-thickness: 2px;
+  }
+
+  .doc :where(strong):not(:where(.not-doc, .not-doc *)) {
+    font-weight: 600;
+  }
+
+  .doc :where(h3):not(:where(.not-doc, .not-doc *)) {
+    margin-top: 2rem;
+    margin-bottom: 0.625rem;
+    font-family: var(--ff-heading);
+    font-size: 1.3125rem;
+    font-weight: var(--heading-weight);
+    letter-spacing: var(--heading-tracking);
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .doc :where(h4):not(:where(.not-doc, .not-doc *)) {
+    margin-top: 1.5rem;
+    margin-bottom: 0.375rem;
+    font-family: var(--ff-data);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  .doc :is(ul, ol):not([class]):not(:where(.not-doc, .not-doc *)) {
+    padding-left: 1.375rem;
+  }
+
+  .doc ul:not([class]):not(:where(.not-doc, .not-doc *)) {
+    list-style: square;
+  }
+
+  .doc ol:not([class]):not(:where(.not-doc, .not-doc *)) {
+    list-style: decimal-leading-zero;
+  }
+
+  .doc ul:not([class]):not(:where(.not-doc, .not-doc *)) > li::marker {
+    color: var(--primary);
+  }
+
+  .doc ol:not([class]):not(:where(.not-doc, .not-doc *)) > li::marker {
+    color: var(--primary);
+    font-family: var(--ff-data);
+    font-size: 0.8125em;
+    font-weight: 600;
+  }
+
+  .doc :where(li + li, li > ul, li > ol):not(:where(.not-doc, .not-doc *)) {
+    margin-top: 0.375rem;
+  }
+
+  .doc :where(code, kbd):not(:where(.not-doc, .not-doc *)) {
+    padding: 0.1em 0.35em;
+    background: var(--muted);
+    border: 1px solid var(--border);
+    font-family: var(--ff-data);
+    font-size: 0.875em;
+  }
+
+  .doc hr {
+    border: 0;
+    border-top: 1px dashed var(--border);
+    margin-block: 2rem;
+  }
+
+  /* Sezioni numerate: <Section id title>. */
+  .doc-section {
+    margin-top: 3.5rem;
+  }
+
+  .doc-section:first-child {
+    margin-top: 0;
+  }
+
+  .doc-section > * + * {
+    margin-top: 1rem;
+  }
+
+  .doc-section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+  }
+
+  .doc-section-head::before {
+    counter-increment: sezione;
+    content: counter(sezione, decimal-leading-zero);
+    font-family: var(--ff-data);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+  }
+
+  .doc-section-head h2 {
+    /* Su schermi stretti il titolo può andare a capo invece di spingere fuori l'ancora. */
+    min-width: 0;
+    font-family: var(--ff-heading);
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.875rem);
+    font-weight: var(--heading-weight);
+    letter-spacing: var(--heading-tracking);
+    line-height: 1.1;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .doc-section-head .anchor {
+    display: inline-grid;
+    place-items: center;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    margin-block: -0.5rem;
+    margin-left: auto;
+    font-family: var(--ff-data);
+    color: var(--muted-foreground);
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .doc-section-head:hover .anchor,
+  .doc-section-head .anchor:focus-visible {
+    opacity: 1;
+  }
+
+  @media (hover: none) {
+    .doc-section-head .anchor {
+      opacity: 0.6;
+    }
+  }
+
+  /* Paragrafo introduttivo e note. */
+  .doc .lead {
+    font-size: 1.125rem;
+    color: var(--muted-foreground);
+  }
+
+  .doc .note {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+  }
+
+  /* Spazio da riempire dentro una bozza: <mark class="vuoto">N giorni</mark>.
+     Nei file data/*.json basta scrivere il segnaposto tra parentesi quadre: [N giorni]. */
+  .doc mark.vuoto {
+    padding: 0 0.3em;
+    background: color-mix(in oklch, var(--warning) 22%, transparent);
+    border-bottom: 1.5px dashed var(--warning);
+    font-family: var(--ff-data);
+    font-size: 0.875em;
+    color: inherit;
+  }
+
+  /* Elenchi di regole: <ul class="regole"><li class="no">…</li><li class="si">…</li></ul> */
+  .doc ul.regole {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .doc ul.regole > li {
+    position: relative;
+    max-width: none;
+    margin: 0;
+    padding: 0.75rem 0.875rem 0.75rem 2.875rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+  }
+
+  .doc ul.regole > li::before {
+    content: "▸";
+    position: absolute;
+    top: 0.7rem;
+    left: 0.875rem;
+    display: grid;
+    place-items: center;
+    width: 1.375rem;
+    height: 1.375rem;
+    font-family: var(--ff-data);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--primary);
+  }
+
+  .doc ul.regole > li.no {
+    border-left-color: var(--destructive);
+  }
+
+  .doc ul.regole > li.no::before {
+    content: "✕";
+    color: var(--destructive);
+  }
+
+  .doc ul.regole > li.si {
+    border-left-color: var(--success);
+  }
+
+  .doc ul.regole > li.si::before {
+    content: "✓";
+    color: var(--success);
+  }
+
+  /* Procedura a passi: <ol class="passi"><li><strong>Titolo</strong> testo…</li></ol> */
+  .doc ol.passi {
+    counter-reset: passo;
+    display: grid;
+    gap: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .doc ol.passi > li {
+    counter-increment: passo;
+    position: relative;
+    max-width: none;
+    margin: 0;
+    padding: 0 0 1.5rem 3.25rem;
+  }
+
+  .doc ol.passi > li::before {
+    content: counter(passo, decimal-leading-zero);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: var(--primary);
+    font-family: var(--ff-data);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--primary-foreground);
+    clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px));
+  }
+
+  .doc ol.passi > li::after {
+    content: "";
+    position: absolute;
+    top: 2.5rem;
+    bottom: 0.25rem;
+    left: calc(1.125rem - 0.5px);
+    border-left: 1px dashed var(--border);
+  }
+
+  .doc ol.passi > li:last-child {
+    padding-bottom: 0;
+  }
+
+  .doc ol.passi > li:last-child::after {
+    display: none;
+  }
+
+  .doc ol.passi > li > strong:first-child {
+    display: block;
+    padding-top: 0.3rem;
+    font-family: var(--ff-heading);
+    font-size: 1.125rem;
+    font-weight: var(--heading-weight);
+    letter-spacing: var(--heading-tracking);
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  /* Griglia a celle separate da un filo: le celle portano il bordo destro e inferiore,
+     così i posti rimasti vuoti nell'ultima riga non si colorano. */
+  .celle {
+    display: grid;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+  }
+
+  .celle > * {
+    background: var(--card);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Dati chiave: <dl class="fatti"><div><dt>Potenza massima</dt><dd>&lt; 1 J</dd></div>…</dl> */
+  .doc dl.fatti {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+  }
+
+  .doc dl.fatti > div {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 0.25rem;
+    padding: 0.875rem 1rem;
+    background: var(--card);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .doc dl.fatti dt {
+    font-family: var(--ff-data);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  .doc dl.fatti dd {
+    font-family: var(--ff-heading);
+    font-size: 1.625rem;
+    font-weight: var(--heading-weight);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    color: var(--primary);
+  }
+
+  /* Tabelle: <div class="table-wrap"><table>…</table></div>.
+     Con class="impila" le righe diventano schede sotto i 768px (serve data-label su ogni <td>). */
+  .doc .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .doc :where(table):not(:where(.not-doc, .not-doc *)) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .doc :where(th, td):not(:where(.not-doc, .not-doc *)) {
+    padding: 0.625rem 0.875rem;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .doc :where(thead th):not(:where(.not-doc, .not-doc *)) {
+    background: var(--muted);
+    font-family: var(--ff-data);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    white-space: nowrap;
+  }
+
+  .doc :where(tbody tr:last-child > *):not(:where(.not-doc, .not-doc *)) {
+    border-bottom: 0;
+  }
+
+  .doc :where(tbody tr:hover):not(:where(.not-doc, .not-doc *)) {
+    background: color-mix(in oklch, var(--muted) 55%, transparent);
+  }
+
+  .doc td.dato,
+  .doc .dato {
+    font-family: var(--ff-data);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 47.99rem) {
+    .doc table.impila thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+
+    .doc table.impila,
+    .doc table.impila tbody,
+    .doc table.impila tr,
+    .doc table.impila td {
+      display: block;
+    }
+
+    .doc table.impila tr {
+      padding: 0.625rem 0.875rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc table.impila tr:last-child {
+      border-bottom: 0;
+    }
+
+    /* Il contenuto della cella resta testo normale (con link e grassetti al loro posto):
+       l'etichetta sta a sinistra, fuori dal flusso. */
+    .doc table.impila td {
+      position: relative;
+      min-height: 1.75rem;
+      padding: 0.2rem 0 0.2rem 7.75rem;
+      border: 0;
+      white-space: normal;
+    }
+
+    .doc table.impila td::before {
+      content: attr(data-label);
+      position: absolute;
+      top: 0.45rem;
+      left: 0;
+      width: 7.25rem;
+      font-family: var(--ff-data);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      line-height: 1.3;
+      overflow-wrap: normal;
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+    }
+
+    .doc table.impila td:empty {
+      display: none;
+    }
+  }
+
+  /* Domande e voci richiudibili: <details class="voce"><summary>…</summary><p>…</p></details> */
+  .doc details.voce {
+    margin-top: 0;
+    border: 1px solid var(--border);
+    background: var(--card);
+  }
+
+  .doc details.voce + details.voce {
+    border-top: 0;
+  }
+
+  .doc details.voce > summary {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    min-height: 3rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    line-height: 1.45;
+    list-style: none;
+  }
+
+  .doc details.voce > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .doc details.voce > summary::before {
+    content: "+";
+    flex: none;
+    width: 1.25rem;
+    font-family: var(--ff-data);
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.3;
+    text-align: center;
+    color: var(--primary);
+  }
+
+  .doc details.voce[open] > summary::before {
+    content: "−";
+  }
+
+  .doc details.voce > summary:hover {
+    background: var(--muted);
+  }
+
+  .doc details.voce > :not(summary) {
+    margin: 0;
+    padding: 0 1rem 0 3rem;
+  }
+
+  .doc details.voce > :not(summary) + :not(summary) {
+    margin-top: 0.625rem;
+  }
+
+  .doc details.voce > :last-child:not(summary) {
+    padding-bottom: 1rem;
+  }
+}
+
+@media print {
+  /* Su carta sempre nero su bianco, anche se a schermo è attivo il tema notturno. */
+  :root,
+  .dark {
+    --background: #fff;
+    --foreground: #000;
+    --card: #fff;
+    --muted: #f2f2f2;
+    --muted-foreground: #333;
+    --border: #999;
+    --primary: #24402a;
+    --destructive: #9b1c1c;
+    --success: #1f6b2d;
+    --signal: #000;
+    --warning: #9a6200;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  /* Un titolo non resta mai solo in fondo alla pagina; righe e riquadri non si spezzano a metà. */
+  .doc h2,
+  .doc h3,
+  .doc h4,
+  .doc-section-head {
+    break-after: avoid;
+  }
+
+  .doc tr,
+  .doc ul.regole > li,
+  .doc details.voce,
+  .callout {
+    break-inside: avoid;
+  }
+
+  .doc details.voce > :not(summary) {
+    display: block;
+  }
+}

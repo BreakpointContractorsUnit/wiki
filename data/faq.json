@@ -1,5 +1,62 @@
 [
-  { "domanda": "Serve esperienza per unirsi alla squadra?", "risposta": "TODO" },
-  { "domanda": "Posso provare prima di acquistare l'equipaggiamento?", "risposta": "TODO" },
-  { "domanda": "Quanto costa iniziare?", "risposta": "TODO: rimandare alla pagina Onboarding per i dettagli." }
+  {
+    "domanda": "Serve esperienza per unirsi alla squadra?",
+    "risposta": "No, puoi iniziare da zero. Se sei nuovo di questo mondo e non sai come muoverti, siamo a disposizione per condividere quello che sappiamo e aiutarti a iniziare.",
+    "bozza": false
+  },
+  {
+    "domanda": "Posso provare prima di acquistare l'equipaggiamento?",
+    "risposta": "Sì: nelle prime giocate possiamo fornirti noi l'attrezzatura essenziale. Prima di comprare conviene parlarne in squadra: eviti gli errori tipici di chi inizia. Poi la pagina Onboarding ti dice che cosa serve e in che ordine.",
+    "bozza": false
+  },
+  {
+    "domanda": "Quanto costa iniziare?",
+    "risposta": "Dipende da cosa scegli di comprare: l'elenco dell'equipaggiamento, con prezzi indicativi e priorità, è nella pagina Onboarding. In più ci sono [quota di iscrizione o tessera: importo] e [quota per uscita: importo]. La giornata di prova costa [importo oppure gratuita].",
+    "bozza": true
+  },
+  {
+    "domanda": "Qual è l'età minima?",
+    "risposta": "In squadra l'età minima è [N anni]. Per riferimento: la legge parla di repliche vendibili ai maggiori di 16 anni, mentre l'età per giocare la fissano la squadra e il campo. Se la squadra accetta minorenni, servono [condizioni: per esempio consenso scritto di un genitore e protezione del viso]. Questa risposta è informativa.",
+    "bozza": true
+  },
+  {
+    "domanda": "Cosa devo portare alla prima uscita?",
+    "risposta": "Porta occhiali protettivi a tenuta con marcatura, scarponi o scarpe da trekking, maglia e pantaloni a maniche lunghe di colore sobrio, acqua e qualcosa da mangiare. La replica e il resto li presta la squadra [da confermare: cosa presta, e se servono documento d'identità o certificato medico]. Se porti la tua replica deve stare sotto 1,00 J, con la punta della canna rossa e pallini BIO. Non portare granate, fumogeni o altri articoli a fiamma libera.",
+    "bozza": true
+  },
+  {
+    "domanda": "Posso usare la mia replica e la mia mimetica?",
+    "risposta": "Sì, con qualche condizione. La replica deve stare sotto 1,00 J, può essere controllata a campione prima di giocare e si usano solo pallini BIO. La mimetica va bene nelle prime uscite se è sobria e senza fregi, gradi o stemmi di reparti reali, militari o delle forze dell'ordine; poi l'uniforme di squadra è OD e hai [N uscite o N mesi] per completarla. [Eventuali limiti su tipo di replica, caricatori o armi di precisione: da confermare.]",
+    "bozza": true
+  },
+  {
+    "domanda": "Quanto spesso si gioca?",
+    "risposta": "La nostra area di gioco è a Malcontenta (VE), e organizziamo spesso amichevoli con altre squadre in giro per il Veneto. Giochiamo in media [N volte al mese], di solito [giorno della settimana]. Il calendario è pubblicato su [canale] e la presenza va confermata entro [scadenza].",
+    "bozza": true
+  },
+  {
+    "domanda": "Servono assicurazione e certificato medico?",
+    "risposta": "La Breakpoint Contractors Unit è un'associazione sportiva dilettantistica (ASD). Per i soci: [ente di affiliazione, che cosa copre la polizza, quanto costa la tessera, se serve il certificato medico]. Per chi viene a provare: [che cosa serve e chi è coperto]. Chiedi alla segreteria prima della prima uscita.",
+    "bozza": true
+  },
+  {
+    "domanda": "Serve una licenza o un porto d'armi?",
+    "risposta": "In genere no: le repliche softair che rispettano l'art. 5 della legge 110/1975 sono considerate «strumenti» e non armi. I requisiti sono pallini di plastica, energia non superiore a 1 joule misurata a un metro dalla volata e canna rossa per almeno 3 cm; la vendita è consentita ai maggiori di 16 anni. Vale però il divieto di portare le repliche fuori casa senza giustificato motivo: per andare al campo trasportale scariche, senza caricatori e in una borsa chiusa. Questa risposta è informativa e non sostituisce il testo di legge; il dettaglio è nella pagina Sicurezza e normativa.",
+    "bozza": false
+  },
+  {
+    "domanda": "Il softair fa male?",
+    "risposta": "Un colpo si sente e può lasciare un segno, soprattutto da vicino: per questo a distanza ravvicinata si abbassa la mira e si evitano le zone dolorose. Il rischio serio sono gli occhi, perché un pallino può causare lesioni oculari gravi: gli occhiali protettivi sono obbligatori in tutta l'area del campo e si tolgono solo nel parcheggio. Le repliche devono stare sotto 1,00 J, con controlli a campione: con un pallino da 0,20 g significa circa 100 metri al secondo.",
+    "bozza": false
+  },
+  {
+    "domanda": "Che differenza c'è con il paintball?",
+    "risposta": "Cambiano repliche, munizioni ed energia. Nel softair si sparano pallini di plastica con energia massima di 1 joule; nel paintball i marcatori sparano capsule di vernice di calibro maggiore (da 12,7 a 17,27 mm), con energie più alte (fino a 7,5 J nell'attività amatoriale), e sono regolati da un decreto diverso (D.M. 20/2020). Nel paintball il colpo lascia una macchia; nel softair il pallino non lascia traccia, quindi il gioco si basa sull'onestà e chi è colpito si dichiara.",
+    "bozza": false
+  },
+  {
+    "domanda": "Ragazze e principianti sono benvenuti?",
+    "risposta": "Sì. Non serve essere atleti né avere esperienza, e in squadra non c'è posto per discriminazioni di nessun tipo: il rispetto è una regola come le altre, uguale per tutti. Principianti, ragazze e ragazzi fanno lo stesso percorso: chiacchierata, giornata di prova con un tutor, periodo di prova.",
+    "bozza": true
+  }
 ]

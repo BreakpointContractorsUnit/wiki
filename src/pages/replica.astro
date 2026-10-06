@@ -1,0 +1,87 @@
+---
+import datiReplica from '../../data/replica.json';
+import Replica3D from '@/components/Replica3D';
+import Section from '@/components/Section.astro';
+import Base from '@/layouts/Base.astro';
+import { validaReplica } from '@/lib/dati';
+
+const parti = validaReplica(datiReplica);
+---
+
+<Base
+  slug="replica"
+  description="Anatomia di una replica elettrica da softair tipo M4: un modello 3D da ruotare e toccare che spiega come si chiamano le parti e a che cosa servono."
+  lead="Un modello 3D da ruotare e da toccare: come si chiamano le parti di una replica elettrica e a che cosa servono."
+>
+  <Section id="modello" title="Il modello">
+    <p>
+      Trascina il modello per ruotarlo e tocca una parte per leggerne la scheda, oppure scegli dall'elenco qui sotto.
+      «Vista esplosa» allontana i pezzi: è comoda per vedere quelli più piccoli.
+    </p>
+    <noscript>
+      <p class="note">
+        Senza JavaScript il modello 3D non c'è, ma le schede di tutte le parti si leggono comunque nell'elenco qui sotto.
+      </p>
+      <style is:inline>
+        .replica-visore {
+          display: none;
+        }
+      </style>
+    </noscript>
+    <Replica3D client:load parti={parti} />
+    <p class="note">
+      È un modello schematico: serve a riconoscere le parti e i loro nomi. Le repliche vere cambiano da marca a marca,
+      per forma, misure e materiali, e alcune parti (manetta, forward assist, leva dell'otturatore) possono essere
+      finte o fare un lavoro diverso. Per la tua replica guarda sempre il manuale.
+    </p>
+  </Section>
+
+  <Section id="come-funziona" title="Come funziona un AEG">
+    <p>
+      AEG (Automatic Electric Gun) vuol dire «replica elettrica»: a ogni colpo succede la stessa sequenza, in una
+      frazione di secondo.
+    </p>
+    <ol class="passi">
+      <li>
+        <strong>La batteria dà corrente</strong>
+        Premi il grilletto e la corrente della batteria arriva al motore. A seconda del modello la batteria sta
+        nell'astina, nel tubo del calcio o nel calcio.
+      </li>
+      <li>
+        <strong>Il motore gira</strong>
+        Il motore sta nell'impugnatura a pistola e gira finché tieni premuto il grilletto; in colpo singolo si ferma da
+        solo dopo un ciclo.
+      </li>
+      <li>
+        <strong>Gli ingranaggi lavorano</strong>
+        Il motore fa girare gli ingranaggi del gearbox, che si trova nella parte inferiore del castello.
+      </li>
+      <li>
+        <strong>Il pistone comprime l'aria</strong>
+        Gli ingranaggi tirano indietro il pistone e comprimono la molla. Quando il pistone si libera, la molla lo
+        spinge in avanti e comprime l'aria davanti a sé.
+      </li>
+      <li>
+        <strong>Il pallino esce</strong>
+        Prima del colpo un pallino sale dal caricatore ed entra nella camera hop-up. L'aria compressa lo spinge nella
+        canna interna. Passando dall'hop-up il pallino prende rotazione all'indietro, che lo fa andare più lontano, e
+        poi esce dalla canna.
+      </li>
+    </ol>
+  </Section>
+
+  <Section id="sicurezza" title="Tre abitudini">
+    <p>Conoscere le parti serve anche a usarle bene. Queste tre abitudini valgono sempre, a ogni età e livello.</p>
+    <ul class="regole">
+      <li class="si">Dito fuori dal grilletto, lungo il corpo della replica, finché non stai mirando.</li>
+      <li class="si">Fuori dal gioco il selettore sta su sicura.</li>
+      <li class="si">
+        La canna punta sempre in una direzione sicura, mai verso le persone: anche se pensi che la replica sia scarica.
+      </li>
+    </ul>
+    <p>
+      Che cosa si fa in zona sicura lo trovi in <a href="game-rules.html#zona-sicura">Sicurezza e normativa</a>. Le
+      regole della squadra sulle repliche sono nel <a href="team-rules.html#repliche">Regolamento</a>.
+    </p>
+  </Section>
+</Base>

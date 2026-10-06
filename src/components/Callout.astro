@@ -1,0 +1,58 @@
+---
+// Riquadro in evidenza.
+//   info        nota o approfondimento
+//   regola      regola da ricordare
+//   attenzione  avvertenza (nastro segnaletico)
+//   pericolo    rischio per la sicurezza o conseguenze legali
+//   mancante    dato che solo la squadra conosce: il testo è la domanda a cui rispondere
+import {
+  InfoIcon,
+  QuestionIcon,
+  SealCheckIcon,
+  SirenIcon,
+  WarningIcon,
+} from '@phosphor-icons/react/ssr';
+
+interface Props {
+  tipo?: 'info' | 'regola' | 'attenzione' | 'pericolo' | 'mancante';
+  titolo?: string;
+}
+
+const { tipo = 'info', titolo } = Astro.props;
+
+const TIPI = {
+  info: { etichetta: 'Nota', icona: InfoIcon, tono: 'text-primary', bordo: 'border-l-primary' },
+  regola: { etichetta: 'Regola', icona: SealCheckIcon, tono: 'text-primary', bordo: 'border-l-primary' },
+  attenzione: { etichetta: 'Attenzione', icona: WarningIcon, tono: 'text-signal', bordo: 'border-l-warning' },
+  pericolo: { etichetta: 'Pericolo', icona: SirenIcon, tono: 'text-destructive', bordo: 'border-l-destructive' },
+  mancante: { etichetta: 'Dato mancante', icona: QuestionIcon, tono: 'text-signal', bordo: 'border-l-warning' },
+} as const;
+
+const t = TIPI[tipo];
+const Icona = t.icona;
+---
+
+<div
+  role="note"
+  class:list={[
+    'callout relative border border-l-[3px] bg-card',
+    t.bordo,
+    tipo === 'mancante' && 'border-dashed',
+  ]}
+  data-stato={tipo === 'mancante' ? 'mancante' : undefined}
+>
+  {tipo === 'attenzione' && <div class="hazard h-1.5 opacity-80" aria-hidden="true" />}
+  <div class="flex gap-3 p-4">
+    <Icona className={`mt-0.5 size-5 shrink-0 ${t.tono}`} weight="bold" aria-hidden="true" />
+    <div class="callout-body min-w-0 flex-1">
+      <p class:list={['kicker !mt-0', t.tono]}>{titolo ?? t.etichetta}</p>
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .callout-body > :global(* + *) {
+    margin-top: 0.5rem;
+  }
+</style>

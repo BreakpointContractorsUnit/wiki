@@ -1,0 +1,134 @@
+[
+  {
+    "id": "spegnifiamma",
+    "nome": "Spegnifiamma (flash hider)",
+    "gruppo": "canna",
+    "testo": "Sull'arma vera attenua il lampo di bocca. Sulla replica è solo estetico. Nel modello ha la punta rossa.",
+    "occhio": "La parte rossa richiesta dalla legge sta di norma qui: la canna è colorata di rosso per almeno 3 cm. Non si toglie e non si copre, né con vernice né con nastro."
+  },
+  {
+    "id": "canna-esterna",
+    "nome": "Canna esterna (outer barrel)",
+    "gruppo": "canna",
+    "testo": "È il tubo che esce dalla parte superiore del castello e porta il mirino anteriore; l'astina gli sta intorno. Dentro corre la canna interna di precisione, ed è lì che passa il pallino."
+  },
+  {
+    "id": "mirino-anteriore",
+    "nome": "Mirino anteriore (front sight)",
+    "gruppo": "canna",
+    "testo": "È il piccolo palo in fondo all'astina, vicino alla bocca della canna. Insieme alla tacca di mira posteriore serve a mirare senza ottica: metti il palo al centro del foro della tacca e porta la sua punta sul bersaglio."
+  },
+  {
+    "id": "astina",
+    "nome": "Astina o paramano (handguard)",
+    "gruppo": "canna",
+    "testo": "Qui appoggia la mano di supporto. Le slitte servono a montare accessori, come impugnature e torce. In molte repliche ospita anche la batteria."
+  },
+  {
+    "id": "upper-receiver",
+    "nome": "Parte superiore del castello (upper receiver)",
+    "gruppo": "corpo",
+    "testo": "È la metà alta del corpo della replica. Contiene la camera hop-up e porta la slitta per le ottiche."
+  },
+  {
+    "id": "slitta-superiore",
+    "nome": "Slitta superiore (rail Picatinny)",
+    "gruppo": "corpo",
+    "testo": "È un binario con scanalature trasversali sopra l'upper receiver; su molte repliche prosegue sull'astina. Ci si montano ottiche e tacca di mira posteriore."
+  },
+  {
+    "id": "tacca-di-mira",
+    "nome": "Tacca di mira posteriore (rear sight)",
+    "gruppo": "corpo",
+    "testo": "È l'altra metà del sistema di mira a ferri. Guardi attraverso il suo foro e allinei il mirino anteriore al bersaglio."
+  },
+  {
+    "id": "manetta",
+    "nome": "Manetta d'armamento (charging handle)",
+    "gruppo": "corpo",
+    "testo": "Sull'arma vera serve ad armare l'otturatore. Sull'AEG di solito non arma nulla: tirandola porti indietro il finto otturatore e si apre lo sportellino, così arrivi alla regolazione dell'hop-up. Su alcuni modelli lo sportellino si apre a mano."
+  },
+  {
+    "id": "sportellino",
+    "nome": "Finestra di espulsione con sportellino (dust cover)",
+    "gruppo": "corpo",
+    "testo": "Sull'arma vera da qui escono i bossoli. Sull'AEG, dietro lo sportellino, c'è la rotella che regola l'hop-up, il meccanismo che dà rotazione al pallino e ne allunga la gittata."
+  },
+  {
+    "id": "forward-assist",
+    "nome": "Forward assist",
+    "gruppo": "corpo",
+    "testo": "Sull'arma vera spinge in avanti l'otturatore. Sull'AEG è quasi sempre finto, solo estetico: premerlo non serve a nulla."
+  },
+  {
+    "id": "lower-receiver",
+    "nome": "Parte inferiore del castello (lower receiver)",
+    "gruppo": "corpo",
+    "testo": "È la metà bassa del corpo e regge impugnatura, caricatore e calcio. Contiene il gearbox: ingranaggi, pistone e molla. Il motore sta sotto, nell'impugnatura, e si collega al gearbox.",
+    "occhio": "Non aprire il gearbox se non hai esperienza. Un intervento sui pezzi interni, molla compresa, cambia la potenza: dopo ogni intervento la replica va rimisurata al cronografo, e a 1,00 J o più non si gioca."
+  },
+  {
+    "id": "impugnatura",
+    "nome": "Impugnatura a pistola (pistol grip)",
+    "gruppo": "corpo",
+    "testo": "È dove tieni la mano che spara. Sull'AEG contiene il motore, che dà energia agli ingranaggi del gearbox."
+  },
+  {
+    "id": "selettore",
+    "nome": "Selettore di tiro",
+    "gruppo": "comandi",
+    "testo": "È la levetta sul lato sinistro. Ha tre posizioni: sicura, colpo singolo, raffica.",
+    "occhio": "In zona sicura e fuori dal gioco il selettore sta sempre su sicura."
+  },
+  {
+    "id": "grilletto",
+    "nome": "Grilletto",
+    "gruppo": "comandi",
+    "testo": "Lo premi per far partire il colpo. Se il selettore è su sicura, il grilletto resta bloccato, ma la sicura non sostituisce le buone abitudini.",
+    "occhio": "Tieni il dito fuori dal grilletto finché non stai mirando."
+  },
+  {
+    "id": "ponticello",
+    "nome": "Ponticello (trigger guard)",
+    "gruppo": "comandi",
+    "testo": "È l'anello che circonda il grilletto. Lo protegge da pressioni accidentali e ti ricorda dove tenere il dito: fuori, lungo il corpo della replica."
+  },
+  {
+    "id": "leva-otturatore",
+    "nome": "Leva dell'otturatore (bolt catch)",
+    "gruppo": "comandi",
+    "testo": "Sull'arma vera tiene aperto l'otturatore quando il caricatore è vuoto. Sull'AEG spesso è finta. In alcuni modelli tiene indietro il finto otturatore, così lo sportellino resta aperto mentre regoli l'hop-up, e premendola lo rilasci."
+  },
+  {
+    "id": "caricatore",
+    "nome": "Caricatore (magazine)",
+    "gruppo": "alimentazione",
+    "testo": "Contiene i pallini. Il mid-cap ne tiene 120-150, non ha rotella e i pallini salgono spinti da una molla. L'hi-cap ne tiene 300-400: i pallini si versano dall'alto e la rotella sul fondo si gira per caricare la molla che li porta alla bocca del caricatore.",
+    "occhio": "In zona sicura il caricatore si toglie. Dentro ci vanno solo pallini BIO."
+  },
+  {
+    "id": "sgancio-caricatore",
+    "nome": "Sgancio del caricatore (mag release)",
+    "gruppo": "alimentazione",
+    "testo": "È il pulsante sul lato destro, subito dietro il caricatore. Lo premi e il caricatore si sfila."
+  },
+  {
+    "id": "tubo-calcio",
+    "nome": "Tubo del calcio (buffer tube)",
+    "gruppo": "calcio",
+    "testo": "È il tubo su cui scorre il calcio. Sull'arma vera ospita il buffer e la molla di recupero. Su molti AEG ospita invece la batteria o i suoi cavi."
+  },
+  {
+    "id": "calcio",
+    "nome": "Calcio (stock)",
+    "gruppo": "calcio",
+    "testo": "Appoggia sulla spalla e dà stabilità alla replica. È regolabile in lunghezza: lo allunghi o lo accorci a seconda di come sei vestito e di come ti viene comodo mirare. Su molti AEG ospita la batteria.",
+    "occhio": "Regola di squadra: guarda sempre dove spari. Per riuscirci, tieni il calcio appoggiato alla spalla."
+  },
+  {
+    "id": "attacco-cinghia",
+    "nome": "Attacco per la cinghia (sling mount)",
+    "gruppo": "calcio",
+    "testo": "È l'anello a cui si aggancia la cinghia. Con la cinghia la replica sta appesa al corpo e hai le mani libere quando non spari."
+  }
+]

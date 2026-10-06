@@ -1,4 +1,16 @@
 [
-  { "canale": "TODO", "frequenza": "TODO", "uso": "Comunicazioni di squadra", "note": "" },
-  { "canale": "TODO", "frequenza": "TODO", "uso": "Emergenze", "note": "TODO: quando usarlo." }
+  {
+    "canale": "[da definire]",
+    "frequenza": "[da definire]",
+    "tono": "[da definire]",
+    "uso": "Comunicazioni di squadra",
+    "note": ""
+  },
+  {
+    "canale": "[da definire]",
+    "frequenza": "[da definire]",
+    "tono": "[da definire]",
+    "uso": "Emergenze",
+    "note": "[Quando usarlo: stesso canale di squadra o canale dedicato?]"
+  }
 ]

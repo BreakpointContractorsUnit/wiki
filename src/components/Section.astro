@@ -1,0 +1,18 @@
+---
+// Sezione numerata di una pagina. L'id diventa l'ancora (pagina.html#id) e va riportato
+// nell'elenco "toc" passato al layout per comparire nell'indice della pagina.
+interface Props {
+  id: string;
+  title: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<section id={id} class="doc-section" aria-labelledby={`${id}-titolo`}>
+  <div class="doc-section-head">
+    <h2 id={`${id}-titolo`}>{title}</h2>
+    <a class="anchor no-print" href={`#${id}`} aria-label={`Link alla sezione ${title}`}>#</a>
+  </div>
+  <slot />
+</section>

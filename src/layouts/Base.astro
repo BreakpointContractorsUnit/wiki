@@ -1,0 +1,352 @@
+---
+import '@/styles/global.css';
+import { Image } from 'astro:assets';
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ArrowUpIcon,
+  GithubLogoIcon,
+  PencilSimpleLineIcon,
+} from '@phosphor-icons/react/ssr';
+
+import logo from '@/assets/logo.png';
+import Crosshair from '@/components/Crosshair.astro';
+import EasterEgg from '@/components/EasterEgg.astro';
+import MobileNav from '@/components/MobileNav';
+import ThemeToggle from '@/components/ThemeToggle';
+import { PAGINE, SITE, STORAGE, asset, href, linkModifica } from '@/lib/site';
+
+interface Props {
+  /** Nome del file della pagina, senza estensione: deve esistere in PAGINE (src/lib/site.ts). */
+  slug: string;
+  /** Testo per i motori di ricerca e le anteprime dei link. */
+  description: string;
+  /** Sottotitolo mostrato sotto il titolo. */
+  lead?: string;
+  /** Indice della pagina: una voce per ogni <Section>. */
+  toc?: { id: string; label: string }[];
+  /** false: la pagina disegna da sé la propria testata (lo fa solo la home). */
+  testata?: boolean;
+  /** Solo per le pagine fuori menu, non elencate in PAGINE (la 404): titolo e codice del documento. */
+  fuoriMenu?: { titolo: string; codice: string };
+}
+
+const { slug, description, lead, toc = [], testata = true, fuoriMenu } = Astro.props;
+
+const indice = PAGINE.findIndex((p) => p.slug === slug);
+const voce = indice === -1 ? undefined : PAGINE[indice];
+if (!voce && !fuoriMenu) throw new Error(`Pagina "${slug}" non dichiarata in src/lib/site.ts`);
+const precedente = voce ? PAGINE[indice - 1] : undefined;
+const successiva = voce ? PAGINE[indice + 1] : undefined;
+
+const titolo = fuoriMenu?.titolo ?? voce?.titolo ?? voce?.label ?? '';
+const codice = fuoriMenu?.codice ?? voce?.codice ?? '';
+const titoloScheda = slug === 'index' ? SITE.nome : `${titolo} · ${SITE.nome}`;
+const canonical = new URL(href(slug), Astro.site);
+const anteprima = new URL(asset('logo-512.png'), Astro.site);
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titoloScheda}</title>
+    <meta name="description" content={description} />
+    {fuoriMenu ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <link rel="icon" type="image/png" href={asset('favicon.png')} />
+    <link rel="apple-touch-icon" href={asset('apple-touch-icon.png')} />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f6f4" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#070907" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.nome} />
+    <meta property="og:title" content={titoloScheda} />
+    <meta property="og:description" content={description} />
+    {!fuoriMenu && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={anteprima} />
+    <meta property="og:locale" content="it_IT" />
+    <meta name="generator" content={Astro.generator} />
+    {/* Applica il tema (diurno o notturno) prima del primo rendering, per evitare lo sfarfallio. */}
+    <script is:inline define:vars={{ STORAGE }}>
+      (function () {
+        var tema = null;
+        try {
+          tema = localStorage.getItem(STORAGE.tema);
+        } catch (errore) {}
+        var notturno = tema ? tema === 'notturno' : matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', notturno);
+      })();
+    </script>
+  </head>
+  <body class="flex flex-col">
+    <a
+      href="#contenuto"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+    >
+      Vai al contenuto
+    </a>
+
+    <header
+      class="no-print sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+    >
+      <div class="mx-auto flex h-(--header-h) max-w-7xl items-center gap-2 px-4 sm:px-6">
+        <a href={href('index')} class="flex shrink-0 items-center gap-2.5 py-1 pr-2" aria-label={`${SITE.nome}: pagina iniziale`}>
+          <Image src={logo} alt="" width={72} height={72} class="size-9" loading="eager" />
+          <span class="flex flex-col gap-0.5 leading-none">
+            <span class="display text-xl">BCU</span>
+            <span class="kicker text-[0.5625rem] tracking-[0.32em]">Wiki</span>
+          </span>
+        </a>
+
+        <nav aria-label="Menu principale" class="ml-3 hidden lg:block xl:ml-6">
+          <ul class="flex">
+            {
+              PAGINE.map((p) => (
+                <li>
+                  <a
+                    href={href(p.slug)}
+                    aria-current={p.slug === slug ? 'page' : undefined}
+                    class="relative flex h-(--header-h) items-center px-2.5 font-heading text-[0.9375rem] font-semibold tracking-wider text-muted-foreground uppercase transition-colors after:absolute after:inset-x-2.5 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-primary after:transition-transform hover:text-foreground hover:after:scale-x-100 aria-[current=page]:text-foreground aria-[current=page]:after:scale-x-100 xl:px-3.5 xl:after:inset-x-3.5"
+                  >
+                    {p.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+
+        <div class="ml-auto flex items-center gap-1.5">
+          <ThemeToggle client:load />
+          <MobileNav client:load corrente={slug} />
+        </div>
+      </div>
+    </header>
+
+    {
+      testata && (
+        <div class="relative overflow-hidden border-b">
+          <div
+            class="map-grid absolute inset-0 [mask-image:linear-gradient(to_bottom,black_30%,transparent)]"
+            aria-hidden="true"
+          />
+          <Crosshair class="absolute top-1/2 -right-16 hidden size-80 -translate-y-1/2 text-primary/25 md:block lg:right-8 print:hidden" />
+          <div class="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:py-14">
+            <p class="kicker flex flex-wrap items-center gap-x-2">
+              <span class="text-primary">Doc {codice}</span>
+              <span aria-hidden="true">//</span>
+              <span>{SITE.squadra}</span>
+            </p>
+            <h1 class="display mt-3 text-[clamp(2.25rem,1.5rem+4vw,4.25rem)]">{titolo}</h1>
+            {lead && <p class="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">{lead}</p>}
+          </div>
+        </div>
+      )
+    }
+
+    <slot name="testata" />
+
+    <div class="mx-auto w-full max-w-7xl flex-1 px-4 sm:px-6">
+      {
+        toc.length > 0 && (
+          <details class="no-print group mt-6 border bg-card lg:hidden">
+            <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-4 [&::-webkit-details-marker]:hidden">
+              <span class="kicker text-foreground">In questa pagina</span>
+              <span class="font-mono text-lg text-primary group-open:hidden" aria-hidden="true">+</span>
+              <span class="hidden font-mono text-lg text-primary group-open:inline" aria-hidden="true">−</span>
+            </summary>
+            <ol class="border-t py-2">
+              {toc.map((voce, i) => (
+                <li>
+                  <a href={`#${voce.id}`} class="flex min-h-11 items-center gap-3 px-4 hover:bg-muted">
+                    <span class="font-mono text-xs text-primary">{String(i + 1).padStart(2, '0')}</span>
+                    {voce.label}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </details>
+        )
+      }
+
+      <div
+        class:list={[
+          'py-8 sm:py-10 lg:py-12',
+          toc.length > 0 && 'lg:grid lg:grid-cols-[minmax(0,1fr)_14rem] lg:gap-12 xl:grid-cols-[minmax(0,1fr)_16rem] xl:gap-16',
+        ]}
+      >
+        <main id="contenuto" class="doc min-w-0">
+          <slot />
+
+          <nav
+            class="no-print !mt-16 grid gap-3 border-t pt-6 sm:grid-cols-2"
+            aria-label="Pagina precedente e successiva"
+          >
+            {
+              precedente ? (
+                <a href={href(precedente.slug)} class="hud flex items-center gap-3 border bg-card p-4 hover:bg-muted">
+                  <ArrowLeftIcon className="size-5 shrink-0 text-primary" aria-hidden="true" />
+                  <span>
+                    <span class="kicker block">Precedente</span>
+                    <span class="heading block text-lg">{precedente.titolo ?? precedente.label}</span>
+                  </span>
+                </a>
+              ) : (
+                <span class="hidden sm:block" />
+              )
+            }
+            {
+              successiva && (
+                <a
+                  href={href(successiva.slug)}
+                  class="hud flex items-center justify-end gap-3 border bg-card p-4 text-right hover:bg-muted"
+                >
+                  <span>
+                    <span class="kicker block">Successiva</span>
+                    <span class="heading block text-lg">{successiva.titolo ?? successiva.label}</span>
+                  </span>
+                  <ArrowRightIcon className="size-5 shrink-0 text-primary" aria-hidden="true" />
+                </a>
+              )
+            }
+          </nav>
+        </main>
+
+        {
+          toc.length > 0 && (
+            <aside class="no-print hidden lg:block">
+              <nav class="sticky top-[calc(var(--header-h)+2rem)]" aria-label="In questa pagina" data-indice>
+                <p class="kicker border-b pb-2">In questa pagina</p>
+                <ol class="mt-2">
+                  {toc.map((voce, i) => (
+                    <li>
+                      <a
+                        href={`#${voce.id}`}
+                        class="flex gap-2.5 border-l-2 border-transparent py-1.5 pl-3 text-sm leading-snug text-muted-foreground hover:text-foreground aria-[current=true]:border-primary aria-[current=true]:text-foreground"
+                      >
+                        <span class="pt-px font-mono text-xs text-primary">{String(i + 1).padStart(2, '0')}</span>
+                        {voce.label}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </aside>
+          )
+        }
+      </div>
+    </div>
+
+    <footer class="no-print mt-8 border-t bg-card">
+      <div class="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.2fr_1fr_1fr]">
+        <div class="flex items-start gap-4 sm:col-span-2 lg:col-span-1">
+          <Image src={logo} alt="" width={128} height={128} class="size-16 shrink-0" />
+          <div>
+            <p class="heading text-lg">ASD {SITE.squadra}</p>
+            <p class="kicker mt-1.5">{SITE.motto}</p>
+            <p class="mt-3 max-w-xs text-sm text-muted-foreground">
+              Wiki di squadra. Sito pubblico: non contiene dati riservati.
+            </p>
+            <ul class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+              <li>
+                <a href={SITE.sitoUfficiale} class="inline-flex min-h-10 items-center font-medium hover:text-primary hover:underline">
+                  Sito ufficiale
+                </a>
+              </li>
+              {
+                SITE.social.map((s) => (
+                  <li>
+                    <a href={s.url} rel="noopener noreferrer" class="inline-flex min-h-10 items-center hover:text-primary hover:underline">
+                      {s.nome}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+
+        <nav aria-label="Tutte le pagine">
+          <p class="kicker">Pagine</p>
+          <ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+            {
+              PAGINE.map((p) => (
+                <li>
+                  <a href={href(p.slug)} class="inline-flex min-h-10 items-center hover:text-primary hover:underline">
+                    {p.titolo && p.slug !== 'index' ? p.titolo : p.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+
+        <div class="text-sm">
+          <p class="kicker">Questa pagina</p>
+          <ul class="mt-3 grid gap-1">
+            <li>
+              <a href={linkModifica(slug)} class="inline-flex min-h-10 items-center gap-2 hover:text-primary hover:underline">
+                <PencilSimpleLineIcon className="size-4" aria-hidden="true" />
+                Modifica su GitHub
+              </a>
+            </li>
+            <li>
+              <a href={SITE.repo} class="inline-flex min-h-10 items-center gap-2 hover:text-primary hover:underline">
+                <GithubLogoIcon className="size-4" aria-hidden="true" />
+                Sorgente della wiki
+              </a>
+            </li>
+            <li>
+              <a href="#contenuto" class="inline-flex min-h-10 items-center gap-2 hover:text-primary hover:underline">
+                <ArrowUpIcon className="size-4" aria-hidden="true" />
+                Torna su
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    {/* Evidenzia nell'indice la sezione che si sta leggendo. */}
+    <script>
+      // Sotto i 768px le tabelle "impila" diventano schede (display: block) e alcuni browser smettono
+      // di presentarle come tabelle ai lettori di schermo: i ruoli espliciti conservano la struttura.
+      for (const tabella of document.querySelectorAll('table.impila')) {
+        tabella.setAttribute('role', 'table');
+        for (const gruppo of tabella.querySelectorAll('thead, tbody')) gruppo.setAttribute('role', 'rowgroup');
+        for (const riga of tabella.querySelectorAll('tr')) riga.setAttribute('role', 'row');
+        for (const cella of tabella.querySelectorAll('th')) cella.setAttribute('role', 'columnheader');
+        for (const cella of tabella.querySelectorAll('td')) cella.setAttribute('role', 'cell');
+      }
+
+      const indice = document.querySelector('[data-indice]');
+      if (indice && 'IntersectionObserver' in window) {
+        const voci = new Map<string, HTMLAnchorElement>();
+        for (const link of indice.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')) {
+          voci.set(decodeURIComponent(link.hash.slice(1)), link);
+        }
+        const visibili = new Set<string>();
+        const osservatore = new IntersectionObserver(
+          (entrate) => {
+            for (const entrata of entrate) {
+              if (entrata.isIntersecting) visibili.add(entrata.target.id);
+              else visibili.delete(entrata.target.id);
+            }
+            const attiva = [...voci.keys()].find((id) => visibili.has(id));
+            if (!attiva) return;
+            for (const [id, link] of voci) {
+              if (id === attiva) link.setAttribute('aria-current', 'true');
+              else link.removeAttribute('aria-current');
+            }
+          },
+          { rootMargin: '-15% 0px -55% 0px' },
+        );
+        for (const id of voci.keys()) {
+          const sezione = document.getElementById(id);
+          if (sezione) osservatore.observe(sezione);
+        }
+      }
+    </script>
+    <EasterEgg />
+  </body>
+</html>

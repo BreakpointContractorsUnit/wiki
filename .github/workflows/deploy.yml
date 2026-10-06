@@ -1,0 +1,57 @@
+# Pubblica la wiki su GitHub Pages ogni volta che arriva una modifica su master.
+#
+# Il sito è un progetto Astro: qui viene compilato (npm run build) e solo il risultato,
+# la cartella dist/, viene pubblicato. Se la compilazione fallisce (per esempio per un
+# file JSON scritto male) la pubblicazione si ferma e resta online la versione precedente.
+#
+# Impostazione una tantum, da fare PRIMA o insieme al primo push su master:
+#   Settings > Pages > Build and deployment > Source = "GitHub Actions".
+# Se resta su "Deploy from a branch" il sito pubblicato smette di funzionare, perché
+# nella radice del repository non ci sono più le pagine HTML.
+#
+# Guida di riferimento: https://docs.astro.build/en/guides/deploy/github/
+name: Pubblica su GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  # Permette di lanciarlo a mano dalla scheda Actions del repository.
+  workflow_dispatch:
+
+# Permessi minimi: leggere il codice e pubblicare su Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Una sola pubblicazione alla volta: se ne parte un'altra, aspetta che la prima finisca
+# (senza interromperla a metà).
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il codice
+        uses: actions/checkout@v7
+
+      # Installa le dipendenze (il gestore, npm, è riconosciuto da package-lock.json),
+      # esegue "npm run build" e prepara il pacchetto da pubblicare.
+      # Node 22: il progetto richiede 22.12 o successivo (campo "engines" di package.json).
+      - name: Compila il sito
+        uses: withastro/action@v6
+        with:
+          node-version: "22"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Pubblica su GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

@@ -1,0 +1,16 @@
+---
+import datiGlossario from '../../data/glossario.json';
+import Glossario from '@/components/Glossario';
+import Base from '@/layouts/Base.astro';
+import { validaGlossario } from '@/lib/dati';
+
+const termini = validaGlossario(datiGlossario);
+---
+
+<Base
+  slug="glossario"
+  description="Glossario del softair: sigle e modi di dire spiegati in una riga, dalla Breakpoint Contractors Unit."
+  lead="Sigle e modi di dire del softair, spiegati in una riga. Se manca qualcosa, chiedi in squadra: lo aggiungiamo."
+>
+  <Glossario client:load termini={termini} />
+</Base>

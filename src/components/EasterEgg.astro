@@ -1,0 +1,694 @@
+---
+// Easter egg nascosto: la squadra si presenta, in pixel art, nello spirito dei giochi arcade a scorrimento.
+// Non c'è nulla di visibile a riposo: tutto il markup nasce quando l'easter egg si apre e sparisce quando
+// si chiude, e a riposo restano solo due ascoltatori di eventi (nessun timer, nessuna animazione).
+// Si attiva in due modi:
+//  - tre clic o tocchi entro due secondi sul logo grande del piè di pagina (in ogni pagina) o sulla patch
+//    grande della home: entra tutta la squadra;
+//  - scrivendo sulla tastiera il soprannome di un personaggio (fuori dai campi di testo): entra solo lui.
+// Si chiude con Esc, con il pulsante «Chiudi» o da solo. Dati e sprite: src/lib/squadra.ts.
+---
+
+<script>
+  import { ALT, CENTRO, FRECCIA, LARG, MESSAGGI, SQUADRA, TAVOLOZZA, TERRENO, type Personaggio } from '../lib/squadra';
+
+  const SOGLIA_TELEFONO = 520;
+
+  let radice: HTMLElement | null = null;
+  let timer: number[] = [];
+  let animazioni: Animation[] = [];
+  let focoPrecedente: Element | null = null;
+  let bollaAccesa: HTMLElement | null = null;
+  let larghezzaApertura = 0;
+
+  const el = (tag: string, classe: string, testo?: string): HTMLElement => {
+    const e = document.createElement(tag);
+    e.className = classe;
+    if (testo !== undefined) e.textContent = testo;
+    return e;
+  };
+  const dopo = (ms: number, fn: () => void) => void timer.push(window.setTimeout(fn, ms));
+
+  /** Disegna uno o più fotogrammi affiancati su un canvas e ne restituisce l'immagine (un pixel = un carattere). */
+  function foglio(fotogrammi: string[][], tavolozza: Record<string, string>): string {
+    const h = fotogrammi[0].length;
+    const w = fotogrammi[0][0].length;
+    const tela = document.createElement('canvas');
+    tela.width = w * fotogrammi.length;
+    tela.height = h;
+    const ctx = tela.getContext('2d');
+    if (!ctx) return '';
+    fotogrammi.forEach((f, k) =>
+      f.forEach((riga, y) =>
+        [...riga].forEach((c, x) => {
+          const colore = tavolozza[c];
+          if (!colore) return;
+          ctx.fillStyle = colore;
+          ctx.fillRect(k * w + x, y, 1, 1);
+        }),
+      ),
+    );
+    return tela.toDataURL();
+  }
+
+  function sprite(fotogrammi: string[][], tavolozza: Record<string, string>, classe: string): HTMLElement {
+    const s = el('span', `ee-spr ${classe}`);
+    s.style.backgroundImage = `url("${foglio(fotogrammi, tavolozza)}")`;
+    s.style.setProperty('--n', String(fotogrammi.length));
+    return s;
+  }
+
+  // ── Costruzione della scena ──────────────────────────────────────────────────────────────────
+
+  function creaPersonaggio(p: Personaggio): HTMLElement {
+    const pg = el('div', 'ee-pg');
+    pg.dataset.stato = 'marcia';
+    pg.style.setProperty('--alt', String(p.altezza));
+    const bolla = el('div', 'ee-bolla');
+    bolla.append(el('span', 'kicker ee-nome', p.nome), el('span', 'ee-testo', `«${p.battuta}»`));
+    pg.append(bolla, sprite(p.marcia, p.tavolozza, 'ee-marcia'), sprite(p.fermo, p.tavolozza, 'ee-fermo'));
+    return pg;
+  }
+
+  /** Mostra il fumetto di un personaggio (e spegne l'altro); lo tiene dentro lo schermo. */
+  function parla(pg: HTMLElement | null) {
+    bollaAccesa?.classList.remove('ee-parla');
+    bollaAccesa = null;
+    const bolla = pg?.querySelector<HTMLElement>('.ee-bolla');
+    if (!bolla) return;
+    bolla.style.setProperty('--sx', '0px');
+    bolla.classList.add('ee-parla');
+    const r = bolla.getBoundingClientRect();
+    const vw = document.documentElement.clientWidth;
+    const sx = r.left < 8 ? 8 - r.left : r.right > vw - 8 ? vw - 8 - r.right : 0;
+    bolla.style.setProperty('--sx', `${sx}px`);
+    bollaAccesa = bolla;
+  }
+
+  const mostra = (e: HTMLElement | null, acceso: boolean) => e?.classList.toggle('ee-on', acceso);
+
+  /** Sposta un personaggio a scatti di un pixel dello sprite (come in un gioco vero). */
+  function muovi(pg: HTMLElement, da: number, a: number, durata: number, ritardo: number, z: number, fill: FillMode) {
+    const passi = Math.max(1, Math.round(Math.abs(a - da) / z));
+    animazioni.push(
+      pg.animate([{ transform: `translateX(${da}px)` }, { transform: `translateX(${a}px)` }], {
+        duration: Math.max(1, durata),
+        delay: ritardo,
+        easing: `steps(${passi}, end)`,
+        // l'uscita, con ritardo, non deve fissare la posizione prima di partire: solo 'forwards'
+        fill,
+      }),
+    );
+  }
+
+  // ── Apertura e chiusura ──────────────────────────────────────────────────────────────────────
+
+  function chiudi() {
+    if (!radice) return;
+    timer.forEach((t) => clearTimeout(t));
+    timer = [];
+    animazioni.forEach((a) => a.cancel());
+    animazioni = [];
+    document.removeEventListener('keydown', suTasto);
+    window.removeEventListener('resize', suResize);
+    const aveva = radice.contains(document.activeElement);
+    radice.remove();
+    radice = null;
+    bollaAccesa = null;
+    // se il fuoco era sul pulsante, lo si restituisce a ciò che lo aveva prima
+    if (aveva && focoPrecedente instanceof HTMLElement && document.contains(focoPrecedente)) focoPrecedente.focus();
+    focoPrecedente = null;
+  }
+
+  function suTasto(e: KeyboardEvent) {
+    if (e.key === 'Escape') chiudi();
+  }
+
+  /** Se cambia la larghezza (rotazione, finestra ridimensionata) i posti calcolati non valgono più: si chiude.
+      Un cambio di sola altezza (la barra del browser sul telefono) non conta. */
+  function suResize() {
+    if (document.documentElement.clientWidth !== larghezzaApertura) chiudi();
+  }
+
+  /** Apre la scena: tutta la squadra, oppure un solo personaggio (per il soprannome digitato). */
+  function apri(solo?: Personaggio) {
+    if (radice) return;
+    const ridotto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const elenco = solo ? [solo] : SQUADRA;
+    focoPrecedente = document.activeElement;
+
+    radice = el('div', 'ee' + (ridotto ? ' ee-statico' : ''));
+    radice.style.setProperty('--lw', String(LARG));
+    radice.style.setProperty('--ah', String(ALT));
+    radice.style.setProperty('--cx', String(CENTRO));
+    radice.style.setProperty('--terreno', `url("${foglio([TERRENO], TAVOLOZZA)}")`);
+
+    const annuncio = el('p', 'ee-sr');
+    annuncio.setAttribute('role', 'status');
+    annuncio.setAttribute('aria-live', 'polite');
+    const chiudiBtn = el('button', 'ee-chiudi hud kicker');
+    chiudiBtn.setAttribute('type', 'button');
+    const croce = el('span', '', '✕');
+    croce.setAttribute('aria-hidden', 'true');
+    chiudiBtn.append(croce, ' Chiudi');
+    chiudiBtn.addEventListener('click', chiudi);
+    const scena = el('div', 'ee-scena');
+    scena.setAttribute('aria-hidden', 'true');
+    radice.append(annuncio, chiudiBtn, scena);
+    document.body.append(radice);
+    document.addEventListener('keydown', suTasto);
+    larghezzaApertura = document.documentElement.clientWidth;
+    window.addEventListener('resize', suResize);
+
+    // La frase si inserisce dopo che la regione esiste, così i lettori di schermo la annunciano una volta sola.
+    dopo(80, () => {
+      annuncio.textContent = solo
+        ? `Easter egg: ${solo.nome} dice la sua. Premi Esc per chiudere.`
+        : MESSAGGI.annuncio;
+    });
+
+    if (ridotto) return scenaStatica(scena, elenco, !!solo);
+
+    const z = Number.parseInt(getComputedStyle(radice).getPropertyValue('--z')) || 4;
+    const vw = radice.clientWidth;
+    scena.append(el('div', 'ee-terra'));
+    const titoloInizio = el('p', 'ee-titolo display notch', MESSAGGI.titolo);
+    const titoloFine = el('p', 'ee-titolo display notch', MESSAGGI.fine);
+    const vai = el('span', 'ee-vai');
+    vai.style.backgroundImage = `url("${foglio([FRECCIA], TAVOLOZZA)}")`;
+    if (!solo) scena.append(titoloInizio, titoloFine, vai);
+
+    const pgs = elenco.map(creaPersonaggio);
+    scena.append(...pgs);
+    // tutti partono fuori dallo schermo, a sinistra
+    const fuori = -LARG * z;
+    pgs.forEach((pg) => (pg.style.transform = `translateX(${fuori}px)`));
+
+    const v = 90 * z; // velocità di marcia, pixel al secondo
+    const aScatti = (x: number) => Math.round(x / z) * z;
+    const sinistra = (centro: number) => aScatti(centro - CENTRO * z);
+    let fine = 0; // istante in cui tutto è finito
+
+    /** Un personaggio entra, si ferma; poi (più tardi) corre fuori a destra. */
+    const entra = (pg: HTMLElement, x: number, t: number): number => {
+      const durata = ((x - fuori) / v) * 1000;
+      muovi(pg, fuori, x, durata, t, z, 'both');
+      dopo(t + durata, () => (pg.dataset.stato = 'fermo'));
+      return t + durata;
+    };
+    const esce = (pg: HTMLElement, x: number, t: number): number => {
+      const durata = ((vw + 20 - x) / (v * 2.4)) * 1000;
+      dopo(t, () => (pg.dataset.stato = 'corsa'));
+      muovi(pg, x, vw + 20, durata, t, z, 'forwards');
+      return t + durata;
+    };
+
+    if (solo) {
+      // un solo personaggio: entra, dice la sua, esce
+      const x = sinistra(vw / 2);
+      const arrivo = entra(pgs[0], x, 150);
+      dopo(arrivo + 100, () => parla(pgs[0]));
+      const via = arrivo + 2500;
+      dopo(via, () => parla(null));
+      fine = esce(pgs[0], x, via) + 250;
+    } else if (vw <= SOGLIA_TELEFONO) {
+      // telefono: non ci stanno in fila, sfilano uno alla volta
+      const x = sinistra(vw / 2);
+      dopo(0, () => mostra(titoloInizio, true));
+      dopo(1700, () => mostra(titoloInizio, false));
+      let ultimo = 0;
+      pgs.forEach((pg, i) => {
+        const arrivo = entra(pg, x, 450 + i * 1700);
+        dopo(arrivo + 50, () => parla(pg));
+        const via = arrivo + 1050;
+        dopo(via, () => parla(null));
+        ultimo = esce(pg, x, via);
+      });
+      dopo(ultimo - 700, () => {
+        mostra(titoloFine, true);
+        mostra(vai, true);
+      });
+      fine = ultimo + 450;
+    } else {
+      // fila: entrano da sinistra a partire dall'ultimo (Bond), così Jason resta a sinistra
+      const passo = 24 * z;
+      const inizio = (vw - passo * pgs.length) / 2;
+      const posti = pgs.map((_, i) => sinistra(inizio + passo * (i + 0.5)));
+      dopo(0, () => mostra(titoloInizio, true));
+      dopo(2600, () => mostra(titoloInizio, false));
+      let ultimoArrivo = 0;
+      for (let k = 0; k < pgs.length; k++) {
+        const i = pgs.length - 1 - k;
+        ultimoArrivo = Math.max(ultimoArrivo, entra(pgs[i], posti[i], 500 + k * 380));
+      }
+      // a turno, da sinistra a destra, il soprannome e la battuta
+      const parte = ultimoArrivo + 250;
+      pgs.forEach((pg, i) => dopo(parte + i * 950, () => parla(pg)));
+      const compiuta = parte + pgs.length * 950;
+      dopo(compiuta, () => {
+        parla(null);
+        mostra(titoloFine, true);
+        mostra(vai, true);
+      });
+      // e la fila esce correndo a destra, il primo a destra per primo
+      let ultimo = 0;
+      for (let k = 0; k < pgs.length; k++) {
+        const i = pgs.length - 1 - k;
+        ultimo = Math.max(ultimo, esce(pgs[i], posti[i], compiuta + 450 + k * 70));
+      }
+      fine = ultimo + 250;
+    }
+    dopo(fine, chiudi);
+  }
+
+  /** Con "riduci animazioni": niente marcia, niente timer. La fila ferma, con soprannomi e battute. */
+  function scenaStatica(scena: HTMLElement, elenco: Personaggio[], solo: boolean) {
+    if (!solo) scena.append(el('p', 'ee-titolo ee-on display notch', MESSAGGI.titolo));
+    const griglia = el('div', 'ee-griglia');
+    for (const p of elenco) {
+      const cella = el('div', 'ee-cella');
+      cella.dataset.stato = 'fermo';
+      cella.style.setProperty('--n', '1');
+      const ritratto = sprite([p.fermo[0]], p.tavolozza, 'ee-fermo');
+      const testi = el('p', 'ee-didascalia');
+      testi.append(el('span', 'kicker ee-nome', p.nome), el('span', 'ee-testo', `«${p.battuta}»`));
+      cella.append(ritratto, testi);
+      griglia.append(cella);
+    }
+    scena.append(griglia);
+  }
+
+  // ── Inneschi (a riposo: solo questi ascoltatori) ─────────────────────────────────────────────
+
+  const inCampoDiTesto = (t: EventTarget | null) => {
+    const e = t as HTMLElement | null;
+    return !!e && !!e.tagName && (e.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(e.tagName));
+  };
+
+  // 1) Il soprannome di un personaggio scritto sulla tastiera: entra solo lui.
+  let digitato = ''; // ultime lettere scritte
+  let ultimoTasto = 0;
+
+  document.addEventListener('keydown', (e) => {
+    // Non si intercettano i tasti nei campi di testo; e non si chiama mai preventDefault.
+    if (e.ctrlKey || e.metaKey || e.altKey || e.isComposing) return;
+    if (inCampoDiTesto(e.target)) {
+      digitato = '';
+      return;
+    }
+    if (radice || e.key.length !== 1) return;
+    const tasto = e.key.toLowerCase();
+    const adesso = Date.now();
+    if (adesso - ultimoTasto > 2000 || !/[a-z]/.test(tasto)) digitato = '';
+    ultimoTasto = adesso;
+    if (!/[a-z]/.test(tasto)) return;
+    digitato = (digitato + tasto).slice(-10);
+    const trovato = SQUADRA.find((p) => digitato.endsWith(p.id));
+    if (trovato) {
+      digitato = '';
+      apri(trovato);
+    }
+  });
+
+  // 2) Tre clic (o tocchi) entro due secondi sul logo grande del piè di pagina o sulla patch della home.
+  //    Non si tocca il logo piccolo in testata: è un link e deve funzionare come sempre.
+  const LOGHI = 'footer img, .patch img';
+  let clic: number[] = [];
+  let ultimoLogo: Element | null = null;
+
+  /** Il logo sotto il clic, o null. */
+  function logoSotto(e: MouseEvent): Element | null {
+    const t = e.target instanceof Element ? e.target : null;
+    const logo = t?.closest(LOGHI);
+    if (logo) return logo;
+    // Sulla patch della home sopra l'immagine stanno elementi decorativi (il radar) che prendono il clic
+    // al suo posto: si cerca l'immagine tra quelle che stanno sotto il punto cliccato.
+    if (t?.closest('.patch')) return document.elementsFromPoint(e.clientX, e.clientY).find((x) => x.matches(LOGHI)) ?? null;
+    return null;
+  }
+
+  document.addEventListener('click', (e) => {
+    const logo = logoSotto(e);
+    if (!logo) return;
+    // Il doppio e il triplo clic selezionano per natura il testo vicino (sulla patch il clic cade su un
+    // elemento decorativo, non sull'immagine): si toglie la selezione, senza mai usare preventDefault.
+    if (e.detail > 1) getSelection()?.removeAllRanges();
+    if (radice) return;
+    const adesso = Date.now();
+    // un clic oltre i due secondi dal primo, o su un'altra immagine, fa ripartire il conteggio
+    if (logo !== ultimoLogo || adesso - clic[0] > 2000) clic = [];
+    ultimoLogo = logo;
+    clic.push(adesso);
+    if (clic.length === 3) {
+      clic = [];
+      apri();
+    }
+  });
+</script>
+
+<style is:global>
+  /* I tre clic sul logo non selezionano testo e non fanno partire lo zoom al doppio tocco. */
+  footer img,
+  .patch img {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Tutto ciò che segue nasce solo mentre l'easter egg è aperto. Le dimensioni sono multipli interi
+     del pixel dello sprite (--z): x5 su desktop, x4 su tablet, x3 su telefono. */
+  .ee {
+    --z: 5;
+    --px: 3px;
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 70;
+    height: min(34dvh, 22rem);
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    background:
+      repeating-linear-gradient(to bottom, transparent 0 3px, color-mix(in oklch, var(--foreground) 5%, transparent) 3px 4px),
+      linear-gradient(
+        to top,
+        color-mix(in oklch, var(--background) 90%, transparent),
+        color-mix(in oklch, var(--background) 74%, transparent) 60%,
+        color-mix(in oklch, var(--background) 0%, transparent)
+      );
+    border-bottom: 0;
+  }
+
+  @media (max-width: 1099px) {
+    .ee {
+      --z: 4;
+    }
+  }
+
+  @media (max-width: 699px), (max-height: 700px) {
+    .ee {
+      --z: 3;
+    }
+  }
+
+  @media print {
+    .ee {
+      display: none;
+    }
+  }
+
+  .ee-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .ee-chiudi {
+    position: absolute;
+    top: 0.625rem;
+    right: 0.75rem;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--foreground);
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .ee-chiudi:hover {
+    background: var(--muted);
+  }
+
+  .ee-scena {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Il terreno: una piastrella disegnata a pixel, che si ripete. */
+  .ee-terra {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: calc(var(--z) * 6px);
+    background-image: var(--terreno);
+    background-size: calc(16 * var(--z) * 1px) calc(6 * var(--z) * 1px);
+    background-repeat: repeat-x;
+    image-rendering: pixelated;
+  }
+
+  /* Cartelli d'apertura e di chiusura, in stile arcade. */
+  .ee-titolo {
+    position: absolute;
+    top: 3.75rem;
+    left: 50%;
+    z-index: 2;
+    padding: 0.55rem 1.4rem 0.65rem;
+    background: var(--foreground);
+    border-bottom: 5px solid var(--primary);
+    color: var(--background);
+    font-size: clamp(1.5rem, 1rem + 2.4vw, 2.5rem);
+    white-space: nowrap;
+    transform: translateX(-50%);
+    visibility: hidden;
+  }
+
+  @media (min-width: 640px) {
+    .ee-titolo {
+      top: 1rem;
+    }
+  }
+
+  .ee-titolo.ee-on {
+    visibility: visible;
+    animation: ee-lampeggia 0.9s steps(1) 1;
+  }
+
+  @keyframes ee-lampeggia {
+    0%,
+    30%,
+    60% {
+      opacity: 0;
+    }
+    15%,
+    45%,
+    75%,
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Freccia "avanti" che lampeggia alla fine. */
+  .ee-vai {
+    position: absolute;
+    right: 6%;
+    bottom: calc(var(--z) * 9px);
+    width: calc(14 * var(--z) * 1px);
+    height: calc(9 * var(--z) * 1px);
+    background-size: 100% 100%;
+    image-rendering: pixelated;
+    visibility: hidden;
+  }
+
+  .ee-vai.ee-on {
+    visibility: visible;
+    animation: ee-vai 0.5s steps(1) infinite;
+  }
+
+  @keyframes ee-vai {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  /* Un personaggio: la sua posizione orizzontale la dà la Web Animations API (translateX). */
+  .ee-pg {
+    position: absolute;
+    bottom: calc(var(--z) * 3px);
+    left: 0;
+    width: calc(var(--lw) * var(--z) * 1px);
+    height: calc(var(--ah) * var(--z) * 1px);
+  }
+
+  /* Gli sprite sono fogli di fotogrammi affiancati: si scorrono con steps(), senza JavaScript.
+     Un fotogramma di camminata dura 0,2 s (0,1 s quando corrono). */
+  .ee-spr {
+    display: block;
+    width: calc(var(--lw) * var(--z) * 1px);
+    height: calc(var(--ah) * var(--z) * 1px);
+    background-repeat: no-repeat;
+    background-size: calc(var(--n) * var(--lw) * var(--z) * 1px) 100%;
+    image-rendering: pixelated;
+    animation: ee-passo calc(var(--n) * 0.2s) steps(var(--n)) infinite;
+  }
+
+  [data-stato='corsa'] .ee-marcia {
+    animation-duration: calc(var(--n) * 0.1s);
+  }
+
+  [data-stato='fermo'] .ee-marcia,
+  [data-stato='marcia'] .ee-fermo,
+  [data-stato='corsa'] .ee-fermo {
+    display: none;
+  }
+
+  @keyframes ee-passo {
+    to {
+      background-position-x: calc(var(--n) * var(--lw) * var(--z) * -1px);
+    }
+  }
+
+  /* Fumetto a pixel: il contorno è fatto di ombre piene, senza angoli. */
+  .ee-bolla {
+    --bordo: var(--foreground);
+    position: absolute;
+    bottom: calc(var(--alt) * var(--z) * 1px + 0.9rem);
+    left: calc(var(--cx) * var(--z) * 1px);
+    display: grid;
+    gap: 0.125rem;
+    width: max-content;
+    max-width: min(13.5rem, 86vw);
+    padding: 0.4rem 0.7rem 0.5rem;
+    background: var(--card);
+    box-shadow:
+      0 calc(var(--px) * -1) 0 0 var(--bordo),
+      0 var(--px) 0 0 var(--bordo),
+      calc(var(--px) * -1) 0 0 0 var(--bordo),
+      var(--px) 0 0 0 var(--bordo);
+    color: var(--card-foreground);
+    line-height: 1.25;
+    text-align: left;
+    transform: translateX(calc(-50% + var(--sx, 0px)));
+    visibility: hidden;
+  }
+
+  .ee-bolla::before,
+  .ee-bolla::after {
+    content: '';
+    position: absolute;
+    left: calc(50% - var(--sx, 0px) - var(--px) * 2);
+    background: var(--card);
+  }
+
+  /* La codina: due gradini. */
+  .ee-bolla::after {
+    top: 100%;
+    width: calc(var(--px) * 4);
+    height: var(--px);
+    box-shadow:
+      calc(var(--px) * -1) 0 0 0 var(--bordo),
+      var(--px) 0 0 0 var(--bordo);
+  }
+
+  .ee-bolla::before {
+    top: calc(100% + var(--px));
+    left: calc(50% - var(--sx, 0px) - var(--px));
+    width: calc(var(--px) * 2);
+    height: var(--px);
+    box-shadow:
+      calc(var(--px) * -1) 0 0 0 var(--bordo),
+      var(--px) 0 0 0 var(--bordo),
+      0 var(--px) 0 0 var(--bordo);
+  }
+
+  .ee-bolla.ee-parla {
+    visibility: visible;
+    animation: ee-pop 0.2s steps(3) 1;
+  }
+
+  @keyframes ee-pop {
+    from {
+      opacity: 0;
+    }
+  }
+
+  .ee-nome {
+    color: var(--primary);
+    font-size: 0.6875rem;
+  }
+
+  .ee-testo {
+    font-family: var(--ff-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  /* Con "riduci animazioni": niente marcia, la fila ferma con soprannomi e battute. */
+  .ee-statico {
+    --z: 3;
+    height: auto;
+    max-height: 48dvh;
+    overflow: auto;
+    padding: 4.25rem 0.75rem 1rem;
+    pointer-events: auto;
+    background: color-mix(in oklch, var(--background) 94%, transparent);
+    border-top: 3px solid var(--primary);
+  }
+
+  .ee-statico .ee-scena {
+    position: static;
+  }
+
+  .ee-statico .ee-titolo {
+    top: 0.75rem;
+    left: 0.75rem;
+    max-width: calc(100% - 9.5rem);
+    font-size: clamp(1.125rem, 0.8rem + 1.6vw, 1.75rem);
+    transform: none;
+    visibility: visible;
+    animation: none;
+    white-space: normal;
+  }
+
+  .ee-griglia {
+    display: grid;
+    gap: 0.5rem 0.75rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 640px) {
+    .ee-griglia {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .ee-griglia {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+  }
+
+  .ee-cella {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .ee-cella .ee-spr {
+    animation: none;
+  }
+
+  .ee-didascalia {
+    display: grid;
+    gap: 0.125rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ee-spr,
+    .ee-bolla.ee-parla,
+    .ee-vai.ee-on,
+    .ee-titolo.ee-on {
+      animation: none;
+    }
+  }
+</style>
