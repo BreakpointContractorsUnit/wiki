@@ -14,6 +14,7 @@ Sito pubblicato con GitHub Pages: <https://breakpointcontractorsunit.github.io/w
 - [Bozze e dati mancanti](#bozze-e-dati-mancanti)
 - [I file `data/*.json`](#i-file-datajson)
 - [Aggiungere una pagina](#aggiungere-una-pagina)
+- [Pagina Radio scollegata](#pagina-radio-scollegata)
 - [Grafica](#grafica)
 - [Animazioni](#animazioni)
 - [Pubblicazione](#pubblicazione)
@@ -31,7 +32,7 @@ Un sito fatto di pagine in HTML, con qualche tag in più, compilato con [Astro](
 | Onboarding | `src/pages/onboarding.astro` | `data/equipaggiamento.json` |
 | Regolamento | `src/pages/team-rules.astro` | |
 | Sicurezza e normativa | `src/pages/game-rules.astro` | |
-| Radio | `src/pages/radio.astro` | `data/radio.json` |
+| Radio (**scollegata**, vedi [Pagina Radio scollegata](#pagina-radio-scollegata)) | `src/pages/_radio.astro` | `data/radio.json` |
 | Giornata di gioco | `src/pages/giornata.astro` | `data/checklist.json` |
 | Anatomia della replica | `src/pages/replica.astro` | `data/replica.json` |
 | Glossario | `src/pages/glossario.astro` | `data/glossario.json` |
@@ -135,7 +136,7 @@ Dentro una pagina bastano HTML e una classe: lo stile arriva da `src/styles/glob
 
 ### Riquadri e componenti
 
-I componenti si usano come tag; nei file `.astro` esistenti sono già importati in cima, copia da `src/pages/team-rules.astro` o `src/pages/radio.astro` se ne aggiungi altri.
+I componenti si usano come tag; nei file `.astro` esistenti sono già importati in cima, copia da `src/pages/game-rules.astro` o `src/pages/_radio.astro` se ne aggiungi altri.
 
 | Componente | Uso |
 |---|---|
@@ -314,6 +315,19 @@ Per cambiare la forma del modello (non i testi) si lavora su `src/lib/replica-mo
 3. **Compila l'indice.** Ogni `<Section id="x">` va ripetuta in `toc` come `{ id: 'x', label: 'Titolo' }`.
 4. **Solo se serve una lista da JSON:** crea `data/nome.json`, importalo in cima alla pagina come fanno `radio.astro` (`import datiRadio from '../../data/radio.json'`) e `onboarding.astro`, e mostralo con una tabella o un componente. Per controllarne il contenuto durante la compilazione aggiungi una funzione `valida…` in `src/lib/dati.ts`, copiando una di quelle esistenti.
 
+## Pagina Radio scollegata
+
+La pagina Radio è **scollegata dal sito, non eliminata**: il file è `src/pages/_radio.astro`. Il trattino basso davanti al nome dice ad Astro di non pubblicarla, quindi non compare nel menu e l'indirizzo `radio.html` porta alla pagina «non trovata». Il contenuto è conservato com'era, con le sue bozze, per poterlo sistemare e ricollegare.
+
+Per ricollegarla:
+
+1. rinomina `src/pages/_radio.astro` in `src/pages/radio.astro`;
+2. in `src/lib/site.ts` togli il commento alla voce «radio» di `PAGINE` e rimetti `BroadcastIcon` nell'`import` in cima;
+3. ripristina i rimandi tolti: il link nel passo «Ferma il gioco» di `src/pages/game-rules.astro` e «Vedi la pagina Radio» nella voce PMR446 di `data/glossario.json`;
+4. completa `data/radio.json` e le bozze della pagina.
+
+Restano al loro posto, inutilizzati finché la pagina è scollegata: `data/radio.json`, `src/lib/radio.ts`, `src/components/NatoSpeller.tsx` e `validaRadio` in `src/lib/dati.ts`.
+
 ## Grafica
 
 La grafica riprende la patch: **nero, verde bosco e bianco**, con titoli a mascherina.
@@ -368,7 +382,7 @@ Se un giorno il repository cambia nome o dominio, aggiorna `site` e `base` in `a
 
 Le pagine hanno gli stessi nomi di file e le stesse ancore di prima, quindi i link già condivisi continuano a funzionare:
 
-- file: `index.html`, `onboarding.html`, `team-rules.html`, `game-rules.html`, `radio.html`, `join.html`;
+- file: `index.html`, `onboarding.html`, `team-rules.html`, `game-rules.html`, `join.html` (`radio.html` non è pubblicata finché la pagina Radio resta [scollegata](#pagina-radio-scollegata));
 - ancore, per esempio `team-rules.html#ingaggio`, `game-rules.html#normativa`, `join.html#faq`, `onboarding.html#errori-da-evitare`;
 - pagine nuove: `giornata.html`, `replica.html` e `glossario.html`; chi apre un indirizzo che non esiste vede `404.html`.
 

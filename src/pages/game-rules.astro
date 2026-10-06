@@ -1,12 +1,11 @@
 ---
-import Bozza from '@/components/Bozza.astro';
 import Callout from '@/components/Callout.astro';
 import Section from '@/components/Section.astro';
 import Base from '@/layouts/Base.astro';
 
 const toc = [
   { id: 'regole-di-gioco', label: 'Regole di gioco' },
-  { id: 'zona-sicura', label: 'Zona sicura' },
+  { id: 'zona-sicura', label: 'A fine partita' },
   { id: 'protezioni', label: 'Protezioni' },
   { id: 'primo-soccorso', label: 'Incidenti e primo soccorso' },
   { id: 'batterie', label: 'Batterie' },
@@ -18,7 +17,7 @@ const NORMATTIVA = 'https://www.normattiva.it/uri-res/N2Ls?urn:nir:';
 
 <Base
   slug="game-rules"
-  description="Sicurezza in campo e normativa sulle repliche da softair: zona sicura, protezioni, primo soccorso, batterie e cosa dice la legge italiana."
+  description="Sicurezza in campo e normativa sulle repliche da softair: che cosa fare a fine partita, protezioni, primo soccorso, batterie e cosa dice la legge italiana."
   lead="La sicurezza viene prima del gioco, e le regole valgono per tutti, in ogni partita. In fondo, che cosa dice la legge su acquisto, trasporto e potenza delle repliche."
   toc={toc}
 >
@@ -29,145 +28,47 @@ const NORMATTIVA = 'https://www.normattiva.it/uri-res/N2Ls?urn:nir:';
       riguarda la sicurezza e la legge.
     </p>
     <dl class="fatti">
-      <div><dt>Occhiali</dt><dd>Sempre in campo</dd></div>
+      <div><dt>Occhiali</dt><dd>Dall'arrivo alla partenza</dd></div>
       <div><dt>Potenza</dt><dd>&lt; 1,00 J</dd></div>
       <div><dt>Soccorso sanitario</dt><dd>118</dd></div>
       <div><dt>Altre emergenze</dt><dd>112</dd></div>
     </dl>
   </Section>
 
-  <Section id="zona-sicura" title="Zona sicura">
+  <Section id="zona-sicura" title="A fine partita">
     <p>
-      È l'area fuori dal gioco, dove ci si prepara e si sistema l'attrezzatura: qui una replica non deve poter
-      sparare. Zona sicura non vuol dire «senza occhiali»: quelli si tolgono solo nel parcheggio.
+      Non c'è una «zona sicura» fissa. È buona pratica fare queste cose ogni volta che una partita è finita e ci si
+      riunisce:
     </p>
-    <Bozza nota="Regole di buona pratica: confermate quali valgono nei vostri campi e dove finisce la zona sicura.">
-      <ul class="regole">
-        <li class="si">Caricatore tolto dalla replica.</li>
-        <li class="si">
-          Canna svuotata <em>prima</em> di entrare in zona sicura: tolto il caricatore può restare un pallino in
-          camera, quindi due o tre colpi singoli in una direzione sicura, poi batteria scollegata.
-        </li>
-        <li class="si">Selettore in sicura e dito fuori dal grilletto.</li>
-        <li class="si">Copricanna sulla volata (la «calza» o il tappo di sicurezza), se lo usate.</li>
-        <li class="si">Canna sempre rivolta verso terra o in una direzione sicura, anche quando la replica è scarica.</li>
-        <li class="no">Niente colpi a vuoto e niente prove di tiro in zona sicura.</li>
-        <li class="no">Mai puntare la replica verso una persona, nemmeno per scherzo.</li>
-      </ul>
-    </Bozza>
+    <ul class="regole">
+      <li class="si">Caricatore tolto dalla replica.</li>
+      <li class="si">
+        Canna svuotata: tolto il caricatore può restare un pallino in camera, quindi due o tre colpi singoli in una
+        direzione sicura.
+      </li>
+      <li class="si">Selettore in sicura e dito fuori dal grilletto.</li>
+      <li class="si">Canna sempre rivolta verso terra o in una direzione sicura, anche quando la replica è scarica.</li>
+      <li class="no">
+        Niente colpi a vuoto e niente prove di tiro quando si è riuniti: vanno fatti prima di riunirsi.
+      </li>
+      <li class="no">Mai puntare la replica verso una persona, nemmeno per scherzo.</li>
+    </ul>
     <Callout tipo="regola" titolo="Regola · occhiali">
       <p>
-        Gli occhiali protettivi sono obbligatori in tutta l'area del campo e si possono togliere <strong>solo nel
-        parcheggio</strong> (vedi <a href="team-rules.html#regole-generali">Regolamento</a>).
-      </p>
-    </Callout>
-    <Callout tipo="mancante" titolo="Dato mancante · la zona sicura nei nostri campi">
-      <p>
-        Oltre al parcheggio c'è una zona sicura dentro il campo? Dove si provano le repliche e dove si fa il
-        cronografo? Il copricanna è obbligatorio?
+        Gli occhiali protettivi sono obbligatori: si mettono <strong>appena si arriva nel parcheggio</strong> e si
+        tolgono <strong>come ultima cosa prima di andare via</strong> (vedi
+        <a href="team-rules.html#regole-generali">Regolamento</a>).
       </p>
     </Callout>
   </Section>
 
   <div id="sicurezza"></div>
   <Section id="protezioni" title="Protezioni">
-    <p>
-      Occhi e denti sono le parti del corpo che un pallino può danneggiare davvero. Gli occhiali protettivi sono
-      obbligatori in tutta l'area del campo (vedi <a href="team-rules.html#regole-generali">Regolamento</a>): qui
-      trovi come sceglierli.
-    </p>
-
-    <h3 id="occhi">Occhi: che cosa cercare</h3>
-    <ul class="regole">
-      <li class="si">
-        <strong>Una maschera a tenuta</strong>, che chiude tutto attorno agli occhi: un pallino da 6 mm non deve
-        trovare fessure tra la montatura e il viso. Gli occhiali a stanghette, anche certificati, lasciano spesso
-        spazi ai lati e sotto.
-      </li>
-      <li class="si">
-        <strong>La sigla di resistenza agli urti</strong>, stampata sia sulla lente sia sulla montatura:
-        <strong>EN 166</strong> con la lettera <strong>B</strong> (o A), oppure <strong>EN ISO 16321</strong> con la
-        lettera <strong>D</strong> (o E).
-      </li>
-      <li class="si">
-        Vanno bene anche <strong>ASTM F2879</strong>, la norma americana pensata per il softair, e sulle maschere
-        <strong>ANSI Z87+</strong>.
-      </li>
-      <li class="no">
-        EN 166 con la sola lettera <strong>F</strong> ed EN ISO 16321 con la lettera <strong>C</strong>: sono provate
-        con circa 0,87 joule, meno del limite delle nostre repliche.
-      </li>
-      <li class="no">
-        Protezioni <strong>a rete</strong> per gli occhi: un pallino tirato da vicino può rompersi sui fili, e i
-        frammenti passano.
-      </li>
-      <li class="no">Occhiali da sole, da vista o da lavoro senza marcatura, e la scritta «balistico» senza una norma accanto.</li>
-    </ul>
-    <div class="table-wrap">
-      <table class="impila">
-        <thead>
-          <tr><th scope="col">Norma</th><th scope="col">Sigla</th><th scope="col">Prova d'urto</th><th scope="col">Per noi</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="Norma">EN 166</td><td data-label="Sigla" class="dato">F</td>
-            <td data-label="Prova d'urto" class="dato">45 m/s · 0,87 J</td><td data-label="Per noi">Insufficiente</td>
-          </tr>
-          <tr>
-            <td data-label="Norma">EN 166</td><td data-label="Sigla" class="dato">B</td>
-            <td data-label="Prova d'urto" class="dato">120 m/s · 6,2 J</td><td data-label="Per noi"><strong>Sì</strong> (solo maschere)</td>
-          </tr>
-          <tr>
-            <td data-label="Norma">EN 166</td><td data-label="Sigla" class="dato">A</td>
-            <td data-label="Prova d'urto" class="dato">190 m/s · 15,5 J</td><td data-label="Per noi">Sì (visiere)</td>
-          </tr>
-          <tr>
-            <td data-label="Norma">EN ISO 16321</td><td data-label="Sigla" class="dato">C</td>
-            <td data-label="Prova d'urto" class="dato">45 m/s</td><td data-label="Per noi">Insufficiente</td>
-          </tr>
-          <tr>
-            <td data-label="Norma">EN ISO 16321</td><td data-label="Sigla" class="dato">D</td>
-            <td data-label="Prova d'urto" class="dato">80 m/s</td><td data-label="Per noi"><strong>Sì</strong></td>
-          </tr>
-          <tr>
-            <td data-label="Norma">EN ISO 16321</td><td data-label="Sigla" class="dato">E</td>
-            <td data-label="Prova d'urto" class="dato">120 m/s</td><td data-label="Per noi"><strong>Sì</strong></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note">
-      Le prove della EN 166 usano una sfera d'acciaio da 6 mm e 0,86 g. La EN ISO 16321 è la norma nuova che sta
-      sostituendo la EN 166: in negozio per qualche anno troverai entrambe. Se porti gli occhiali da vista, scegli
-      una maschera che li contenga: da soli non proteggono.
-    </p>
-
-    <h3 id="appannamento">Appannamento</h3>
-    <p>
-      Se non vedi, non sai dove spari né chi hai davanti: una lente appannata è un problema di sicurezza, non solo un
-      fastidio.
-    </p>
-    <ul>
-      <li>Usa un antiappannante e non toccare l'interno della lente con le dita.</li>
-      <li>Scegli una maschera con una buona ventilazione, o con lente doppia.</li>
-      <li>Fai in modo che la maschera per il viso non spinga il fiato verso gli occhi.</li>
-      <li>
-        <strong>Non togliere mai gli occhiali in campo per pulirli.</strong> Fermati, replica in sicura e canna verso
-        terra, avvisa i compagni e raggiungi il parcheggio.
-      </li>
-    </ul>
-
     <h3 id="viso-e-denti">Viso e denti</h3>
     <p>
       Un pallino su un dente può scheggiarlo, soprattutto da vicino. Una <strong>maschera per la parte bassa del
       viso</strong> (a rete o rigida) copre naso, bocca e mento: si porta insieme agli occhiali, non al loro posto.
     </p>
-    <Callout tipo="mancante" titolo="Dato mancante · protezione del viso">
-      <p>
-        Oggi il Regolamento parla solo degli occhiali. La protezione del viso è obbligatoria, consigliata, o
-        obbligatoria solo per i minorenni?
-      </p>
-    </Callout>
 
     <h3 id="altre-protezioni">Il resto</h3>
     <ul>
@@ -175,8 +76,7 @@ const NORMATTIVA = 'https://www.normattiva.it/uri-res/N2Ls?urn:nir:';
       <li><strong>Guanti</strong>: proteggono nocche e dita dai colpi, dai rovi e dai sassi.</li>
       <li><strong>Ginocchiere</strong>: utili ogni volta che ci si inginocchia su radici e pietre.</li>
       <li>
-        <strong>Cuffie radio</strong>: servono a comunicare, non a proteggere l'udito. Tieni il volume abbastanza basso
-        da sentire quello che succede intorno.
+        <strong>Cuffie radio</strong>: non servono solo a comunicare, proteggono anche le orecchie dai pallini.
       </li>
     </ul>
   </Section>
@@ -189,8 +89,8 @@ const NORMATTIVA = 'https://www.normattiva.it/uri-res/N2Ls?urn:nir:';
     <ol class="passi">
       <li>
         <strong>Ferma il gioco</strong>
-        Dillo forte e fallo ripetere a chi ti sente; via radio usa la procedura di
-        <a href="radio.html#emergenze">emergenza</a>. Tutti: replica in sicura, canna verso terra, occhiali addosso.
+        Dillo forte e fallo ripetere a chi ti sente, anche via radio. Tutti: replica in sicura, canna verso terra,
+        occhiali addosso.
       </li>
       <li>
         <strong>Controlla che il posto sia sicuro</strong>
@@ -208,139 +108,6 @@ const NORMATTIVA = 'https://www.normattiva.it/uri-res/N2Ls?urn:nir:';
         punto dove il telefono prende, mentre gli altri restano con l'infortunato.
       </li>
     </ol>
-    <Callout tipo="mancante" titolo="Dato mancante · emergenze al campo">
-      <p>
-        Qual è l'indirizzo (o le coordinate) da dare ai soccorsi e da dove entrano i mezzi? Dove sta il kit di primo
-        soccorso e chi lo porta? Chi in squadra ha fatto un corso di primo soccorso? C'è un defibrillatore?
-      </p>
-    </Callout>
-
-    <h3 id="cosa-fare">Che cosa fare, caso per caso</h3>
-    <Bozza nota="Indicazioni generali tratte da linee guida pubbliche: prima di pubblicarle fatele rivedere a chi ha una formazione sanitaria.">
-    <div>
-      <details class="voce">
-        <summary>Colpo all'occhio</summary>
-        <ul>
-          <li>Non strofinare e non premere; non togliere nulla che sia conficcato.</li>
-          <li>Copri l'occhio con una protezione rigida che non appoggi sul bulbo (va bene un bicchiere di carta).</li>
-          <li>
-            Vai al pronto soccorso anche se la vista sembra normale: alcuni danni compaiono dopo. Se sospetti una
-            ferita, non lavare l'occhio.
-          </li>
-        </ul>
-      </details>
-      <details class="voce">
-        <summary>Dente scheggiato o caduto</summary>
-        <ul>
-          <li>Scheggiato: sciacqua la bocca, conserva il frammento se lo trovi e vai dal dentista.</li>
-          <li>
-            Caduto intero: prendilo dalla corona, non dalla radice, e non strofinarlo. Conservalo nel latte (non
-            nell'acqua) e vai subito dal dentista o al pronto soccorso: conta ogni minuto.
-          </li>
-        </ul>
-      </details>
-      <details class="voce">
-        <summary>Distorsione, caduta, colpo alla testa</summary>
-        <ul>
-          <li>Ferma la persona e non farla camminare se non regge il peso.</li>
-          <li>Ghiaccio avvolto in un panno, fascia elastica non troppo stretta, arto sollevato.</li>
-          <li>
-            Pronto soccorso se si è sentito uno schiocco, se l'arto è deformato, se c'è formicolio o la pelle cambia
-            colore.
-          </li>
-          <li>
-            Dopo una caduta violenta sulla schiena o sulla testa non muovere la persona, se non è in pericolo, e chiama
-            i soccorsi. Dopo un colpo alla testa con confusione, nausea o mal di testa, per quel giorno si smette di
-            giocare e ci si fa vedere da un medico.
-          </li>
-        </ul>
-      </details>
-      <details class="voce">
-        <summary>Caldo e colpo di calore</summary>
-        <ul>
-          <li>Prevenzione: bevi spesso anche senza sete e fai pause all'ombra. Tattico ed elmetto scaldano parecchio.</li>
-          <li>
-            Debolezza, crampi, pelle pallida e sudata: all'ombra, via il tattico, acqua a piccoli sorsi.
-          </li>
-          <li>
-            Confusione, pelle molto calda, svenimento: è un'<strong>emergenza</strong>. Chiama i soccorsi e intanto
-            raffredda la persona con acqua, panni bagnati e ventilazione. Non dare da bere a chi è confuso.
-          </li>
-        </ul>
-      </details>
-      <details class="voce">
-        <summary>Freddo</summary>
-        <ul>
-          <li>Riparo dal vento, isolamento dal terreno, via i vestiti bagnati, coperta o telo termico.</li>
-          <li>Se la persona è confusa o molto sonnolenta, chiama i soccorsi.</li>
-        </ul>
-      </details>
-      <details class="voce">
-        <summary>Punture di api, vespe e calabroni</summary>
-        <ul>
-          <li>Togli il pungiglione raschiando con un'unghia o una tessera, senza schiacciarlo; poi ghiaccio.</li>
-          <li>
-            Orticaria diffusa, difficoltà a respirare, gonfiore di labbra o lingua: è una reazione allergica grave,
-            chiama subito i soccorsi.
-          </li>
-          <li>Chi ha un autoiniettore di adrenalina prescritto lo porta con sé e dice ai compagni dove lo tiene.</li>
-        </ul>
-      </details>
-      <details class="voce">
-        <summary>Zecche</summary>
-        <ul>
-          <li>
-            Nei boschi del nord-est le zecche possono trasmettere la malattia di Lyme e l'encefalite da zecche (TBE),
-            presente anche in Veneto.
-          </li>
-          <li>
-            Prevenzione: maniche e pantaloni lunghi, repellente, e a fine giornata un controllo accurato di tutto il
-            corpo.
-          </li>
-          <li>
-            Rimozione: con una pinzetta a punta fine, afferrando la zecca il più vicino possibile alla pelle e tirando
-            in modo lento e costante, senza strattoni e senza schiacciarla. Niente olio, alcol, calore o altre
-            sostanze. Poi disinfetta; se una parte resta nella pelle, falla vedere al medico.
-          </li>
-          <li>
-            Segna la data e tieni d'occhio la zona per un mese: alone rosso che si allarga, febbre o dolori alle
-            articolazioni vanno riferiti al medico, dicendo quando e dove sei stato punto.
-          </li>
-          <li>Per la TBE esiste un vaccino: se giochi spesso nei boschi, parlane con il tuo medico.</li>
-        </ul>
-      </details>
-      <details class="voce">
-        <summary>Tagli e sanguinamento</summary>
-        <ul>
-          <li>Ferite piccole: lava, disinfetta, copri.</li>
-          <li>Sanguinamento forte: premi con decisione sulla ferita con una garza o un panno pulito e chiama i soccorsi.</li>
-          <li>Ferita sporca di terra e richiamo dell'antitetanica non recente: chiedi al medico.</li>
-        </ul>
-      </details>
-    </div>
-    </Bozza>
-    <p class="note">
-      Fonti: linee guida di primo soccorso dell'European Resuscitation Council (edizione italiana IRC), Istituto
-      superiore di sanità (EpiCentro) per zecche e tetano.
-    </p>
-
-    <h3 id="kit">Kit di primo soccorso</h3>
-    <Bozza nota="Contenuto proposto per il kit di squadra e per quello individuale.">
-      <p><strong>Di squadra</strong>, sempre nello stesso posto e noto a tutti:</p>
-      <ul>
-        <li>guanti monouso, garze sterili, bende, cerotti, nastro;</li>
-        <li>soluzione fisiologica e disinfettante;</li>
-        <li>ghiaccio istantaneo, coperta isotermica;</li>
-        <li>forbici e pinzetta a punta fine (anche per le zecche);</li>
-        <li>un foglio con l'indirizzo del campo e i numeri utili.</li>
-      </ul>
-      <p><strong>Individuale</strong>, nel tattico o nello zaino:</p>
-      <ul>
-        <li>qualche cerotto e due garze;</li>
-        <li>i tuoi farmaci personali;</li>
-        <li>un biglietto con allergie e un contatto di emergenza.</li>
-      </ul>
-    </Bozza>
   </Section>
 
   <Section id="batterie" title="Batterie">
@@ -397,49 +164,6 @@ const NORMATTIVA = 'https://www.normattiva.it/uri-res/N2Ls?urn:nir:';
         stati controllati su Normattiva a ottobre 2026; dove la legge non è chiara, lo diciamo.
       </p>
     </Callout>
-
-    <h3 id="in-breve">In breve</h3>
-    <p>
-      Per la legge italiana una replica da softair non è un'arma ma uno «strumento», a patto che rispetti le
-      condizioni dell'<strong>articolo 5 della legge 110 del 1975</strong>. Per questo non servono porto d'armi né
-      denuncia. Le condizioni sono:
-    </p>
-    <dl class="fatti">
-      <div><dt>Energia del pallino</dt><dd>Max 1 joule</dd></div>
-      <div><dt>Vendita</dt><dd>Dai 16 anni</dd></div>
-      <div><dt>Canna rossa</dt><dd>Almeno 3 cm</dd></div>
-      <div><dt>Misura</dt><dd>A 1 m dalla volata</dd></div>
-    </dl>
-    <ul>
-      <li>
-        L'energia del singolo pallino, misurata a un metro dalla volata, non deve superare <strong>1 joule</strong>.
-        La regola di squadra (meno di 1,00 J) lascia un piccolo margine.
-      </li>
-      <li>Le repliche sono «vendibili solo ai maggiori di 16 anni».</li>
-      <li>
-        La canna deve essere <strong>colorata di rosso per almeno tre centimetri</strong>; se non sporge, il rosso va
-        sulla parte anteriore della replica.
-      </li>
-      <li>Fuori casa una replica si può portare solo con un <strong>giustificato motivo</strong> (articolo 4).</li>
-    </ul>
-
-    <h3 id="acquisto">Acquisto</h3>
-    <ul>
-      <li>
-        <strong>Età.</strong> La legge fissa i 16 anni per la <em>vendita</em>, non per l'uso: porta un documento in
-        negozio. L'età minima per giocare la decide la squadra.
-      </li>
-      <li><strong>Documenti.</strong> Per una replica in regola non servono licenze, nulla osta o denunce.</li>
-      <li>
-        <strong>Prima di pagare</strong> controlla che l'energia dichiarata non superi 1 joule e che la parte rossa sia
-        presente di fabbrica. Tieni lo scontrino.
-      </li>
-      <li>
-        <strong>Dall'estero.</strong> In altri Paesi le repliche si vendono anche oltre 1 joule e senza rosso: in
-        Italia non sono in regola e il pacco può essere fermato. Prima di ordinare fuori dall'Italia chiedi in
-        squadra.
-      </li>
-    </ul>
 
     <h3 id="trasporto">Trasporto</h3>
     <p>

@@ -1,7 +1,5 @@
 ---
 import datiFaq from '../../data/faq.json';
-import Bozza from '@/components/Bozza.astro';
-import Callout from '@/components/Callout.astro';
 import Section from '@/components/Section.astro';
 import Vuoti from '@/components/Vuoti.astro';
 import Base from '@/layouts/Base.astro';
@@ -29,57 +27,30 @@ const daConfermare = faq.filter((voce) => voce.bozza).length;
     <p>
       Stiamo cercando persone da inserire nel gruppo: se ti piacerebbe provare, <a href="#contatti">scrivici</a>. Non
       serve esperienza, e nelle prime giocate <strong>possiamo fornirti noi l'attrezzatura essenziale</strong>.
+      L'età minima è <strong>18 anni</strong>: non accettiamo minorenni.
     </p>
     <p>Prima di acquistare l'equipaggiamento leggi la pagina <a href="onboarding.html">Onboarding</a>.</p>
 
-    <Bozza nota="Percorso proposto in cinque passi: le parti evidenziate sono numeri e scelte che deve fissare la squadra.">
-      <ol class="passi">
-        <li>
-          <strong>Primo contatto</strong>
-          Scrivici usando i <a href="#contatti">contatti</a> qui sotto e presentati: nome, età, città, se hai già
-          giocato e se hai già dell'equipaggiamento. Se sei minorenne, dillo subito.
-          Ti risponde <mark class="vuoto">chi</mark> entro <mark class="vuoto">N giorni</mark>.
-        </li>
-        <li>
-          <strong>Chiacchierata</strong>
-          Una chiamata o un incontro di <mark class="vuoto">N minuti</mark> con <mark class="vuoto">referente o tutor</mark>.
-          Ti spieghiamo come giochiamo, le regole di sicurezza, cosa serve e quanto costa; tu ci dici cosa cerchi. Non è un esame.
-        </li>
-        <li>
-          <strong>Giornata di prova</strong>
-          Giochi con materiale in prestito (<mark class="vuoto">elenco: replica, occhiali, tattico, caricatori</mark>) e
-          un tutor ti segue dall'inizio alla fine. Il briefing di sicurezza è obbligatorio per tutti.
-          Costo: <mark class="vuoto">importo oppure gratis</mark>; copertura assicurativa: <mark class="vuoto">da definire</mark>.
-          Dopo non c'è nessun obbligo, né per te né per noi.
-        </li>
-        <li>
-          <strong>Periodo di prova</strong>
-          Se vuoi continuare, fai <mark class="vuoto">N uscite</mark> in <mark class="vuoto">N mesi</mark>. Compri
-          l'equipaggiamento un po' alla volta (le priorità sono nella pagina <a href="onboarding.html">Onboarding</a>),
-          completi l'uniforme e segui le stesse regole dei membri. A metà e a fine prova il tutor e il referente fanno il
-          punto con te.
-        </li>
-        <li>
-          <strong>Ingresso ufficiale</strong>
-          Alla fine della prova <mark class="vuoto">chi decide</mark> decide se entri. Se sì: <mark class="vuoto">quota o tesseramento e documenti</mark>, accetti il regolamento,
-          ricevi la patch (vedi <a href="team-rules.html#uniforme">Uniforme e patch</a>) e vieni aggiunto ai canali
-          ufficiali. Se no, ti spieghiamo perché.
-        </li>
-      </ol>
-    </Bozza>
-
-    <Callout tipo="mancante" titolo="Dato mancante · percorso di ingresso">
-      <p>Per completare questi passi servono quattro risposte dalla squadra:</p>
-      <ul>
-        <li>
-          Quante giornate di prova organizzate, quanto costano e cosa comprendono (assicurazione, noleggio)? La
-          copertura assicurativa di chi prova è garantita?
-        </li>
-        <li>Quale materiale date in prestito e di quanti set disponete?</li>
-        <li>Quante uscite e quanti mesi dura il periodo di prova, e chi decide l'ingresso?</li>
-        <li>Accettate minorenni? Da che età, con quale consenso scritto e con quale protezione del viso?</li>
-      </ul>
-    </Callout>
+    <ol class="passi">
+      <li>
+        <strong>Primo contatto</strong>
+        Scrivici usando i <a href="#contatti">contatti</a> qui sotto e presentati: nome, età, città, se hai già giocato
+        e se hai già dell'equipaggiamento. Ti risponde il presidente il prima possibile.
+      </li>
+      <li>
+        <strong>Giornate di prova</strong>
+        Ci sono tre giornate di prova, ciascuna senza obbligo di continuare, né per te né per noi. Sono gratuite:
+        giochi con materiale fornito da noi in prestito gratuito, ma chi rompe o rovina paga. Prima di giocare firmi
+        uno scarico di responsabilità.
+      </li>
+      <li>
+        <strong>Ingresso ufficiale</strong>
+        Dopo le giornate di prova il consiglio direttivo decide se entri. Se sì: versi la quota e presenti i documenti
+        necessari, accetti il regolamento, ricevi la patch (vedi
+        <a href="team-rules.html#uniforme">Uniforme e patch</a>) e vieni aggiunto ai canali ufficiali. Se no, ti
+        spieghiamo perché.
+      </li>
+    </ol>
   </Section>
 
   <Section id="cosa-portare" title="Alla prima uscita">
@@ -91,9 +62,8 @@ const daConfermare = faq.filter((voce) => voce.bozza).length;
     <h3>Cosa portare</h3>
     <ul class="regole">
       <li class="si">
-        <strong>Protezione per gli occhi.</strong> Occhiali a tenuta con marcatura (la norma di riferimento è la
-        EN 166): sono obbligatori in tutta l'area del campo e si tolgono solo nel parcheggio.
-        Vedi <a href="game-rules.html#protezioni">Protezioni</a>.
+        <strong>Protezione per gli occhi.</strong> Occhiali protettivi con marcatura: sono obbligatori, si mettono
+        appena arrivi nel parcheggio e si tolgono come ultima cosa prima di andare via. Se non li hai, te li diamo noi.
       </li>
       <li class="si">
         <strong>Abiti robusti e sobri.</strong> Maglia a maniche lunghe e pantaloni lunghi, colori scuri, scarponi o
@@ -118,33 +88,18 @@ const daConfermare = faq.filter((voce) => voce.bozza).length;
       </li>
     </ul>
 
-    <Bozza nota="Dipende da cosa presta la squadra e da come è organizzata la giornata di prova: confermate cosa va portato e cosa no.">
-      <h3>Materiale in prestito</h3>
-      <ul>
-        <li>
-          In prestito: <mark class="vuoto">elenco del materiale: replica, tattico, caricatori…</mark>.
-        </li>
-        <li>
-          Occhiali protettivi: <mark class="vuoto">li presta la squadra / li porti tu</mark>. Se non li hai, chiedi in
-          anticipo.
-        </li>
-        <li>Pallini BIO: <mark class="vuoto">li forniamo noi / li porti tu</mark>.</li>
-        <li>
-          Documenti: <mark class="vuoto">documento d'identità, certificato medico o altro: da definire</mark>.
-        </li>
-      </ul>
-      <h3>Cosa non serve comprare</h3>
-      <ul class="regole">
-        <li class="no">
-          <strong>L'uniforme OD e il tattico.</strong> Nella giornata di prova e nelle prime uscite bastano gli abiti
-          sobri qui sopra: hai <mark class="vuoto">N uscite o N mesi</mark> per completare l'uniforme.
-        </li>
-        <li class="no">
-          <strong>La replica, prima di aver provato.</strong> Parlane con <mark class="vuoto">tutor o referente</mark>: eviti i modelli troppo economici o troppo
-          potenti. Gli errori più comuni sono nella pagina <a href="onboarding.html#errori-da-evitare">Onboarding</a>.
-        </li>
-      </ul>
-    </Bozza>
+    <h3>Cosa non serve comprare</h3>
+    <ul class="regole">
+      <li class="no">
+        <strong>L'uniforme OD e il tattico.</strong> Nelle giornate di prova bastano gli abiti sobri qui sopra: non c'è
+        un tempo massimo per completare l'uniforme.
+      </li>
+      <li class="no">
+        <strong>La replica, prima di aver provato.</strong> Parlane con la squadra: eviti i modelli troppo economici o
+        troppo potenti. Gli errori più comuni sono nella pagina
+        <a href="onboarding.html#errori-da-evitare">Onboarding</a>.
+      </li>
+    </ul>
   </Section>
 
   <Section id="contatti" title="Contatti">
@@ -177,8 +132,11 @@ const daConfermare = faq.filter((voce) => voce.bozza).length;
 
   <Section id="faq" title="Domande frequenti">
     <p class="note">
-      Le risposte con il timbro «Bozza» ({daConfermare} su {faq.length}) contengono scelte o dati che deve ancora
-      confermare la squadra. Le risposte su legge e sicurezza sono informative e non sostituiscono il testo di legge.
+      {
+        daConfermare > 0 &&
+          `Le risposte con il timbro «Bozza» (${daConfermare} su ${faq.length}) contengono scelte o dati che deve ancora confermare la squadra. `
+      }
+      Le risposte su legge e sicurezza sono informative e non sostituiscono il testo di legge.
     </p>
     <div>
       {

@@ -1,5 +1,98 @@
 [
   {
+    "id": "protezione-occhi",
+    "nome": "Occhiali protettivi",
+    "categoria": "Protezione",
+    "perche": "Obbligatori: si mettono appena arrivi nel parcheggio e si tolgono come ultima cosa prima di andare via.",
+    "prezzo": "circa 34 € (standard) o 15 € (sopra gli occhiali da vista)",
+    "prezzo_min": 15,
+    "prezzo_max": 34,
+    "priorita": "subito",
+    "link": [
+      {
+        "negozio": "GM Softair (standard)",
+        "url": "https://www.gm-softair.com/it/occhiali/26333-set-occhiale-alligator-con-lenti-9210155-set1-infield.html"
+      },
+      {
+        "negozio": "GM Softair (sopra gli occhiali da vista)",
+        "url": "https://www.gm-softair.com/it/occhiali/20278-occhiale-ontor-trasparente-9090006-infield.html"
+      }
+    ],
+    "note": "Con marcatura di resistenza agli urti. Occhiali da sole o da lavoro non valgono. I link sono solo esempi: va bene qualsiasi modello equivalente."
+  },
+  {
+    "id": "replica",
+    "nome": "Replica (AEG)",
+    "categoria": "Replica",
+    "perche": "È l'attrezzo principale. Per iniziare la più semplice è un fucile elettrico (AEG) di una marca nota.",
+    "prezzo": "circa 150–300 €",
+    "prezzo_min": 150,
+    "prezzo_max": 300,
+    "priorita": "subito",
+    "link": [
+      {
+        "negozio": "GM Softair (G&G CM15)",
+        "url": "https://www.gm-softair.com/it/serie-m4-m16-sr/24041-cm15-kr-lpr-13-inc-nero-egc-15p-lpr-bnb-ncm-gg.html"
+      }
+    ],
+    "note": "Il link è solo un esempio. Come marca consigliamo G&G; come prima replica, una nello stile di quella indicata: AR-15, non «stubby» (a canna cortissima). Se ordini da GM Softair, scrivi nell'ordine di cambiare il connettore della batteria in T-Deans: lo fanno gratis. Batteria e caricabatterie di solito non sono inclusi."
+  },
+  {
+    "id": "batteria-caricabatterie",
+    "nome": "Batteria e caricabatterie",
+    "categoria": "Replica",
+    "perche": "L'AEG non funziona senza batteria, e una batteria LiPo si ricarica solo con un caricabatterie adatto.",
+    "prezzo": "circa 40–65 €",
+    "prezzo_min": 40,
+    "prezzo_max": 65,
+    "priorita": "subito",
+    "link": [
+      {
+        "negozio": "GM Softair (batteria)",
+        "url": "https://www.gm-softair.com/it/batterie-li-po/29299-lipo-111v-x-1200mah-30c-tubo-deans-b12td-supreme.html"
+      },
+      {
+        "negozio": "GM Softair (caricabatterie)",
+        "url": "https://www.gm-softair.com/it/caricabatterie-lipolifeli-ion-acc/31405-digital-smart-balance-charger-c005-li-po-li-ion-supreme.html"
+      }
+    ],
+    "note": "La batteria va scelta in base alla replica che hai comprato: prima di ordinarla chiedi assistenza alla squadra. Quella del link è solo un esempio. Caricabatterie con bilanciamento."
+  },
+  {
+    "id": "safe-bag-lipo",
+    "nome": "Safe bag per batterie LiPo",
+    "categoria": "Replica",
+    "perche": "Sacca ignifuga in cui ricaricare e conservare le batterie LiPo.",
+    "prezzo": "circa 6 €",
+    "prezzo_min": 6,
+    "prezzo_max": 6,
+    "priorita": "subito",
+    "link": [
+      {
+        "negozio": "Taiwangun",
+        "url": "https://www.taiwangun.com/battery-chargers/23x30-cm-lipo-guard-safety-battery-charging-storing-bag-ipower"
+      }
+    ],
+    "note": "Misura 23 × 30 cm."
+  },
+  {
+    "id": "pallini-bio",
+    "nome": "Pallini BIO",
+    "categoria": "Replica",
+    "perche": "In squadra si usano solo pallini BIO a basso impatto visivo: marroni, verdi o neri.",
+    "prezzo": "circa 10–17 € al chilo",
+    "prezzo_min": 10,
+    "prezzo_max": 17,
+    "priorita": "subito",
+    "link": [
+      {
+        "negozio": "GM Softair (BIO verdi 0,20 g, 1 kg)",
+        "url": "https://www.gm-softair.com/it/pallini-bio-a-busta/22128-busta-da-1kg-di-020g-bio-verdi-supreme.html"
+      }
+    ],
+    "note": "Di marca affidabile: quelli scadenti si incastrano e rovinano la canna. Misura la potenza della replica con la grammatura che userai davvero. Il link è solo un esempio."
+  },
+  {
     "id": "maglia",
     "nome": "Maglia (combat shirt)",
     "categoria": "Uniforme",
@@ -32,6 +125,27 @@
       }
     ],
     "note": "Colore: OD (Olive Drab). Modello a piacere, basta che siano OD."
+  },
+  {
+    "id": "scarponi",
+    "nome": "Scarponi",
+    "categoria": "Uniforme",
+    "perche": "Tengono la caviglia su terreno sconnesso.",
+    "prezzo": "circa 200–225 € (se non li hai già)",
+    "prezzo_min": 200,
+    "prezzo_max": 225,
+    "priorita": "subito",
+    "link": [
+      {
+        "negozio": "Lowa (Zephyr MK2 GTX Mid)",
+        "url": "https://professional.lowa.com/it/zephyr-mk2-gtx-mid"
+      },
+      {
+        "negozio": "Lowa (Zephyr MK2 GTX Hi)",
+        "url": "https://professional.lowa.com/it/34"
+      }
+    ],
+    "note": "Colore: OD. Vanno benissimo scarponi da trekking robusti che hai già. Suola con buon grip, fusto alto; rodali prima di giocare."
   },
   {
     "id": "tattico",
@@ -68,6 +182,23 @@
     "note": "Colore: Olive. La sacca per l'acqua non è inclusa."
   },
   {
+    "id": "sacca-idrica",
+    "nome": "Sacca idrica (2–3 litri)",
+    "categoria": "Tattico",
+    "perche": "Lo zaino idrico per il tattico è venduto senza sacca.",
+    "prezzo": "circa 6 €",
+    "prezzo_min": 6,
+    "prezzo_max": 6,
+    "priorita": "subito",
+    "link": [
+      {
+        "negozio": "Taiwangun",
+        "url": "https://www.taiwangun.com/hydration-pack/2-litre-hydration-reservoir-bladder-olive-8fields"
+      }
+    ],
+    "note": "Colore: Olive."
+  },
+  {
     "id": "tasca-caricatori",
     "nome": "Tasca porta caricatori",
     "categoria": "Tattico",
@@ -102,6 +233,23 @@
     "note": "Colore: Olive."
   },
   {
+    "id": "cinghia",
+    "nome": "Cinghia",
+    "categoria": "Tattico",
+    "perche": "Per portare la replica addosso e avere le mani libere.",
+    "prezzo": "circa 5 €",
+    "prezzo_min": 5,
+    "prezzo_max": 5,
+    "priorita": "subito",
+    "link": [
+      {
+        "negozio": "Taiwangun",
+        "url": "https://www.taiwangun.com/tactical-slings/single-point-bungee-sling-olive-em"
+      }
+    ],
+    "note": "Monopunto elastica, colore: Olive."
+  },
+  {
     "id": "fazzoletto-rosso",
     "nome": "Fazzoletto rosso",
     "categoria": "Segnalazione",
@@ -119,75 +267,6 @@
     "note": "Con tasca porta fazzoletto, colore: Olive."
   },
   {
-    "id": "cinghia",
-    "nome": "Cinghia",
-    "categoria": "Replica",
-    "perche": "Per portare la replica addosso e avere le mani libere.",
-    "prezzo": "circa 5 €",
-    "prezzo_min": 5,
-    "prezzo_max": 5,
-    "priorita": "subito",
-    "link": [
-      {
-        "negozio": "Taiwangun",
-        "url": "https://www.taiwangun.com/tactical-slings/single-point-bungee-sling-olive-em"
-      }
-    ],
-    "note": "Monopunto elastica, colore: Olive."
-  },
-  {
-    "id": "protezione-occhi",
-    "nome": "Occhiali protettivi a tenuta",
-    "categoria": "Protezione",
-    "perche": "Obbligatori in tutta l'area del campo: si tolgono solo nel parcheggio.",
-    "prezzo": "circa 30–70 €",
-    "prezzo_min": 30,
-    "prezzo_max": 70,
-    "priorita": "subito",
-    "link": [],
-    "note": "Devono chiudere bene sul viso e avere una marcatura di resistenza agli urti: quali sigle cercare è spiegato in Sicurezza e normativa, alla voce Protezioni. Occhiali da sole o da lavoro senza marcatura non valgono.",
-    "bozza": true
-  },
-  {
-    "id": "replica",
-    "nome": "Replica (AEG)",
-    "categoria": "Replica",
-    "perche": "È l'attrezzo principale. Per iniziare la più semplice è un fucile elettrico (AEG) di una marca nota.",
-    "prezzo": "circa 200–300 €",
-    "prezzo_min": 200,
-    "prezzo_max": 300,
-    "priorita": "subito",
-    "link": [],
-    "note": "Molti modelli escono di fabbrica a 1 J o più: falla tarare sotto 1,00 J da un negozio prima di giocare. Scegli una piattaforma AR/M4 o AK, compatibile con le tasche porta caricatori. Batteria e caricabatterie di solito non sono inclusi.",
-    "bozza": true
-  },
-  {
-    "id": "batteria-caricabatterie",
-    "nome": "Batteria e caricabatterie",
-    "categoria": "Replica",
-    "perche": "L'AEG non funziona senza batteria, e una batteria LiPo si ricarica solo con un caricabatterie adatto.",
-    "prezzo": "circa 40–65 €",
-    "prezzo_min": 40,
-    "prezzo_max": 65,
-    "priorita": "subito",
-    "link": [],
-    "note": "LiPo da 7,4 V per quasi tutte le repliche di serie, con lo stesso connettore della replica. Caricabatterie con bilanciamento e sacchetto ignifugo per la ricarica.",
-    "bozza": true
-  },
-  {
-    "id": "pallini-bio",
-    "nome": "Pallini BIO",
-    "categoria": "Replica",
-    "perche": "In squadra si usano solo pallini BIO a basso impatto visivo: marroni, verdi o neri.",
-    "prezzo": "circa 15–17 € per 5.000 pallini",
-    "prezzo_min": 15,
-    "prezzo_max": 17,
-    "priorita": "subito",
-    "link": [],
-    "note": "Di marca affidabile: quelli scadenti si incastrano e rovinano la canna. Misura la potenza della replica con la grammatura che userai davvero.",
-    "bozza": true
-  },
-  {
     "id": "radio",
     "nome": "Radio",
     "categoria": "Comunicazioni",
@@ -197,34 +276,24 @@
     "prezzo_max": 75,
     "priorita": "subito",
     "link": [],
-    "note": "Modello da concordare con la squadra prima dell'acquisto: deve essere compatibile con il canale usato e con il PTT (attacco Kenwood). Vedi la pagina Radio.",
-    "bozza": true
+    "note": "Prima di comprarla chiedi maggiori informazioni alla squadra."
   },
   {
-    "id": "caricatori",
-    "nome": "Caricatori di scorta e speed loader",
-    "categoria": "Replica",
-    "perche": "Il tattico e la tasca porta caricatori ne tengono fino a sei, più quello sulla replica. Per iniziare ne bastano tre o quattro; lo speed loader serve a riempirli in fretta.",
-    "prezzo": "circa 40–60 €",
-    "prezzo_min": 40,
-    "prezzo_max": 60,
+    "id": "protezione-viso",
+    "nome": "Protezione del viso",
+    "categoria": "Protezione",
+    "perche": "Protegge bocca e denti, che gli occhiali non coprono.",
+    "prezzo": "circa 12–25 €",
+    "prezzo_min": 12,
+    "prezzo_max": 25,
     "priorita": "consigliato",
-    "link": [],
-    "note": "Mid-cap (120–150 pallini) compatibili con la tua replica: sono più silenziosi degli hi-cap.",
-    "bozza": true
-  },
-  {
-    "id": "scarponi",
-    "nome": "Scarponi",
-    "categoria": "Uniforme",
-    "perche": "Tengono la caviglia su terreno sconnesso.",
-    "prezzo": "circa 60–120 € (se non li hai già)",
-    "prezzo_min": 60,
-    "prezzo_max": 120,
-    "priorita": "consigliato",
-    "link": [],
-    "note": "Vanno benissimo scarponi da trekking robusti che hai già. Suola con buon grip, fusto alto; rodali prima di giocare.",
-    "bozza": true
+    "link": [
+      {
+        "negozio": "Amazon (passamontagna a rete OneTigris)",
+        "url": "https://www.amazon.it/dp/B07V3459D9"
+      }
+    ],
+    "note": "A rete, da portare insieme agli occhiali. Controlla che non intralci cuffie e mira. Colore: OD. Il link è solo un esempio."
   },
   {
     "id": "guanti",
@@ -236,21 +305,77 @@
     "prezzo_max": 22,
     "priorita": "consigliato",
     "link": [],
-    "note": "Abbastanza sottili da sentire il grilletto.",
-    "bozza": true
+    "note": "A piacere. Colore consigliato: OD."
   },
   {
-    "id": "sacca-idrica",
-    "nome": "Sacca idrica (2–3 litri)",
-    "categoria": "Tattico",
-    "perche": "Lo zaino idrico per il tattico è venduto senza sacca.",
-    "prezzo": "circa 10–15 € (stima)",
-    "prezzo_min": 10,
-    "prezzo_max": 15,
+    "id": "ginocchiere",
+    "nome": "Ginocchiere",
+    "categoria": "Protezione",
+    "perche": "Nel bosco e sul terreno duro ci si inginocchia spesso.",
+    "prezzo": "circa 15–30 €",
+    "prezzo_min": 15,
+    "prezzo_max": 30,
     "priorita": "consigliato",
     "link": [],
-    "note": "Con apertura larga, per poterla pulire e asciugare dopo ogni uscita.",
-    "bozza": true
+    "note": "Colore: OD o Olive, come il resto dell'uniforme."
+  },
+  {
+    "id": "elmetto",
+    "nome": "Elmetto",
+    "categoria": "Protezione",
+    "perche": "Protegge la testa.",
+    "prezzo": "circa 130 € (circa 100 € l'alternativa con cover)",
+    "prezzo_min": 100,
+    "prezzo_max": 130,
+    "priorita": "consigliato",
+    "link": [
+      {
+        "negozio": "Cygnus Armory",
+        "url": "https://www.cygnus-armory.com/products/premium-xp-helmet-bundle?variant=55586792407364"
+      },
+      {
+        "negozio": "Novritsch (testa oltre 60 cm)",
+        "url": "https://eu.novritsch.com/it/product/premium-tactical-helmet/"
+      },
+      {
+        "negozio": "Amazon (cover per il Novritsch)",
+        "url": "https://www.amazon.it/dp/B0FPCVW9KK"
+      }
+    ],
+    "note": "Se hai la testa molto grande (circonferenza oltre 60 cm), compra l'elmetto Novritsch in colore FG, con la cover in colore Ranger Green."
+  },
+  {
+    "id": "caricatori",
+    "nome": "Caricatori di scorta e speed loader",
+    "categoria": "Replica",
+    "perche": "Il tattico e la tasca porta caricatori ne tengono fino a sei, più quello sulla replica. Per iniziare ne bastano tre o quattro; lo speed loader serve a riempirli in fretta.",
+    "prezzo": "circa 80 € (5 caricatori) + 5 € (speed loader)",
+    "prezzo_min": 85,
+    "prezzo_max": 85,
+    "priorita": "consigliato",
+    "link": [
+      {
+        "negozio": "GM Softair (5 caricatori M4/M16)",
+        "url": "https://www.gm-softair.com/it/m4-m16-compatibili-stanag/13579-box-5-caricatori-m4m16-360bb-carica-a-corda-gb-06-01-5-lonex.html"
+      },
+      {
+        "negozio": "Taiwangun (speed loader)",
+        "url": "https://www.taiwangun.com/magazine-adapter-bb-loader/universal-100rd-magazine-speed-loader-battleaxe-2"
+      }
+    ],
+    "note": "Devono essere compatibili con la tua replica: quelli del link sono per M4/M16. I link sono solo esempi."
+  },
+  {
+    "id": "seconda-batteria",
+    "nome": "Batterie extra",
+    "categoria": "Replica",
+    "perche": "Consigliamo di averne almeno 3 o 4: così sei pronto anche per le giocate molto lunghe o di più giorni.",
+    "prezzo": "circa 15–23 € l'una",
+    "prezzo_min": 15,
+    "prezzo_max": 23,
+    "priorita": "consigliato",
+    "link": [],
+    "note": "Dello stesso tipo della prima."
   },
   {
     "id": "borsa-replica",
@@ -262,47 +387,43 @@
     "prezzo_max": 50,
     "priorita": "consigliato",
     "link": [],
-    "note": "Lunga quanto la replica, senza scritte o segni che ne rivelino il contenuto.",
-    "bozza": true
+    "note": "A libera scelta: lunga quanto la replica, senza scritte o segni che ne rivelino il contenuto."
   },
   {
-    "id": "protezione-viso",
-    "nome": "Protezione del viso",
-    "categoria": "Protezione",
-    "perche": "Protegge bocca e denti, che gli occhiali non coprono.",
-    "prezzo": "circa 12–25 €",
-    "prezzo_min": 12,
-    "prezzo_max": 25,
-    "priorita": "consigliato",
-    "link": [],
-    "note": "Maschera a rete per la parte bassa del viso, da portare insieme agli occhiali. Controlla che non intralci cuffie e mira.",
-    "bozza": true
-  },
-  {
-    "id": "seconda-batteria",
-    "nome": "Seconda batteria",
-    "categoria": "Replica",
-    "perche": "Una giornata lunga può scaricare la prima.",
-    "prezzo": "circa 15–23 €",
+    "id": "cappello",
+    "nome": "Cappello (jungle)",
+    "categoria": "Uniforme",
+    "perche": "Ripara dal sole.",
+    "prezzo": "circa 15–17 €",
     "prezzo_min": 15,
-    "prezzo_max": 23,
+    "prezzo_max": 17,
     "priorita": "consigliato",
-    "link": [],
-    "note": "Dello stesso tipo della prima.",
-    "bozza": true
+    "link": [
+      {
+        "negozio": "Helikon-Tex",
+        "url": "https://helikon-tex.com/en/boonie-mk2-hat-polycotton-stretch-ripstopen.html"
+      },
+      {
+        "negozio": "Amazon",
+        "url": "https://www.amazon.it/dp/B076J9XMM2"
+      }
+    ],
+    "note": "Colore: oliva. Scegli tu tra i due."
   },
   {
-    "id": "kit-manutenzione",
-    "nome": "Kit di manutenzione",
-    "categoria": "Replica",
-    "perche": "La canna va pulita dopo ogni uscita.",
-    "prezzo": "circa 20–30 €",
-    "prezzo_min": 20,
-    "prezzo_max": 30,
+    "id": "tasche-aggiuntive",
+    "nome": "Tasche aggiuntive",
+    "categoria": "Tattico",
+    "perche": "Altre tasche da mettere sul tattico, oltre a quelle obbligatorie.",
+    "prezzo": "variabile",
     "priorita": "consigliato",
-    "link": [],
-    "note": "Asta di pulizia non metallica, panni in microfibra, olio al silicone per softair, antiappannante per gli occhiali.",
-    "bozza": true
+    "link": [
+      {
+        "negozio": "Taiwangun (tasche 8Fields Olive)",
+        "url": "https://www.taiwangun.com/pouches-leg-rigs/0,8fields/0,8fields-premium/12566,olive"
+      }
+    ],
+    "note": "Scegli tra le tasche 8Fields in colore Olive."
   },
   {
     "id": "cuffie-ptt",
@@ -324,67 +445,5 @@
       }
     ],
     "note": "Per poterle usare servono entrambi. Colore cuffie: FG (Foliage Green). PTT con attacco Kenwood."
-  },
-  {
-    "id": "cappello",
-    "nome": "Cappello (jungle)",
-    "categoria": "Uniforme",
-    "perche": "Ripara dal sole.",
-    "prezzo": "circa 12 €",
-    "prezzo_min": 12,
-    "prezzo_max": 12,
-    "priorita": "consigliato",
-    "link": [
-      {
-        "negozio": "Amazon",
-        "url": "https://www.amazon.it/Mil-Tec-Cappello_12325001-Oliva-L-Uomo/dp/B0071LVL8Q"
-      }
-    ],
-    "note": "Colore: oliva."
-  },
-  {
-    "id": "elmetto",
-    "nome": "Elmetto",
-    "categoria": "Protezione",
-    "perche": "Protegge la testa.",
-    "prezzo": "circa 130 €",
-    "prezzo_min": 130,
-    "prezzo_max": 130,
-    "priorita": "consigliato",
-    "link": [
-      {
-        "negozio": "Cygnus Armory",
-        "url": "https://www.cygnus-armory.com/products/premium-xp-helmet-bundle?variant=55586792407364"
-      }
-    ],
-    "note": ""
-  },
-  {
-    "id": "tasche-aggiuntive",
-    "nome": "Tasche aggiuntive",
-    "categoria": "Tattico",
-    "perche": "Altre tasche da mettere sul tattico, oltre a quelle obbligatorie.",
-    "prezzo": "variabile",
-    "priorita": "consigliato",
-    "link": [
-      {
-        "negozio": "Taiwangun (tasche 8Fields Olive)",
-        "url": "https://www.taiwangun.com/pouches-leg-rigs/0,8fields/0,8fields-premium/12566,olive"
-      }
-    ],
-    "note": "Scegli tra le tasche 8Fields in colore Olive."
-  },
-  {
-    "id": "ginocchiere",
-    "nome": "Ginocchiere",
-    "categoria": "Protezione",
-    "perche": "Nel bosco e sul terreno duro ci si inginocchia spesso.",
-    "prezzo": "circa 15–30 €",
-    "prezzo_min": 15,
-    "prezzo_max": 30,
-    "priorita": "consigliato",
-    "link": [],
-    "note": "Colore: OD o Olive, come il resto dell'uniforme.",
-    "bozza": true
   }
 ]

@@ -3,8 +3,6 @@ import { Image } from 'astro:assets';
 import { ArrowRightIcon } from '@phosphor-icons/react/ssr';
 
 import logo from '@/assets/logo.png';
-import Bozza from '@/components/Bozza.astro';
-import Callout from '@/components/Callout.astro';
 import Section from '@/components/Section.astro';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -132,7 +130,7 @@ const pagine = PAGINE.filter((p) => p.slug !== 'index');
 
     <h3 id="dove-giochiamo">Dove giochiamo</h3>
     <p>
-      Siamo in Veneto e operiamo tra le province di <strong>Padova e Venezia</strong>. Organizziamo spesso amichevoli
+      Siamo in Veneto e operiamo tra le province di <strong>Padova, Venezia e Treviso</strong>. Organizziamo spesso amichevoli
       con squadre di tutta la regione, che ci portano a giocare in posti sempre diversi.
     </p>
     <p>
@@ -146,22 +144,20 @@ const pagine = PAGINE.filter((p) => p.slug !== 'index');
     </p>
 
     <h3 id="patch">Il nome e la patch</h3>
-    <Callout tipo="mancante" titolo="Dato mancante · storia e nome">
-      <p>
-        Quando è nata la squadra? Da dove viene il nome «Breakpoint Contractors Unit»? Operate anche in provincia di
-        Treviso, come indica la pagina Team del sito ufficiale?
-      </p>
-    </Callout>
-    <Bozza nota="Lettura della patch ricavata dal logo: confermate o correggete il significato che le date voi.">
-      <p>
-        Al centro della patch c'è la sigla <strong>BCU</strong> dentro un mirino, sopra la sagoma verde del Veneto, la
-        nostra regione. I due rami d'alloro ai lati sono il simbolo classico della vittoria e del merito.
-      </p>
-      <p>
-        Il motto, <strong>«Audentes fortuna iuvat»</strong>, è latino e significa «la fortuna aiuta chi osa». Viene
-        dall'<em>Eneide</em> di Virgilio (libro X, verso 284), dove compare nella forma «audentis Fortuna iuvat».
-      </p>
-    </Bozza>
+    <p>La squadra nasce nel <strong>febbraio 2021</strong>. Il nome si legge una parola alla volta:</p>
+    <ul>
+      <li><strong>Breakpoint</strong>: il «punto critico», o «punto di rottura», in cui siamo specializzati ad agire.</li>
+      <li><strong>Contractors</strong>: perché siamo indipendenti.</li>
+      <li><strong>Unit</strong>: perché siamo una sola unità, affiatata e legata.</li>
+    </ul>
+    <p>
+      Al centro della patch c'è la sigla <strong>BCU</strong> dentro un mirino, sopra la sagoma verde del Veneto, la
+      nostra regione. I due rami d'alloro ai lati sono il simbolo classico della vittoria e del merito.
+    </p>
+    <p>
+      Il motto, <strong>«Audentes fortuna iuvat»</strong>, è latino e significa «la fortuna aiuta chi osa». Viene
+      dall'<em>Eneide</em> di Virgilio (libro X, verso 284).
+    </p>
   </Section>
 
   <Section id="principi" title="Le regole in breve">
@@ -173,8 +169,8 @@ const pagine = PAGINE.filter((p) => p.slug !== 'index');
       </li>
       <li>
         <strong>Sicurezza</strong>
-        Gli occhiali restano addosso in tutta l'area del campo e si tolgono solo nel parcheggio; le repliche stanno
-        sotto 1,00 J. La sicurezza viene prima del gioco: vedi <a href="game-rules.html">Sicurezza e normativa</a>.
+        Gli occhiali si mettono appena arrivi nel parcheggio e si tolgono come ultima cosa prima di andare via; le
+        repliche stanno sotto 1,00 J. La sicurezza viene prima del gioco: vedi <a href="game-rules.html">Sicurezza e normativa</a>.
       </li>
       <li>
         <strong>Rispetto</strong>

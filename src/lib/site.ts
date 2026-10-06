@@ -1,7 +1,6 @@
 import {
   BackpackIcon,
   BookOpenTextIcon,
-  BroadcastIcon,
   CrosshairIcon,
   HouseIcon,
   ListChecksIcon,
@@ -72,16 +71,18 @@ export const PAGINE: Pagina[] = [
     label: 'Sicurezza',
     titolo: 'Sicurezza e normativa',
     codice: '03',
-    descr: 'Zona sicura, protezioni, primo soccorso e cosa dice la legge.',
+    descr: 'Sicurezza a fine partita, protezioni, primo soccorso e cosa dice la legge.',
     icon: ShieldCheckIcon,
   },
-  {
-    slug: 'radio',
-    label: 'Radio',
-    codice: '04',
-    descr: 'Canali, procedure radio e alfabeto fonetico.',
-    icon: BroadcastIcon,
-  },
+  // Pagina Radio scollegata dal sito, non eliminata: il file è src/pages/_radio.astro, con le istruzioni per
+  // ricollegarla. Per rimetterla nel menu togli il commento qui sotto e aggiungi BroadcastIcon all'import in cima.
+  // {
+  //   slug: 'radio',
+  //   label: 'Radio',
+  //   codice: '04',
+  //   descr: 'Canali, procedure radio e alfabeto fonetico.',
+  //   icon: BroadcastIcon,
+  // },
   {
     slug: 'giornata',
     label: 'In campo',

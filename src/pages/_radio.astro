@@ -1,4 +1,18 @@
 ---
+// PAGINA SCOLLEGATA DAL SITO, NON ELIMINATA (ottobre 2026).
+// Il trattino basso davanti al nome del file (_radio.astro) dice ad Astro di non pubblicarla: non compare nel menu
+// e l'indirizzo radio.html non esiste. Il contenuto è conservato com'era, con le sue bozze e i suoi «Dato mancante»,
+// per poterlo sistemare e ricollegare in futuro.
+//
+// Per ricollegarla:
+//   1. rinomina questo file in radio.astro;
+//   2. in src/lib/site.ts togli il commento alla voce «radio» di PAGINE e rimetti BroadcastIcon nell'import;
+//   3. ripristina i rimandi tolti: il link nel passo «Ferma il gioco» di game-rules.astro e «Vedi la pagina Radio»
+//      nella voce PMR446 di data/glossario.json;
+//   4. completa data/radio.json e le bozze della pagina.
+//
+// Restano al loro posto, inutilizzati finché la pagina è scollegata: data/radio.json, src/lib/radio.ts,
+// src/components/NatoSpeller.tsx e validaRadio in src/lib/dati.ts.
 import datiRadio from '../../data/radio.json';
 import Bozza from '@/components/Bozza.astro';
 import Callout from '@/components/Callout.astro';

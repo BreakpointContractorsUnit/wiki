@@ -1,6 +1,4 @@
 ---
-import Bozza from '@/components/Bozza.astro';
-import Callout from '@/components/Callout.astro';
 import JouleCalc from '@/components/JouleCalc';
 import Section from '@/components/Section.astro';
 import Base from '@/layouts/Base.astro';
@@ -29,13 +27,16 @@ const toc = [
     <div><dt>Potenza massima</dt><dd>&lt; 1,00 J</dd></div>
     <div><dt>Pallini</dt><dd>Solo BIO, no bianco</dd></div>
     <div><dt>Se sei colpito</dt><dd>Ti dichiari</dd></div>
-    <div><dt>Occhiali, tranne nel parcheggio</dt><dd>Sempre addosso</dd></div>
+    <div><dt>Occhiali, dall'arrivo alla partenza</dt><dd>Sempre addosso</dd></div>
   </dl>
 
   <Section id="regole-generali" title="Regole generali">
     <p>In tutta l'area del campo è severamente vietato:</p>
     <ul class="regole">
-      <li class="no">togliersi le protezioni obbligatorie (occhiali) al di fuori del parcheggio;</li>
+      <li class="no">
+        togliersi le protezioni obbligatorie (occhiali): si mettono appena si arriva nel parcheggio e si tolgono come
+        ultima cosa prima di andare via;
+      </li>
       <li class="no">lasciare rifiuti, compresi mozziconi, bottiglie di plastica e simili;</li>
       <li class="no">spostare oggetti o alterare il campo di gioco in qualunque modo.</li>
     </ul>
@@ -92,8 +93,8 @@ const toc = [
     </p>
     <JouleCalc client:visible />
     <p class="note">
-      Il calcolo è indicativo (E = ½ · m · v²): fa fede la misura fatta al campo. Il limite di legge e come si misura
-      sono spiegati in <a href="game-rules.html#normativa">Sicurezza e normativa</a>.
+      Il calcolo è indicativo (E = ½ · m · v²): fa fede la misura fatta al campo. Che cosa succede oltre il limite di
+      legge è spiegato in <a href="game-rules.html#potenza">Sicurezza e normativa</a>.
     </p>
   </Section>
 
@@ -107,126 +108,56 @@ const toc = [
 
   <Section id="organizzazione" title="Organizzazione della squadra">
     <p>
-      La Breakpoint Contractors Unit è un'<strong>associazione sportiva dilettantistica (ASD)</strong>, con un
-      presidente e una segreteria. I recapiti sono nella pagina <a href="join.html#contatti">Unisciti</a>.
+      La Breakpoint Contractors Unit è un'<strong>associazione sportiva dilettantistica (ASD)</strong> affiliata al
+      <strong>CSEN</strong>, con un presidente e una segreteria. I recapiti sono nella pagina
+      <a href="join.html#contatti">Unisciti</a>.
     </p>
-    <Callout tipo="mancante" titolo="Dato mancante · affiliazione e documenti">
-      <p>
-        A quale ente di promozione sportiva è affiliata l'ASD? Che cosa serve per essere soci e giocare (tessera,
-        assicurazione, certificato medico, quota)? Che cosa dice lo statuto su chi decide i provvedimenti?
-      </p>
-    </Callout>
+    <p>Per essere soci e giocare:</p>
+    <ul>
+      <li><strong>Età minima</strong>: 18 anni.</li>
+      <li>
+        <strong>Certificato medico</strong> per attività sportiva non agonistica. Se hai quello agonistico, deve
+        riportare il softair tra gli sport e non deve essere intestato a una ASD specifica.
+      </li>
+      <li><strong>Quota annuale</strong>: te la comunichiamo in privato.</li>
+      <li><strong>Quota per uscita</strong>: solo se la chiede la squadra che ci ospita.</li>
+    </ul>
 
     <h3 id="ruoli">Ruoli</h3>
-    <Callout tipo="mancante" titolo="Dato mancante · chi fa cosa">
-      <p>
-        Il «referente» citato nelle regole è il presidente? Chi lo sostituisce quando non c'è? Quali degli incarichi
-        qui sotto esistono già, e chi li ricopre?
-      </p>
-    </Callout>
-    <Bozza nota="Proposta di incarichi tipici di una squadra: tenete quelli che vi servono e aggiungete i nomi.">
-      <p>
-        Gli incarichi sono volontari e una persona può averne più di uno. Se non sai a chi chiedere, chiedi al
-        referente.
-      </p>
-      <div class="table-wrap">
-        <table class="impila">
-          <thead>
-            <tr><th>Ruolo</th><th>Responsabilità</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Ruolo"><strong>Referente</strong></td>
-              <td data-label="Responsabilità">
-                Punto di riferimento della squadra. Riceve le segnalazioni sui problemi con altri giocatori, decide nei
-                casi dubbi e applica i provvedimenti. Autorizza l'uso di articoli a fiamma libera nelle aree
-                predisposte. Tiene i rapporti con il campo e con le altre squadre.
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Ruolo"><strong>Vice referente</strong></td>
-              <td data-label="Responsabilità">Sostituisce il referente quando è assente. Collabora al calendario delle uscite.</td>
-            </tr>
-            <tr>
-              <td data-label="Ruolo"><strong>Responsabile sicurezza</strong></td>
-              <td data-label="Responsabilità">
-                Fa rispettare le regole di sicurezza (occhiali, limite di potenza, zona sicura) e fa i controlli a
-                campione. Sa dov'è il kit di primo soccorso. Può fermare il gioco in qualsiasi momento.
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Ruolo"><strong>Responsabile radio</strong></td>
-              <td data-label="Responsabilità">
-                Gestisce canali e nominativi (pagina <a href="radio.html">Radio</a>) e spiega ai nuovi come si usa la
-                radio.
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Ruolo"><strong>Logistica e materiali</strong></td>
-              <td data-label="Responsabilità">
-                Tiene il materiale di squadra e quello in prestito per le giornate di prova. Raccoglie gli ordini di
-                gruppo (uniformi, patch).
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Ruolo"><strong>Tutor dei nuovi</strong></td>
-              <td data-label="Responsabilità">
-                Segue chi è in prova: spiega regole e sicurezza, gli sta accanto alla prima uscita, consiglia cosa
-                comprare e cosa no.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </Bozza>
+    <p>
+      Il <strong>referente</strong> è quasi sempre il presidente, ma può cambiare secondo l'evento o quando il
+      presidente non c'è: chi è viene comunicato in modo chiaro ogni volta.
+    </p>
   </Section>
 
   <Section id="partecipazione" title="Partecipazione">
-    <Bozza nota="Proposta: le parti evidenziate sono numeri e scelte che deve fissare la squadra.">
-      <p>Quando confermi la presenza, gli altri contano su di te.</p>
-      <h3>Conferma</h3>
-      <ul>
-        <li>
-          Il calendario delle uscite viene pubblicato su <mark class="vuoto">canale</mark> almeno
-          <mark class="vuoto">N giorni</mark> prima.
-        </li>
-        <li>
-          Rispondi a ogni convocazione, che tu venga o no, entro
-          <mark class="vuoto">scadenza, per esempio il giovedì sera</mark>. Chi non risponde è considerato assente.
-        </li>
-      </ul>
-      <h3>Se non puoi venire</h3>
-      <ul>
-        <li>
-          Avvisa il prima possibile, e comunque almeno <mark class="vuoto">N ore</mark> prima del ritrovo, scrivendo
-          a <mark class="vuoto">referente o canale</mark>.
-        </li>
-        <li>Un imprevisto vero (malattia, lavoro) non è un problema: basta comunicarlo appena puoi.</li>
-        <li>
-          Dopo <mark class="vuoto">N</mark> assenze senza avviso il referente ne parla con te; se continua, vedi
-          <a href="#provvedimenti">Provvedimenti</a>.
-        </li>
-      </ul>
-      <h3>Puntualità</h3>
-      <ul>
-        <li>Arriva all'orario del ritrovo, già pronto: occhiali, replica scarica, batterie cariche.</li>
-        <li>
-          Il briefing di sicurezza è obbligatorio: chi arriva dopo non entra in gioco finché non gli sono state
-          spiegate le regole del giorno.
-        </li>
-      </ul>
-      <h3>Quote e spese</h3>
-      <ul>
-        <li>
-          Quota annuale: <mark class="vuoto">importo e cosa comprende</mark>. Quota per uscita:
-          <mark class="vuoto">importo o criterio</mark>.
-        </li>
-        <li>Pallini, batterie, gas e spostamenti sono a carico di ciascuno.</li>
-        <li>
-          Documenti per giocare: <mark class="vuoto">certificato medico, tessera, assicurazione: da definire</mark>.
-        </li>
-      </ul>
-    </Bozza>
+    <p>Quando confermi la presenza, gli altri contano su di te.</p>
+    <h3>Conferma</h3>
+    <ul>
+      <li>Le uscite vengono comunicate sul gruppo WhatsApp almeno 7 giorni prima.</li>
+      <li>
+        Rispondi a ogni convocazione, che tu venga o no, entro il martedì. Chi non risponde è considerato assente.
+      </li>
+    </ul>
+    <h3>Se non puoi venire</h3>
+    <ul>
+      <li>
+        Avvisa il prima possibile, e comunque almeno 24 ore prima del ritrovo, scrivendo in privato al referente o sul
+        gruppo.
+      </li>
+      <li>Un imprevisto vero (malattia, lavoro) non è un problema: basta comunicarlo appena puoi.</li>
+      <li>
+        Dopo 2 assenze senza avviso il referente ne parla con te; se continua, vedi
+        <a href="#provvedimenti">Provvedimenti</a>.
+      </li>
+    </ul>
+    <h3>Puntualità</h3>
+    <p>
+      È buona pratica arrivare un po' prima dell'orario di ritrovo e iniziare a prepararsi appena si arriva, senza
+      perdere tempo.
+    </p>
+    <h3>Spese</h3>
+    <p>Pallini, batterie, gas e spostamenti sono a carico di ciascuno.</p>
   </Section>
 
   <Section id="uniforme" title="Uniforme e patch">
@@ -234,93 +165,85 @@ const toc = [
       L'uniforme di squadra è in colore <strong>OD (Olive Drab)</strong>: combat shirt, pantaloni, tattico e tasche.
       L'elenco completo di cosa acquistare, con prezzi e link, è nella pagina <a href="onboarding.html">Onboarding</a>.
     </p>
-    <Bozza nota="Proposta su quando indossare l'uniforme e sull'uso della patch.">
-      <h3>Uniforme</h3>
-      <ul>
-        <li>Alle uscite di squadra e agli eventi con altre squadre si indossa l'uniforme completa.</li>
-        <li>
-          Non serve comprare tutto prima di iniziare: nella giornata di prova e nelle prime uscite vanno bene abiti
-          robusti e sobri (maniche e pantaloni lunghi, colori scuri, scarponi). Gli occhiali protettivi servono da
-          subito.
-        </li>
-        <li>Hai <mark class="vuoto">N uscite o N mesi</mark> per completare l'uniforme.</li>
-        <li>
-          Niente gradi, mostrine, stemmi o patch di reparti reali, militari o delle forze dell'ordine, né simboli
-          politici o offensivi.
-        </li>
-      </ul>
-      <h3>Patch</h3>
-      <ul>
-        <li>
-          La patch si riceve quando si entra ufficialmente in squadra, alla fine del periodo di prova. Prima non si
-          porta.
-        </li>
-        <li>Si porta <mark class="vuoto">posizione, per esempio sul velcro della spalla sinistra</mark>.</li>
-        <li>
-          Si usa solo nelle attività della squadra. Quando la porti rappresenti tutti, anche fuori dal campo:
-          comportati di conseguenza.
-        </li>
-        <li>Non si cede e non si copia; il logo non si usa altrove senza il permesso del referente.</li>
-        <li>Se lasci la squadra, restituisci la patch al referente.</li>
-      </ul>
-    </Bozza>
+    <h3>Uniforme</h3>
+    <ul>
+      <li>Alle uscite di squadra e agli eventi con altre squadre si indossa l'uniforme completa.</li>
+      <li>
+        Non serve comprare tutto prima di iniziare: nella giornata di prova e nelle prime uscite vanno bene abiti
+        robusti e sobri (maniche e pantaloni lunghi, colori scuri, scarponi). Gli occhiali protettivi servono da
+        subito.
+      </li>
+      <li>
+        Non c'è un tempo massimo per completare l'uniforme, ma apprezziamo chi, secondo le proprie possibilità
+        economiche, se la procura il prima possibile.
+      </li>
+      <li>
+        Niente gradi, mostrine, stemmi o patch di reparti reali, militari o delle forze dell'ordine, né simboli
+        politici o offensivi.
+      </li>
+    </ul>
+    <h3>Patch</h3>
+    <ul>
+      <li>
+        La patch si riceve quando si entra ufficialmente in squadra, dopo le giornate di prova. Prima non si
+        porta.
+      </li>
+      <li>Si porta dove preferisci; di norma sul braccio sinistro.</li>
+      <li>
+        Si usa solo nelle attività della squadra. Quando la porti rappresenti tutti, anche fuori dal campo:
+        comportati di conseguenza.
+      </li>
+      <li>Non si cede e non si copia; il logo non si usa altrove senza il permesso del referente.</li>
+      <li>Se lasci la squadra, restituisci la patch al referente.</li>
+    </ul>
   </Section>
 
   <Section id="provvedimenti" title="Provvedimenti">
-    <Bozza nota="Proposta di scala dei provvedimenti: chi decide, durate e casi vanno fissati dalla squadra.">
-      <p>
-        I provvedimenti sono graduali, tranne che per la sicurezza. Valgono per tutta la giornata di squadra, non solo
-        durante il gioco.
-      </p>
-      <ol class="passi">
-        <li>
-          <strong>Richiamo verbale</strong>
-          Il referente ti spiega cosa non va e come correggerlo.
-        </li>
-        <li>
-          <strong>Richiamo scritto</strong>
-          Un messaggio che descrive il fatto e dice cosa succede se si ripete.
-        </li>
-        <li>
-          <strong>Sospensione</strong>
-          Stop alle uscite per <mark class="vuoto">N uscite o N settimane</mark>. Si rientra dopo un colloquio con il
-          referente.
-        </li>
-        <li>
-          <strong>Allontanamento</strong>
-          Esci dalla squadra e restituisci patch e materiale.
-        </li>
-      </ol>
-      <h3>Infrazioni lievi</h3>
-      <p>Richiamo verbale; se si ripetono, richiamo scritto.</p>
-      <ul>
-        <li>ritardi ripetuti, mancata risposta alle convocazioni, assenze senza avviso;</li>
-        <li>uniforme incompleta oltre il tempo concesso;</li>
-        <li>scenate o discussioni accese in campo.</li>
-      </ul>
-      <h3>Infrazioni gravi</h3>
-      <p>Richiamo scritto o sospensione; allontanamento se si ripetono.</p>
-      <ul>
-        <li>non dichiararsi di proposito quando si è colpiti;</li>
-        <li>insulti, bestemmie, discriminazioni di qualsiasi tipo;</li>
-        <li>rifiuti lasciati al campo, oggetti spostati, danni al campo o alle cose degli altri.</li>
-      </ul>
-      <h3>Infrazioni di sicurezza: tolleranza zero</h3>
-      <p>
-        Non si parte dal richiamo: per quella giornata sei fuori dal gioco, poi il referente decide tra sospensione e
-        allontanamento.
-      </p>
-      <ul class="regole">
-        <li class="no">togliersi gli occhiali fuori dal parcheggio;</li>
-        <li class="no">usare una replica oltre il limite di potenza o rifiutare il controllo;</li>
-        <li class="no">sparare «alla talebana», attraverso le fessure, o a distanza ravvicinata senza abbassare la mira;</li>
-        <li class="no">usare articoli a fiamma libera senza autorizzazione;</li>
-        <li class="no">violenza fisica o minacce.</li>
-      </ul>
-      <p>
-        Chi decide: <mark class="vuoto">il referente / referente e vice / il direttivo</mark>. Prima di ogni
-        provvedimento oltre il richiamo verbale il referente ascolta la tua versione.
-      </p>
-    </Bozza>
+    <p>
+      I provvedimenti sono graduali, tranne che per la sicurezza. Valgono per tutta la giornata di squadra, non solo
+      durante il gioco.
+    </p>
+    <ol class="passi">
+      <li>
+        <strong>Richiamo verbale</strong>
+        Il referente ti spiega cosa non va e come correggerlo.
+      </li>
+      <li>
+        <strong>Richiamo scritto</strong>
+        Un messaggio che descrive il fatto e dice cosa succede se si ripete.
+      </li>
+      <li>
+        <strong>Allontanamento</strong>
+        Esci dalla squadra e restituisci patch e materiale.
+      </li>
+    </ol>
+    <h3>Infrazioni lievi</h3>
+    <p>Richiamo verbale; se si ripetono, richiamo scritto.</p>
+    <ul>
+      <li>ritardi ripetuti, mancata risposta alle convocazioni, assenze senza avviso;</li>
+      <li>uniforme incompleta dopo tanto tempo.</li>
+    </ul>
+    <h3>Infrazioni gravi</h3>
+    <p>Richiamo scritto; allontanamento se si ripetono.</p>
+    <ul>
+      <li>non dichiararsi di proposito quando si è colpiti;</li>
+      <li>scenate o discussioni accese in campo;</li>
+      <li>insulti, discriminazioni di qualsiasi tipo;</li>
+      <li>rifiuti lasciati al campo, oggetti spostati, danni al campo o alle cose degli altri.</li>
+    </ul>
+    <h3>Infrazioni di sicurezza: tolleranza zero</h3>
+    <p>
+      Non si parte dal richiamo: per quella giornata sei fuori dal gioco, poi si valuta l'allontanamento.
+    </p>
+    <ul class="regole">
+      <li class="no">togliersi gli occhiali prima del momento di andare via;</li>
+      <li class="no">usare una replica oltre il limite di potenza o rifiutare il controllo;</li>
+      <li class="no">usare articoli a fiamma libera senza autorizzazione;</li>
+      <li class="no">violenza fisica o minacce.</li>
+    </ul>
+    <p>
+      Chi decide: il consiglio direttivo. Prima di ogni
+      provvedimento oltre il richiamo verbale il referente ascolta la tua versione.
+    </p>
   </Section>
 </Base>
